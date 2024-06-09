@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -13,5 +14,9 @@
         "@types/node": "^20.11.30",
         "ts-node": "^10.9.2",
         "typescript": "^5.4.3"
+    },
+    "dependencies": {
+        "@types/crawler": "^1.2.6",
+        "crawler": "^2.0.0"
     }
 }
