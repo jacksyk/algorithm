@@ -1,4 +1,34 @@
 /**
  * @url https://programmercarl.com/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html
  */
-function generateMatrix(n: number): number[][] {}
+function generateMatrix(n: number): number[][] {
+    let top = 0,
+        bottom = n - 1,
+        left = 0,
+        right = n - 1,
+        count = 0, // 转几圈
+        result = new Array(n).fill(0).map((_item) => new Array(n).fill(0)),
+        num = 1
+    while (count <= Math.floor(n / 2)) {
+        // notice:执行一个循环需要做的事情
+        for (let i = left; i <= right; i++) {
+            result[top][i] = num++
+        }
+        top += 1
+        for (let i = top; i <= bottom; i++) {
+            result[i][right] = num++
+        }
+        right -= 1
+        for (let i = right; i >= left; i--) {
+            result[bottom][i] = num++
+        }
+        bottom -= 1
+        for (let i = bottom; i >= top; i--) {
+            result[i][left] = num++
+        }
+        left += 1
+        count += 1
+    }
+    return result
+}
+console.table(generateMatrix(100))
