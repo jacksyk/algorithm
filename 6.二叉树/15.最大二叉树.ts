@@ -1,0 +1,24 @@
+/**
+ * @url https://leetcode.cn/problems/maximum-binary-tree/description/
+ */
+
+class TreeNode {
+    val: number
+    left: TreeNode | null
+    right: TreeNode | null
+    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        this.val = val === undefined ? 0 : val
+        this.left = left === undefined ? null : left
+        this.right = right === undefined ? null : right
+    }
+}
+
+function constructMaximumBinaryTree(nums: number[]): TreeNode | null {
+    if (nums.length === 0) return null
+    if (nums.length === 1) return new TreeNode(nums[0])
+    let _maxIdx = nums.indexOf(Math.max(...nums))
+    let _root = new TreeNode(nums[_maxIdx])
+    _root.left = constructMaximumBinaryTree(nums.slice(0, _maxIdx))
+    _root.right = constructMaximumBinaryTree(nums.slice(_maxIdx + 1))
+    return _root
+}
