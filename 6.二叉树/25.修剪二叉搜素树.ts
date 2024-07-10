@@ -1,5 +1,5 @@
 /**
- * @url https://leetcode.cn/problems/delete-node-in-a-bst/description/
+ * @url https://leetcode.cn/problems/trim-a-binary-search-tree/description/
  */
 
 class TreeNode {
@@ -12,17 +12,19 @@ class TreeNode {
         this.right = right === undefined ? null : right
     }
 }
-
-// notice
-// 总共有五种情况
-// 叶子节点，直接删掉就可以
-// 没有找到节点
-// 删除的节点只有左孩子，没有右孩子
-// 删除的节点只有右孩子，没有左孩子
-// 删除的节点既有右孩子，也有左孩子
-function deleteNode(root: TreeNode | null, key: number): TreeNode | null {
+// TODO: 如果直接返回左右子树的话，没有考虑左右子树里面还有不符合条件的子树
+/**
+ * 沿用上一题的思路稍微改一下就可以了。上一题只需要删除一个结点,然后直接return,导致其下面还符合条件的结点没法删除。原因是因为上一题实
+   际上是个先序遍历,符合条件直接return,如果我们改为后序遍历就可以了,每次判定都会是最底下的结点先判定,也就是把判断的代码写到递归代码  
+   的后面。
+ */
+function trimBST(root: TreeNode | null, low: number, high: number): TreeNode | null {
     if (!root) return null
-    if (root.val === key) {
+
+    root.left = trimBST(root.left, low, high)
+    root.right = trimBST(root.right, low, high)
+
+    if (root.val < low || root.val > high) {
         if (!root.left && !root.right) {
             return null
         }
@@ -42,10 +44,5 @@ function deleteNode(root: TreeNode | null, key: number): TreeNode | null {
         }
     }
 
-    if (root.val > key) {
-        root.left = deleteNode(root.left, key)
-    } else {
-        root.right = deleteNode(root.right, key)
-    }
     return root
 }
