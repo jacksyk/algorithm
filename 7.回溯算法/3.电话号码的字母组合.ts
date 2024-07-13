@@ -1,0 +1,35 @@
+/**
+ * @url https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
+ */
+
+function init(): Map<string, string> {
+    let map = new Map()
+    map.set("2", "abc")
+    map.set("3", "def")
+    map.set("4", "ghi")
+    map.set("5", "jkl")
+    map.set("6", "mno")
+    map.set("7", "pqrs")
+    map.set("8", "tuv")
+    map.set("9", "wxyz")
+    return map
+}
+function letterCombinations(digits: string): string[] {
+    const result: string[] = []
+    const map = init()
+    const dfs = (path: string[], idx: number) => {
+        if (path.length === digits.length) {
+            result.push(path.join(""))
+            return
+        }
+        const str = map.get(digits[idx])
+        for (let i = 0; i < str!.length; i++) {
+            path.push(str![i])
+            dfs(path.concat([]), idx + 1)
+            path.pop()
+        }
+    }
+    dfs([], 0)
+    return result.filter((_str) => _str !== "")
+}
+// console.log(letterCombinations("23"))

@@ -1,0 +1,22 @@
+/**
+ * @url https://leetcode.cn/problems/combination-sum-iii/description/
+ */
+
+function combinationSum3(k: number, n: number): number[][] {
+    const result: number[][] = []
+    const dfs = (idx: number, path: number[]) => {
+        if (path.length === k) {
+            if (path.reduce((acc, cur) => acc + cur, 0) === n) {
+                result.push(path)
+            }
+            return
+        }
+        for (let i = idx + 1; i <= 9; i++) {
+            path.push(i)
+            dfs(i, path.concat([]))
+            path.pop()
+        }
+    }
+    dfs(0, [])
+    return result
+}
