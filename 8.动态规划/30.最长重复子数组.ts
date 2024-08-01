@@ -2,7 +2,7 @@
  * @url https://leetcode.cn/problems/maximum-length-of-repeated-subarray/description/
  */
 
-// dp[i][j]表示以num1的i为结尾，nums2的j为结尾的最长重复子数组
+// TODO:dp[i][j]表示以num1[i]为末尾项，末尾项为nums2[j]的子数组
 // nums[i] nums[j]
 // 优化点：init初始化可以简洁一点，不用手动去初始化
 function findLength(nums1: number[], nums2: number[]): number {
@@ -33,3 +33,6 @@ function findLength(nums1: number[], nums2: number[]): number {
     return res === Number.MIN_SAFE_INTEGER ? 0 : res
 }
 findLength([1, 2, 3, 2, 1], [3, 2, 1, 2, 7])
+
+// 12321
+// 32127
