@@ -1,0 +1,11 @@
+Array.prototype._includes = function (value) {
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === value) {
+            return true
+        }
+    }
+    return false
+}
+let arr = [1, 2, 3, 4, 5]
+console.log(arr._includes(3))
+console.log(arr._includes(6))

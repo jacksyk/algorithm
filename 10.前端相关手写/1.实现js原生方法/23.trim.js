@@ -1,0 +1,22 @@
+String.prototype._trim = function () {
+    let left = 0,
+        right = this.length - 1
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === " ") {
+            left++
+        } else {
+            break
+        }
+    }
+    for (let i = right; i >= 0; i--) {
+        if (this[i] === " ") {
+            right--
+        } else {
+            break
+        }
+    }
+    return this.slice(left, right + 1)
+}
+
+let str = "    hello     ww   "
+console.log(str._trim())
