@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        h1 {
+            display: block;
+        }
+    </style>
+
+    <body>
+        <div id="box">
+            <h1>我是一张缺省图</h1>
+        </div>
+    </body>
+</html>
+<style></style>
+<script>
+    let oBox = document.getElementById("box")
+    let oH = document.querySelector("h1")
+
+    function loadImageAsync(url) {
+        return new Promise(function (resolve, reject) {
+            const image = new Image(20, 20)
+
+            image.onload = function () {
+                console.log(image.naturalHeight) // 远端图片展示的高度
+                console.log(image.naturalWidth) // 远端图片展示的宽度
+                console.log(image.height) // 图片在css上的高度
+                console.log(image.width) // 图片在css上的宽度
+                resolve(image)
+            }
+
+            image.onerror = function () {
+                reject(new Error("Could not load image at " + url))
+            }
+
+            image.src = url
+        })
+    }
+    // 模拟一下异步加载图片
+    // 用setTimeoutm模拟ajax调用接口，获取接口返回的图片路径，然后传入函数中，函数中已经提前创建好了
+    // 图片标签。我们在.then的回调函数中自行决定插入div容器中做一些事，比如把缺省图隐藏掉
+    setTimeout(() => {
+        loadImageAsync(
+            "https://p6-dcd-sign.byteimg.com/tos-cn-i-f042mdwyw7/b38eb467318c4429ae421d02fac07270~tplv-f042mdwyw7-original:640:0.image?lk3s=50e2976a&x-expires=1726103176&x-signature=Lj%2FDnwgC%2FJ1buVBs0RcSfTbi4X8%3D"
+        ).then((res) => {
+            oH.style.display = "none"
+            oBox.appendChild(res)
+        })
+    }, 1000)
+</script>
