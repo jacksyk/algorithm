@@ -1,6 +1,8 @@
 /**
- * @url function subsetsWithDup(nums: number[]): number[][] {}
+ * @url https://leetcode.cn/problems/subsets-ii/description/
  */
+
+// [1,2,2,3]
 function subsetsWithDup(nums: number[]): number[][] {
     const result: number[][] = []
     const used: boolean[] = new Array(nums.length).fill(false)

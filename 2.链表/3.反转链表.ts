@@ -2,19 +2,26 @@
  * @url https://leetcode.cn/problems/reverse-linked-list/description/
  */
 
+class ListNode {
+    val: number
+    next: ListNode | null
+    constructor(val?: number, next?: null) {
+        this.val = val === undefined ? 0 : val
+        this.next = next === undefined ? null : next
+    }
+}
 function reverseList(head: ListNode | null): ListNode | null {
     if (!head) return null
-    if (!head.next) return head
-    let pre: ListNode | null = null,
-        last: ListNode | null = null,
-        traverse: null | ListNode = head
-    while (traverse) {
-        last = traverse
-        traverse = traverse.next // notice：链表注意操作的时候next节点指针是否被改变了
-        last.next = pre
-        pre = last
+    let pre = head,
+        qo = head,
+        fast = head.next
+    while (fast && fast.next) {
+        qo = fast
+        fast = fast.next
+        qo.next = pre
+        pre = qo
     }
-    return last
+    return fast
 }
 
 // 1 2 3 4 5

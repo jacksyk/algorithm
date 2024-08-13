@@ -52,10 +52,9 @@ function findTargetSumWays(nums: number[], target: number): number {
     for (let row = 0; row < nums.length; row++) {
         console.log(dp)
         for (let col = capacity; col >= nums[row]; col--) {
-            dp[col] = dp[col - nums[row]] + dp[col] // notice:时刻记住col一定是容量。不要这个有多种方案，要这个有多少种方案
+            dp[col] = dp[col - nums[row]] + dp[col]
         }
     }
-    console.log(dp)
 
     return dp[capacity]
 }

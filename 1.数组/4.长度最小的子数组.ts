@@ -3,19 +3,14 @@
  */
 function minSubArrayLen(target: number, nums: number[]): number {
     let left = 0,
-        right = 0,
-        sum = 0, // 计算滑动窗口总和，和target进行比较
-        resultNum = Number.MAX_SAFE_INTEGER // 存贮结果数组的长度
-
-    while (right < nums.length) {
-        sum += nums[right]
+        res = Number.MAX_SAFE_INTEGER,
+        sum = 0
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i]
         while (sum >= target) {
-            resultNum = Math.min(resultNum, right - left + 1)
-            sum -= nums[left]
-            left++
+            res = Math.min(i - left + 1, res)
+            sum -= nums[left++]
         }
-
-        right++
     }
-    return resultNum === Number.MAX_SAFE_INTEGER ? 0 : resultNum
+    return res === Number.MAX_SAFE_INTEGER ? 0 : res
 }

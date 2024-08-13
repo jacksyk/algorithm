@@ -2,6 +2,7 @@
  * @url https://leetcode.cn/problems/gas-station/description/
  */
 
+// -2 -2  -2 3 3
 // notice：考虑错了,并不是从剩余中最大的出去就是好的
 // function canCompleteCircuit(gas: number[], cost: number[]): number {
 //     const arr: number[] = [] // 表示arr[i]前往i+1站剩余的邮费

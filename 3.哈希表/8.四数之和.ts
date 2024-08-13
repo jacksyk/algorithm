@@ -1,36 +1,34 @@
 /**
  * @url https://leetcode.cn/problems/4sum/
  */
+// 这里的不重复是指值不能重复
+// 2 2 2 1 1
 function fourSum(nums: number[], target: number): number[][] {
-    let res: Array<Array<number>> = []
+    const res: number[][] = []
     nums.sort((a, b) => a - b)
     for (let i = 0; i < nums.length - 3; i++) {
-        if (i > 0 && nums[i] === nums[i - 1]) {
+        if (i > 0 && nums[i - 1] === nums[i]) {
             continue
         }
         for (let j = i + 1; j < nums.length - 2; j++) {
-            if (j > i + 1 && nums[j] === nums[j - 1]) {
-                continue
-            }
+            if (j > i + 1 && nums[j] === nums[j - 1]) continue // 如果是初始给过滤，那么将不会获取到这个值
             let left = j + 1,
                 right = nums.length - 1
-            while (right > left) {
+            while (left < right) {
                 let sum = nums[left] + nums[right] + nums[i] + nums[j]
-                if (sum < target) {
-                    left++
-                }
-                if (sum > target) {
-                    right--
-                }
                 if (sum === target) {
                     res.push([nums[left], nums[right], nums[i], nums[j]])
-                    while (right > left && nums[right] === nums[right - 1]) {
-                        right--
-                    }
-                    while (right > left && nums[left] === nums[left + 1]) {
+                    while (nums[left] === nums[left + 1]) {
                         left++
                     }
+                    while (nums[right] === nums[right - 1]) {
+                        right--
+                    }
+                    left++
                     right--
+                } else if (sum > target) {
+                    right--
+                } else {
                     left++
                 }
             }

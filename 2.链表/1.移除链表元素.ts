@@ -12,19 +12,19 @@ class ListNode {
 }
 
 function removeElements(head: ListNode | null, val: number): ListNode | null {
-    if (!head) return head
-    let newHead = new ListNode(0)
-    newHead.next = head
-    let slowPoint: null | ListNode = newHead,
-        fastPoint: null | ListNode = newHead.next
-    while (fastPoint && slowPoint) {
-        if (fastPoint.val === val) {
-            slowPoint.next = fastPoint.next
-            fastPoint = fastPoint.next
+    if (!head) return null
+    let vitrualHead = new ListNode(0)
+    vitrualHead.next = head
+    let fast: ListNode | null = head,
+        slow = vitrualHead
+    while (fast) {
+        if (fast.val === val) {
+            slow.next = fast.next
+            fast = fast.next
         } else {
-            slowPoint = slowPoint.next
-            fastPoint = fastPoint.next
+            slow = fast
+            fast = fast.next
         }
     }
-    return newHead.next
+    return vitrualHead.next
 }

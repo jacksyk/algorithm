@@ -9,6 +9,8 @@ class ListNode {
         this.next = next === undefined ? null : next
     }
 }
+export {}
+
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
     let newHead = new ListNode(0, null)
     newHead.next = head

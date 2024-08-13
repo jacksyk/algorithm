@@ -1,3 +1,4 @@
+export {}
 /**
  * @url https://leetcode.cn/problems/house-robber/description/
  */
@@ -19,13 +20,13 @@ function rob(nums: number[]): number {
 
     return dp[nums.length - 1]
 }
+// 因为题目中都是正数，所以这里不需要考虑前面，dp[i-1]一定是没有选择i的最大值，实际上也是运用到了一点贪心的策略
 
-// 因为题目中都是正数，所以这里不需要考虑前面，dp[i-1]一定是没有选择i的最大值
 /**
  * @url https://leetcode.cn/problems/house-robber/description/
  */
 
-// dp[i]表示偷窃第i+1间房屋所能获得的最大金额
+// dp[i]表示偷窃第i+1间房屋所能获得的最大金额，
 // dp[2] = dp[0]+cur, dp[1]
 // dp[3] = dp[1]+cur,dp[2]
 // dp[n] = dp[n-2]+cur dp[n-1]

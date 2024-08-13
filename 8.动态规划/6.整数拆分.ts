@@ -2,7 +2,7 @@
  * @url https://leetcode.cn/problems/integer-break/description/
  */
 
-// dp[n]表示n拆分为k个数的最大乘积
+// dp[n]表示n拆分至少两个数的最大乘积
 function integerBreak(n: number): number {
     const dp = new Array(n + 1).fill(0)
     dp[0] = 0

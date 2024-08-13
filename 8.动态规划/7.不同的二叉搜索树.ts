@@ -6,7 +6,7 @@
 // f[i]代表以i为根节点的二叉搜索树的个数
 
 // G[n] = f(1)+f(2)+....f(n)
-// f(i) = G(i-1)*G(n-i)
+// f(i) = G(i-1)*G(n-i) // 左子树的个数有i-1个，右子树的个数有n-i个
 // G(n) = G(0)*G(n-1)+G(1)*G(1)+.....G(n-1)*G(0)
 
 function numTrees(n: number): number {

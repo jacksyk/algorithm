@@ -1,3 +1,6 @@
+/**
+ * @url https://leetcode.cn/problems/wiggle-subsequence/description/
+ */
 // nums = [1,7,4,9,2,5]
 // 输出：6
 // 解释：整个序列均为摆动序列，各元素之间的差值为 (6, -3, 5, -7, 3) 。
