@@ -5,7 +5,6 @@
 // TODO:1.边界条件 2.去重逻辑 (不能排序之后用used数组进行去重，会打乱原数组的顺序。)3.用set来去重，在树层的地方判断
 function findSubsequences(nums: number[]): number[][] {
     const result: Array<Array<number>> = []
-    const used: Array<boolean> = new Array(nums.length).fill(false)
     const dfs = (path: number[], startIdx: number) => {
         if (path.length >= 2) {
             result.push(path)

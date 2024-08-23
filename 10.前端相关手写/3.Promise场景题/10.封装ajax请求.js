@@ -3,7 +3,7 @@ function axios(url) {
         const xhr = new XMLHttpRequest()
         xhr.open("Get", url)
         xhr.onreadystatechange = function () {
-            if (this.readyState === 4) {
+            if (this.readyState !== 4) {
                 return
             }
             if (this.status >= 200 && this.status < 400) {

@@ -9,6 +9,7 @@ function wordBreak(s: string, wordDict: string[]): boolean {
     dp[0] = true
 
     for (let j = 1; j <= s.length; j++) {
+        console.log(dp)
         // 这个for循环每次都会对dp进行覆盖操作
         for (let i = 0; i < wordDict.length; i++) {
             const word = wordDict[i]

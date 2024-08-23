@@ -42,3 +42,5 @@ function maxProfit(prices: number[]): number {
     }
     return Math.max(...dp[prices.length - 1])
 }
+
+// 这里如果要做空间优化，需要去做赋值顺序的调整
