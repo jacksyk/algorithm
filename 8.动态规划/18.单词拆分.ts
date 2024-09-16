@@ -9,7 +9,6 @@ function wordBreak(s: string, wordDict: string[]): boolean {
     dp[0] = true
 
     for (let j = 1; j <= s.length; j++) {
-        console.log(dp)
         // 这个for循环每次都会对dp进行覆盖操作
         for (let i = 0; i < wordDict.length; i++) {
             const word = wordDict[i]
@@ -17,7 +16,7 @@ function wordBreak(s: string, wordDict: string[]): boolean {
                 const word1 = s.slice(j - word.length, j)
                 if (wordDict.indexOf(word1) !== -1 && dp[j - word.length]) {
                     dp[j] = true
-                    break
+                    break // 如果不加break，后面遍历上来，可能会把他给覆盖。
                 } else {
                     dp[j] = false
                 }

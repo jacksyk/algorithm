@@ -7,6 +7,7 @@
 // TODO:30,31再好好思索一下
 // - 状态被截断
 // - 状态已经截断
+// - 初始化和最长重复子数组不太一样
 function longestCommonSubsequence(text1: string, text2: string): number {
     const dp = new Array(text1.length + 1).fill(0).map((_v) => new Array(text2.length + 1).fill(0))
     let res = Number.MIN_SAFE_INTEGER
@@ -20,7 +21,6 @@ function longestCommonSubsequence(text1: string, text2: string): number {
             res = Math.max(res, dp[i][j])
         }
     }
-    console.table(dp)
 
     return res
 }

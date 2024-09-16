@@ -2,7 +2,7 @@
  * @url https://leetcode.cn/problems/perfect-squares/description/
  */
 
-// dp[j]表示容量为n的情况下，最少个数是什么
+// dp[n]表示容量为n的情况下，最少需要多少整数来组成n
 function numSquares(n: number): number {
     const dp = new Array(n + 1).fill(Number.MAX_SAFE_INTEGER)
     dp[0] = 0

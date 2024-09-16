@@ -1,6 +1,9 @@
 /**
  * @url https://leetcode.cn/problems/target-sum/description/
  */
+// left + right = sum
+// left - right = target
+// left = (sum + target) / 2
 
 // TODO:初始化很难
 // notice:01背包应用之“有多少种不同的填满背包最大容量的方法“

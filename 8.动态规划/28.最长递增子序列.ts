@@ -48,7 +48,7 @@
 // dp[i]表示到达第i个位置所能获得的最长递增子序列
 // dp[i] = dp[j]+1 nums[i] > nums[j]
 function lengthOfLIS(nums: number[]): number {
-    const dp = new Array(nums.length).fill(1)
+    const dp = new Array(nums.length).fill(1) // 初始化的时候注意一点
     for (let i = 0; i < nums.length; i++) {
         for (let j = 0; j < i; j++) {
             if (nums[i] > nums[j]) {
