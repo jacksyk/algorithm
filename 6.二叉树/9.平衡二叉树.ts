@@ -4,6 +4,7 @@
  */
 
 // TODO:准备二刷了（高度和深度的理解）
+// 这题只能求高度
 function isBalanced(root: TreeNode | null): boolean {
     const dfs = (root: TreeNode | null) => {
         if (!root) return 0

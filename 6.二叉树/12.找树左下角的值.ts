@@ -31,3 +31,27 @@ function findBottomLeftValue(root: TreeNode | null): number {
     dfs(root, 1)
     return res
 }
+
+// 层序遍历去做，不过会超时
+// function findBottomLeftValue(root: TreeNode | null): number {
+//     let val  = 0;
+//     const stack = []
+//     stack.push(root)
+//     while(stack.length){
+//         let copyStack = stack.concat()
+//         console.log(copyStack)
+//         for(let i = 0; i < copyStack.length; i++){
+//             const top = stack.shift()
+//             if(i === 0){
+//                 val = top.val
+//             }
+//             if(top?.left){
+//                 stack.push(top.left)
+//             }
+//             if(top?.right){
+//                 stack.push(top.right)
+//             }
+//         }
+//     }
+//     return val
+// };

@@ -48,8 +48,8 @@ function findMode(root: TreeNode | null): number[] {
 
 // 构造二叉树
 function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
-    if (preorder.length === 0) return null
     let _mid = preorder.shift() // notice:一定要注意！！！真的闹糊涂了
+    if (preorder.length === 0) return null
     let _root = new TreeNode(_mid)
     let _index = inorder.indexOf(_mid!)
     _root.left = buildTree(preorder.slice(0, _index), inorder.slice(0, _index))

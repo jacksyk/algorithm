@@ -19,6 +19,8 @@ function sumOfLeftLeaves(root: TreeNode | null): number {
         if (!root) return
         if (root.left && !root.left.left && !root.left.right) {
             sum += root.left.val
+            // return
+            // notice：这里容易return掉
         }
         dfs(root.left)
         dfs(root.right)

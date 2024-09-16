@@ -8,21 +8,21 @@ function levelOrder(root: TreeNode | null): number[][] {
     if (!root) return result
     stack.push(root)
     while (stack.length) {
-        let traverseStack = stack.concat(),
-            temRes: number[] = []
-        for (let i = 0; i < traverseStack.length; i++) {
-            let top = stack.shift()
-            if (top) {
-                temRes.push(top?.val)
+        const copyStack = stack.concat([])
+        const res: number[] = []
+        for (let i = 0; i < copyStack.length; i++) {
+            const queue = stack.shift()
+            if (queue) {
+                res.push(queue.val)
             }
-            if (top?.left) {
-                stack.push(top.left)
+            if (queue?.left) {
+                stack.push(queue.left)
             }
-            if (top?.right) {
-                stack.push(top.right)
+            if (queue?.right) {
+                stack.push(queue.right)
             }
         }
-        result.push(temRes)
+        result.push(res)
     }
     return result
 }

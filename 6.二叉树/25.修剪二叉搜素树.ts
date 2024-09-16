@@ -21,8 +21,9 @@ class TreeNode {
 function trimBST(root: TreeNode | null, low: number, high: number): TreeNode | null {
     if (!root) return null
 
-    root.left = trimBST(root.left, low, high)
-    root.right = trimBST(root.right, low, high)
+    // 先处理子树里面的子树,这里的遍历顺序有一定的讲究。
+    root.left = trimBST(root.left, low, high) // 需要先将左子树进行修剪。
+    root.right = trimBST(root.right, low, high) // 需要将右子树进行修剪。
 
     if (root.val < low || root.val > high) {
         if (!root.left && !root.right) {
@@ -43,6 +44,5 @@ function trimBST(root: TreeNode | null, low: number, high: number): TreeNode | n
             return root.right
         }
     }
-
     return root
 }

@@ -18,14 +18,12 @@ function getMinimumDifference(root: TreeNode | null): number {
         res = Number.MAX_SAFE_INTEGER
     const dfs = (root: TreeNode | null | undefined) => {
         if (!root) return Number.MAX_SAFE_INTEGER
-        const leftResult = dfs(root.left)
-        res = Math.min(res, leftResult)
+        dfs(root.left)
         if (pre) {
             res = Math.min(Math.abs(root.val - pre.val), res)
         }
         pre = root
-        const rightResult = dfs(root.right)
-        res = Math.min(rightResult, res)
+        dfs(root.right)
         return res
     }
     return dfs(root)
