@@ -11,7 +11,6 @@ function longestPalindromeSubseq(s: string): number {
 
     for (let i = s.length - 1; i >= 0; i--) {
         for (let j = i + 1; j < s.length; j++) {
-            // console.log("i", "j", i, j)
             if (s[i] === s[j]) {
                 dp[i][j] = dp[i + 1][j - 1] + 2
             } else {

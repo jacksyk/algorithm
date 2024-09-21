@@ -19,7 +19,7 @@ function countSubstrings(s: string): number {
     const dp = new Array(s.length).fill(true).map((_v) => new Array(s.length).fill(false))
     let res = 0
 
-    // notice：根据递推公式来确认遍历顺序
+    // notice：根据递推公式来确认遍历顺序，从下网上，从左往右
     for (let i = s.length - 1; i >= 0; i--) {
         for (let j = i; j < s.length; j++) {
             if (s[i] === s[j]) {
