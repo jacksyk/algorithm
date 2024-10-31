@@ -14,7 +14,7 @@ function wordBreak(s: string, wordDict: string[]): boolean {
             const word = wordDict[i]
             if (j >= word.length) {
                 const word1 = s.slice(j - word.length, j)
-                if (wordDict.indexOf(word1) !== -1 && dp[j - word.length]) {
+                if (word === word1 && dp[j - word.length]) {
                     dp[j] = true
                     break // 如果不加break，后面遍历上来，可能会把他给覆盖。
                 } else {

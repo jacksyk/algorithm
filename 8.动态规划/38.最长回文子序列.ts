@@ -21,3 +21,5 @@ function longestPalindromeSubseq(s: string): number {
     return dp[0][s.length - 1]
 }
 longestPalindromeSubseq("bbbab")
+// ABCBDAB
+// BDCABA

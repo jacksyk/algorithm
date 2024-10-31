@@ -2,7 +2,7 @@ class Schedular {
     constructor(limit) {
         this.limit = limit
         this.queue = []
-        this.run = new Set()
+        this.run = new Set() // 存放正在执行的任务
     }
 
     add(time, value) {
