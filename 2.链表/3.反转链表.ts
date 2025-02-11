@@ -1,5 +1,5 @@
 /**
- * @url https://leetcode.cn/problems/reverse-linked-list/description/
+ * @url https://leetcode.cn/problesms/reverse-linked-list/description/
  */
 
 class ListNode {

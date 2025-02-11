@@ -14,3 +14,4 @@ function minSubArrayLen(target: number, nums: number[]): number {
     }
     return res === Number.MAX_SAFE_INTEGER ? 0 : res
 }
+

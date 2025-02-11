@@ -1,16 +1,214 @@
-## 刷题备战
+# 算法题目整理
 
-算法小册 😀😀😀
+本仓库包含以下算法题目：- index
 
-ACM 模式 node 输入输出
+### 1.数组
+  - [1.二分查找](https://leetcode.cn/problems/binary-search/description/)
+  - [2.移除元素](https://leetcode.cn/problems/remove-element/description/)
+  - [3.有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/description/)
+  - [4.长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
+  - [5.螺旋矩阵2](https://programmercarl.com/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html)
 
-```javascript
-const readline = require("readline");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
-rl.on("line", (line) => {
-    const inputArray = line.split(" ").map((_num) => Number(_num));
-});
-```
+### 2.链表
+  - [1.移除链表元素](https://leetcode.cn/problems/remove-linked-list-elements/description/)
+  - [2.设计链表](https://leetcode.cn/problems/design-linked-list/)
+  - [3.反转链表](https://leetcode.cn/problesms/reverse-linked-list/description/)
+  - [4.两两交换链表中的节点](https://leetcode.cn/problems/swap-nodes-in-pairs/description/)
+  - [5.删除链表的倒数第n个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
+  - [6.链表相交](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)
+  - [7.环形链表](https://leetcode.cn/problems/linked-list-cycle-ii/)
+  - [8.判断链表是否有环](https://leetcode.cn/problems/linked-list-cycle/description/)
+  - [9.合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/description/)
+  - [10.合并k个有序链表](https://leetcode.cn/problems/merge-k-sorted-lists/description/)
+  - [11.反转k个一组链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
+
+### 3.哈希表
+  - [1.有效的字母异位词](https://leetcode.cn/problems/valid-anagram/description/)
+  - [2.两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)
+  - [3.快乐数](https://leetcode.cn/problems/happy-number/description/)
+  - [4.两数之和](https://leetcode.cn/problems/two-sum/description/)
+  - [5.四数之和](https://leetcode.cn/problems/4sum-ii/description/)
+  - [6.赎金信](https://leetcode.cn/problems/ransom-note/description/)
+  - [7.三数之和](https://leetcode.cn/problems/3sum/description/)
+  - [8.四数之和](https://leetcode.cn/problems/4sum/)
+
+### 4.字符串
+  - [1.反转字符串](https://leetcode.cn/problems/reverse-string/)
+  - [2.反转字符串二](https://leetcode.cn/problems/reverse-string-ii/)
+  - [3.反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string/description/)
+  - [4.实现strStr()](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
+  - [5.重复的子字符串](https://leetcode.cn/problems/repeated-substring-pattern/description/)
+
+### 5.栈与队列
+  - [1.用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks/description/)
+  - [2.用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/description/)
+  - [3.有效的括号](https://leetcode.cn/problems/valid-parentheses/)
+  - [4.删除字符串中的所有相邻重复项](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/description/)
+  - [5.逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/)
+  - [6.滑动窗口求最大值.todo](https://leetcode.cn/problems/sliding-window-maximum/description/)
+  - [7.前k个高频元素.todo](https://leetcode.cn/problems/top-k-frequent-elements/description/)
+
+### 6.二叉树
+  - [1.二叉树的递归遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
+  - 2.二叉树的迭代遍历
+  - [3.二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
+  - [4.翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description/)
+  - [5.对称二叉树](https://leetcode.cn/problems/symmetric-tree/description/)
+  - [6.二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/)
+  - [7.二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/)
+  - [8.完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/description/)
+  - [9.平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/description/)
+  - [10.二叉树的所有路径](https://leetcode.cn/problems/binary-tree-paths/description/)
+  - [11.左叶子之和](https://leetcode.cn/problems/sum-of-left-leaves/description/)
+  - [12.找树左下角的值](https://leetcode.cn/problems/find-bottom-left-tree-value/description/)
+  - [13.路径总和](https://leetcode.cn/problems/path-sum/description/)
+  - [14.从中序与后序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/)
+  - [15.最大二叉树](https://leetcode.cn/problems/maximum-binary-tree/description/)
+  - [16.合并二叉树](https://leetcode.cn/problems/merge-two-binary-trees/description/)
+  - [17.二叉搜索树的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/)
+  - [18.验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
+  - [19.二叉搜索树的最小绝对值差](https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/)
+  - [20.二叉搜索树的众数](https://leetcode.cn/problems/find-mode-in-binary-search-tree/description/)
+  - [21.二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+  - [22.二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+  - [23.二叉搜索树的插入操作](https://leetcode.cn/problems/insert-into-a-binary-search-tree/description/)
+  - [24.删除二叉搜索树的节点](https://leetcode.cn/problems/delete-node-in-a-bst/description/)
+  - [25.修剪二叉搜素树](https://leetcode.cn/problems/trim-a-binary-search-tree/description/)
+  - [26.将有序数组转换为二叉搜索树](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/description/)
+  - [27.把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree/description/)
+
+### 7.回溯算法
+  - [1.组合](https://leetcode.cn/problems/combinations/description/)
+  - [2.组合总和三](https://leetcode.cn/problems/combination-sum-iii/description/)
+  - [3.电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/)
+  - [4.组合总和](https://leetcode.cn/problems/combination-sum/description/)
+  - [5.组合总和2](https://leetcode.cn/problems/combination-sum-ii/description/)
+  - [6.分割回文串](https://leetcode.cn/problems/palindrome-partitioning/description/)
+  - [7.复原ip地址](https://leetcode.cn/problems/restore-ip-addresses/description/)
+  - [8.子集](https://leetcode.cn/problems/subsets/description/)
+  - [9.子集二](https://leetcode.cn/problems/subsets-ii/description/)
+  - [10.非递减子序列](https://leetcode.cn/problems/non-decreasing-subsequences/description/)
+  - [11.全排列](https://leetcode.cn/problems/permutations/description/)
+  - [12.全排列二](https://leetcode.cn/problems/permutations-ii/description/)
+  - [13.N皇后](https://leetcode.cn/problems/n-queens/description/)
+
+### 8.动态规划
+  - [1.斐波那契数](https://leetcode.cn/problems/fibonacci-number/description/)
+  - [2.爬楼梯](https://leetcode.cn/problems/climbing-stairs/description/)
+  - [3.使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/description/)
+  - [4.不同路径](https://leetcode.cn/problems/unique-paths/description/)
+  - [5.不同路径2](https://leetcode.cn/problems/unique-paths-ii/description/)
+  - [6.整数拆分](https://leetcode.cn/problems/integer-break/description/)
+  - [7.不同的二叉搜索树](https://leetcode.cn/problems/unique-binary-search-trees/description/)
+  - [9.分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
+  - [10.最后一块石头的重量 II](https://leetcode.cn/problems/last-stone-weight-ii/description/)
+  - [11.目标和](https://leetcode.cn/problems/target-sum/description/)
+  - [12.一和零](https://leetcode.cn/problems/ones-and-zeroes/description/)
+  - [14.零钱兑换二](https://leetcode.cn/problems/coin-change-ii/description/)
+  - [15.组合总和四](https://leetcode.cn/problems/combination-sum-iv/description/)
+  - [16.零钱兑换](https://leetcode.cn/problems/coin-change/description/)
+  - [17.完全平方数](https://leetcode.cn/problems/perfect-squares/description/)
+  - [18.单词拆分](https://leetcode.cn/problems/word-break/description/)
+  - [19.打家劫舍](https://leetcode.cn/problems/house-robber/description/)
+  - [20.打家劫舍二](https://leetcode.cn/problems/house-robber-ii/description/)
+  - [21.打家劫舍三](https://leetcode.cn/problems/house-robber-iii/description/)
+  - [22.买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/)
+  - [23.买股票的最佳时机二](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/)
+  - [24.买股票的最佳时机三](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/)
+  - [25.买股票的最佳时机四](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/description/)
+  - [26.买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
+  - [27.买卖股票的最佳时机含手续费](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/)
+  - [28.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
+  - [29.最长连续递增子序列](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/description/)
+  - [30.最长重复子数组](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/description/)
+  - [31.最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/description/)
+  - [32.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/)
+  - [33.判断子序列](https://leetcode.cn/problems/is-subsequence/description/)
+  - [34.不同的子序列](https://leetcode.cn/problems/distinct-subsequences/)
+  - [35.两个字符串的删除操作](https://leetcode.cn/problems/delete-operation-for-two-strings/description/)
+  - [36.编辑距离](https://leetcode.cn/problems/edit-distance/description/)
+  - [37.回文子串](https://leetcode.cn/problems/palindromic-substrings/description/)
+  - [38.最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence/description/)
+
+### 9.贪心算法
+  - [1.分发饼干](https://leetcode.cn/problems/assign-cookies/description/)
+  - [2.摆动序列](https://leetcode.cn/problems/wiggle-subsequence/description/)
+  - [3.最大子数组和](https://leetcode.cn/problems/maximum-subarray/)
+  - [4.买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/)
+  - [5.跳跃游戏](https://leetcode.cn/problems/jump-game/description/)
+  - [6.跳跃游戏2](https://leetcode.cn/problems/jump-game-ii/description/)
+  - [7.k次取反化后最大化的数组和](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/description/)
+  - [8.加油站](https://leetcode.cn/problems/gas-station/description/)
+  - [9.分发糖果](https://leetcode.cn/problems/candy/description/)
+  - [10.柠檬水找零](https://leetcode.cn/problems/lemonade-change/description/)
+  - [11.根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/description/)
+  - [12.用最小数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/)
+  - [13.无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/description/)
+  - [14.划分字母区间](https://leetcode.cn/problems/partition-labels/description/)
+  - [15.合并区间](https://leetcode.cn/problems/merge-intervals/description/)
+  - [16.单调递增的数字](https://leetcode.cn/problems/monotone-increasing-digits/description/)
+
+### 10.前端相关手写
+
+  ### 1.实现js原生方法
+    - 1.filter
+    - 2.flat
+    - 3.forEach
+    - 4.map
+    - 5.reduce
+    - 6.fill
+    - 7.includes
+    - 8.push
+    - 9.unshift
+    - 10.getLeval
+    - 11.interator
+    - 12.sort.TODO
+    - 13.Set
+    - 14.Map
+    - 15.assign
+    - 16.is
+    - 17.json.stringify.TODO
+    - 18.json.parse.TODO
+    - 19.call bind apply
+    - 20.typeof
+    - 21.instanceof
+    - 22.new
+    - 23.trim
+
+  ### 2.实现Promise相关
+    - 1.all
+    - 2.finally
+    - 3.allSettled
+    - 4.race
+    - 5.catch
+    - 6.resolve
+    - 7.reject
+
+  ### 3.Promise场景题
+    - 1.交通灯
+    - 2.封装一个fetch请求
+    - 3.重复执行函数
+    - 4.网络请求时间限制
+    - [5.请求5s未完成就终止](https://juejin.cn/post/7112699475327615006)
+    - 6.实现一个sleep函数
+    - 7.setTime实现setInterval
+    - 8.奇怪的输出题
+    - 10.封装ajax请求
+    - 11.setInterval模拟setTimeOut
+    - 12.promise如何中断后面的then
+    - 13.实现一个精准的计时器
+    - 14.一次处理2个任务
+    - 15.设计一个简单的任务队列
+    - 16.实现调度器
+    - 17.有并发限制的promiseall
+    - 18.实现错误重新请求，并控制重试次数
+
+  ### 4.js常考手写题
+    - [1.LRU缓存](https://leetcode.cn/problems/lru-cache/description/?envType=study-plan-v2&envId=top-100-liked)
+    - 2.数组转树
+    - 3.树转数组
+    - 4.函数科里化
+    - 5.继承的几种方法
+    - 6.生成唯一id
+    - 7.十进制转十六进制
+    - 8.最小堆

@@ -25,6 +25,7 @@ function findBottomLeftValue(root: TreeNode | null): number {
                 return
             }
         }
+        // 找最左下角的值，所以先遍历左边，然后先判断下手为强
         dfs(root.left, depth + 1)
         dfs(root.right, depth + 1)
     }

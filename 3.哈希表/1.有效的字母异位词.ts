@@ -1,6 +1,7 @@
 /**
  * @url https://leetcode.cn/problems/valid-anagram/description/
  */
+
 function isAnagram(s: string, t: string): boolean {
     const mapS = new Map()
     for (let i = 0; i < s.length; i++) {
