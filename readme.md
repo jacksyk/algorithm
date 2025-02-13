@@ -7,7 +7,7 @@
   - [2.移除元素](https://leetcode.cn/problems/remove-element/description/)
   - [3.有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/description/)
   - [4.长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
-  - [5.螺旋矩阵2](https://programmercarl.com/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html)
+  - [5.螺旋矩阵2](https://leetcode.cn/problems/spiral-matrix-ii/description/)
 
 ### 2.链表
   - [1.移除链表元素](https://leetcode.cn/problems/remove-linked-list-elements/description/)
