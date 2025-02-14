@@ -1,20 +1,23 @@
+Array.prototype.myFlat = function(depth){
+    const res = []
+    const dfs = (arr, leval)=>{
+        for (let i = 0; i < arr.length; i++) {
+            if(Array.isArray(arr[i])){
+                if (leval === depth) {
+                    res.push(arr[i])
+                    return
+                }
+                dfs(arr[i], leval + 1)
+            }else{
+                res.push(arr[i])
+            }
+        }
+    }
+    dfs(this, 1)
+    return res
+}
+
+
 // 有点小混乱
-// Array.prototype.myFlat = function flat(depth = 1) {
-//     const dfs = (arr, deep) => {
-//         const temp = []
-//         if (deep > depth) {
-//             return arr
-//         }
-//         for (let i = 0; i < arr.length; i++) {
-//             if (arr[i] instanceof Array) {
-//                 temp.push(...dfs(arr[i].concat(), deep + 1))
-//             } else {
-//                 temp.push(arr[i])
-//             }
-//         }
-//         return temp
-//     }
-//     return dfs(arr.concat(), 0)
-// }
-// let arr = [1, 2, 3, [3, 2, [1, 2, 3]]]
-// console.log(arr.myFlat(2))
+let arr = [1, 2, 3, [3, 2, [1, 2, 3]]]
+console.log(arr.myFlat(2))

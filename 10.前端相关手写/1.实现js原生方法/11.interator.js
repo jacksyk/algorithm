@@ -17,16 +17,24 @@
 // console.log(b.next())
 // console.log(b.next())
 // console.log(b.next())
-
 let obj = {
-    i: 0,
-    next() {
+    [Symbol.iterator]() {
         return {
-            value: i++,
-            done: i < 5 ? false : true,
+            i: 0,
+            next() {
+                if (this.i < 5) {
+                    return {
+                        value: this.i++,
+                        done: false
+                    }
+                }
+                return { value: undefined, done: true }
+            }
         }
-    },
+    }
 }
+
+// 测试
 for (let i of obj) {
-    console.log("i", i)
+    console.log("i", i)  // 依次输出 0,1,2,3,4
 }
