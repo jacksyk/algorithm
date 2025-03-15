@@ -9,7 +9,8 @@ function integerBreak(n: number): number {
     dp[1] = 0
     dp[2] = 1
     for (let i = 3; i <= n; i++) {
-        for (let j = 0; j < i; j++) {
+        // 拆分成0其实没有意义，所以这里拆分成1开始
+        for (let j = 1; j < i; j++) {
             dp[i] = Math.max(dp[i], j * (i - j), j * dp[i - j])
         }
     }

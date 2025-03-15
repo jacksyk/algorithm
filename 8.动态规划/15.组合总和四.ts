@@ -20,3 +20,5 @@ function combinationSum4(nums: number[], target: number): number {
 }
 
 console.log(combinationSum4([1, 2, 3], 4))
+
+// TODO: 暴力算出所有的组合
