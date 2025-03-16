@@ -34,18 +34,18 @@
 
 //TODO:优化 dp[j]表示是否有一种方案能够装满dp[j]
 function canPartition(nums: number[]): boolean {
-    const sum = nums.reduce((acc, cur) => acc + cur)
-    const capaticy = sum / 2
-    if (!Number.isInteger(capaticy)) {
-        return false
-    }
-    const dp: boolean[] = new Array(capaticy + 1).fill(false)
+  const sum = nums.reduce((acc, cur) => acc + cur);
+  const capaticy = sum / 2;
+  if (!Number.isInteger(capaticy)) {
+    return false;
+  }
+  const dp: boolean[] = new Array(capaticy + 1).fill(false); // 数组下标和容量的差距
 
-    dp[0] = true
-    for (let row = 0; row < nums.length; row++) {
-        for (let col = capaticy; col >= nums[row]; col--) {
-            dp[col] = dp[col] || dp[col - nums[row]]
-        }
+  dp[0] = true;
+  for (let row = 0; row < nums.length; row++) {
+    for (let col = capaticy; col >= nums[row]; col--) {
+      dp[col] = dp[col] || dp[col - nums[row]];
     }
-    return dp[capaticy]
+  }
+  return dp[capaticy];
 }

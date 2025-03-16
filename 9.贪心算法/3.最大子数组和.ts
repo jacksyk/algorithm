@@ -19,16 +19,16 @@
 
 // TODO:贪心做法
 function maxSubArray(nums: number[]): number {
-    let count = 0, //统计目前累加的和
-        result = Number.MIN_SAFE_INTEGER // 放置结果
-    for (let i = 0; i < nums.length; i++) {
-        count += nums[i]
-        if (count > result) {
-            result = count
-        }
-        if (count < 0) {
-            count = 0
-        }
+  let count = 0, //统计目前累加的和
+    result = Number.MIN_SAFE_INTEGER; // 放置结果
+  for (let i = 0; i < nums.length; i++) {
+    count += nums[i];
+    if (count > result) {
+      result = count;
     }
-    return result
+    if (count < 0) {
+      count = 0;
+    }
+  }
+  return result;
 }

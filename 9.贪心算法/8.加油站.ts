@@ -56,23 +56,23 @@
 //     return result
 // }
 
-// 贪心:总数只要大于0一定就可以走完，看看从什么时候开始小于0，然后更新起始的下标索引。
+// *贪心:总数只要大于0一定就可以走完，看看从什么时候开始小于0，然后更新起始的下标索引。
 function canCompleteCircuit(gas: number[], cost: number[]): number {
-    const arr: number[] = [] // 表示arr[i]前往i+1站剩余的邮费
-    for (let i = 0; i < gas.length; i++) {
-        arr.push(gas[i] - cost[i])
+  const arr: number[] = []; // 表示arr[i]前往i+1站剩余的邮费
+  for (let i = 0; i < gas.length; i++) {
+    arr.push(gas[i] - cost[i]);
+  }
+  let startIndex = 0,
+    totalSum = 0,
+    curSum = 0;
+  for (let i = 0; i < gas.length; i++) {
+    curSum += arr[i];
+    totalSum += arr[i];
+    if (curSum < 0) {
+      startIndex = i + 1;
+      curSum = 0;
     }
-    let startIndex = 0,
-        totalSum = 0,
-        curSum = 0
-    for (let i = 0; i < gas.length; i++) {
-        curSum += arr[i]
-        totalSum += arr[i]
-        if (curSum < 0) {
-            startIndex = i + 1
-            curSum = 0
-        }
-    }
-    if (totalSum < 0) return -1
-    return startIndex
+  }
+  if (totalSum < 0) return -1;
+  return startIndex;
 }

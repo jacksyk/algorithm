@@ -16,6 +16,7 @@
 
 // 优先负数，然后对于最小的正数进行反转
 // TODO:可以优化一下时间复杂度
+
 // function largestSumAfterKNegations(nums: number[], k: number): number {
 //     while (k--) {
 //         nums.sort((a, b) => a - b)
@@ -31,16 +32,16 @@
 // }
 
 function largestSumAfterKNegations(nums: number[], k: number): number {
-    nums.sort((a, b) => a - b)
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] < 0 && k > 0) {
-            nums[i] *= -1
-            k--
-        }
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < 0 && k > 0) {
+      nums[i] *= -1;
+      k--;
     }
-    nums.sort((a, b) => a - b)
-    if (k % 2 === 1) {
-        nums[0] *= -1
-    }
-    return nums.reduce((acc, cur) => acc + cur, 0)
+  }
+  nums.sort((a, b) => a - b); // PS: 注意二次排序
+  if (k % 2 === 1) {
+    nums[0] *= -1;
+  }
+  return nums.reduce((acc, cur) => acc + cur, 0);
 }

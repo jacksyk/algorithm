@@ -38,11 +38,11 @@
 // }
 // canJump([3, 2, 1, 0, 4])
 function canJump(nums: number[]): boolean {
-    let maximumRange = 0
-    for (let i = 0; i <= maximumRange && i < nums.length; i++) {
-        maximumRange = Math.max(maximumRange, i + nums[i])
-    }
+  let maximumRange = 0;
+  for (let i = 0; i <= maximumRange && i < nums.length; i++) {
+    maximumRange = Math.max(maximumRange, i + nums[i]);
+  }
 
-    return maximumRange >= nums.length - 1
+  return maximumRange >= nums.length - 1;
 }
 // canJump([2, 3, 1, 1, 4])

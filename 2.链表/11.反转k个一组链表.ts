@@ -1,7 +1,7 @@
+// @ts-nocheck
 /**
  * @url https://leetcode.cn/problems/reverse-nodes-in-k-group/
  */
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -14,44 +14,46 @@
  * @param {number} k
  * @return {ListNode}
  */
-// 传入头结点，返回反转后的尾节点和头结点
-const reverse = (head) => {
-    let p = null, fast = head
-    const tail = head
-    while(fast) {
-        const tmp = fast
-        fast = fast.next
-        tmp.next = p
-        p = tmp
-    }
-    // 头结点和尾结点
-    return [p, tail]
-}
-var reverseKGroup = function(head, k) {
-    let VNode = new ListNode(0)
-    VNode.next = head
-    let p = VNode
-    // 直到遍历完成
-    while(p) {
-        let head = p
-        let count = 0;
-        // 到达当前链表的末尾节点
-        while(count < k && p) {
-            p = p.next
-            count++
-        }
-        // 说明这一组需要进行反转了
-        if (count === k) {
-            if (p) {
-                const pNext = p.next
-                p.next = null // 这里主动断开
-                const [returnHead, returnTail] = reverse(head.next, p)
-                returnTail.next = pNext
-                head.next = returnHead
-                p = returnTail
-            }
-        }
-    }
 
-    return VNode.next
+function ReverseHeadAndTail(head, tail) {
+  let pre = null,
+    cur = null,
+    fast = head;
+  while (fast !== tail) {
+    cur = fast;
+    fast = fast.next;
+    cur.next = pre;
+    pre = cur;
+  }
+  if (fast) {
+    cur = fast;
+    cur.next = pre;
+  }
+  return [cur, head];
+}
+
+var reverseKGroup = function (head, k) {
+  const _VNode = new ListNode(0);
+  _VNode.next = head;
+  let fast = _VNode;
+  while (fast) {
+    let p = fast; // 翻转前的一个节点
+    let count = 0;
+    let tail = fast; // 要翻转链表的最后一个节点
+    while (count < k && tail) {
+      tail = tail.next;
+      count++;
+    }
+    if (k === count && tail) {
+      const tailNext = tail.next;
+      tail.next = null;
+      const [reverseHead, reverseTail] = ReverseHeadAndTail(p.next, tail);
+      p.next = reverseHead;
+      reverseTail.next = tailNext;
+      fast = reverseTail;
+    } else {
+      break; // ps: 不足k个直接退出循环了。
+    }
+  }
+  return _VNode.next;
 };

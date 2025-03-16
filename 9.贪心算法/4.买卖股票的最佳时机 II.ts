@@ -18,19 +18,19 @@
 // console.log(maxProfit([7, 1, 5, 3, 6, 4]))
 // 贪心算法
 function maxProfit(prices: number[]): number {
-    // 计算数组中的间隔
-    const init = (arr: number[]) => {
-        const temp: number[] = []
-        for (let i = 1; i < arr.length; i++) {
-            temp.push(arr[i] - arr[i - 1])
-        }
-        return temp
+  // 计算数组中的间隔
+  const init = (arr: number[]) => {
+    const temp: number[] = [];
+    for (let i = 1; i < arr.length; i++) {
+      temp.push(arr[i] - arr[i - 1]);
     }
-    const intervalArray = init(prices)
-    return intervalArray.reduce((acc, cur) => {
-        if (cur >= 0) {
-            return acc + cur
-        }
-        return acc
-    }, 0)
+    return temp;
+  };
+  const intervalArray = init(prices);
+  return intervalArray.reduce((acc, cur) => {
+    if (cur >= 0) {
+      return acc + cur;
+    }
+    return acc;
+  }, 0);
 }

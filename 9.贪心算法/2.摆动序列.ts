@@ -34,24 +34,25 @@
 // wiggleMaxLength([84])
 
 // TODO:动态规划思路2
+// PS: 动态规划这里做会比较好理解
 // dp[i][0] = max(dp[i][0], dp[j][1] + 1)，其中0 < j < i且nums[j] < nums[i]，表示将 nums[i]接到前面某个山谷后面，作为山峰。
 // dp[i][1] = max(dp[i][1], dp[j][0] + 1)，其中0 < j < i且nums[j] > nums[i]，表示将 nums[i]接到前面某个山峰后面，作为山谷。
 function wiggleMaxLength(nums: number[]): number {
-    const dp = new Array(nums.length).fill(0).map((_v) => new Array(2).fill(0))
-    dp[0][0] = 1
-    dp[0][1] = 1
-    for (let i = 1; i < nums.length; i++) {
-        // 这里的初始化：两个数相等，算是一个数的情况的摆动序列
-        dp[i][0] = 1
-        dp[i][1] = 1
-        for (let j = 0; j < i; j++) {
-            if (nums[i] - nums[j] > 0) {
-                // 前面应该是谷底
-                dp[i][1] = Math.max(dp[j][0] + 1, dp[i][1])
-            } else if (nums[i] - nums[j] < 0) {
-                dp[i][0] = Math.max(dp[j][1] + 1, dp[i][0])
-            }
-        }
+  const dp = new Array(nums.length).fill(0).map((_v) => new Array(2).fill(0));
+  dp[0][0] = 1;
+  dp[0][1] = 1;
+  for (let i = 1; i < nums.length; i++) {
+    // 这里的初始化：两个数相等，算是一个数的情况的摆动序列
+    dp[i][0] = 1;
+    dp[i][1] = 1;
+    for (let j = 0; j < i; j++) {
+      if (nums[i] - nums[j] > 0) {
+        // 前面应该是谷底
+        dp[i][1] = Math.max(dp[j][0] + 1, dp[i][1]);
+      } else if (nums[i] - nums[j] < 0) {
+        dp[i][0] = Math.max(dp[j][1] + 1, dp[i][0]);
+      }
     }
-    return Math.max(...dp[nums.length - 1])
+  }
+  return Math.max(...dp[nums.length - 1]);
 }

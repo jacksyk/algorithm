@@ -3,33 +3,37 @@
  */
 
 class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = val === undefined ? 0 : val
-        this.left = left === undefined ? null : left
-        this.right = right === undefined ? null : right
-    }
+  val: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+  constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
+  }
 }
 
 function sumOfLeftLeaves(root: TreeNode | null): number {
-    let sum = 0
-    const dfs = (root: TreeNode | null | undefined) => {
-        if (!root) return
-        if (root.left && !root.left.left && !root.left.right) {
-            sum += root.left.val
-            // return
-            // notice：这里容易return掉
-        }
-        dfs(root.left)
-        dfs(root.right)
+  let sum = 0;
+  const dfs = (root: TreeNode | null | undefined) => {
+    if (!root) return;
+    if (root.left && !root.left.left && !root.left.right) {
+      sum += root.left.val;
+      // return
+      // PS:notice：这里容易return掉
     }
-    dfs(root)
-    return sum
+    dfs(root.left);
+    dfs(root.right);
+  };
+  dfs(root);
+  return sum;
 }
 
 // ;[3, 9, 20, null, null, 15, 7]
 
-let root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)))
-console.log(sumOfLeftLeaves(root))
+let root = new TreeNode(
+  3,
+  new TreeNode(9),
+  new TreeNode(20, new TreeNode(15), new TreeNode(7))
+);
+console.log(sumOfLeftLeaves(root));

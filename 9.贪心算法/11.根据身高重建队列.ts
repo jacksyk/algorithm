@@ -19,30 +19,30 @@
 // }
 
 function reconstructQueue(people: number[][]): number[][] {
-    people.sort((a, b) => {
-        // 身高相等，h大的放后面
-        if (a[0] === b[0]) {
-            return a[1] - b[1]
-        }
-        return b[0] - a[0]
-    })
-
-    const res = people.concat()
-
-    for (let i = 0; i < people.length; i++) {
-        res.splice(i, 1)
-        res.splice(people[i][1], 0, people[i])
+  people.sort((a, b) => {
+    // 身高相等，h大的放后面
+    if (a[0] === b[0]) {
+      return a[1] - b[1];
     }
-    return res
+    return b[0] - a[0];
+  });
+
+  const res = people.concat();
+
+  for (let i = 0; i < people.length; i++) {
+    res.splice(i, 1);
+    res.splice(people[i][1], 0, people[i]);
+  }
+  return res;
 }
 
 console.log(
-    reconstructQueue([
-        [7, 0],
-        [4, 4],
-        [7, 1],
-        [5, 0],
-        [6, 1],
-        [5, 2],
-    ])
-)
+  reconstructQueue([
+    [7, 0],
+    [4, 4],
+    [7, 1],
+    [5, 0],
+    [6, 1],
+    [5, 2],
+  ])
+);

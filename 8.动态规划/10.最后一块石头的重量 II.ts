@@ -35,21 +35,22 @@
 
 // notice：抽离成一维数组
 function lastStoneWeightII(stones: number[]): number {
-    const sum = stones.reduce((acc, cur) => acc + cur, 0)
-    const target = Math.floor(sum / 2)
+  const sum = stones.reduce((acc, cur) => acc + cur, 0);
+  const target = Math.floor(sum / 2);
 
-    const dp: number[] = new Array(target + 1).fill(0)
-    dp[0] = 0
+  const dp: number[] = new Array(target + 1).fill(0);
+  dp[0] = 0;
 
-    for (let row = 0; row < stones.length; row++) {
-        console.dir(dp)
+  for (let row = 0; row < stones.length; row++) {
+    console.dir(dp);
 
-        for (let col = target; col >= stones[row]; col--) {
-            dp[col] = Math.max(dp[col - stones[row]] + stones[row], dp[col])
-        }
+    for (let col = target; col >= stones[row]; col--) {
+      dp[col] = Math.max(dp[col - stones[row]] + stones[row], dp[col]);
     }
-    console.dir(dp)
-    return Math.abs(sum - dp[target] - dp[target])
+  }
+
+  console.dir(dp);
+  return Math.abs(sum - dp[target] - dp[target]);
 }
 
-lastStoneWeightII([2, 7, 4, 1, 8, 1])
+lastStoneWeightII([2, 7, 4, 1, 8, 1]);
