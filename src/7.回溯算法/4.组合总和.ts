@@ -28,24 +28,24 @@
 //     }
 //     return result
 // }
-// 去重操作，在traverse的时候进行去重
+// 去重操作，在traverse的时候进行去重 // ps:利用startIdx来去进行去重
 function combinationSum(candidates: number[], target: number): number[][] {
-    const res: number[][] = []
-    const dfs = (idx: number, path: number[]) => {
-        const sum = path.reduce((acc, cur) => acc + cur, 0)
-        if (sum > target) {
-            return
-        }
-        if (sum === target) {
-            res.push(path)
-            return
-        }
-        for (let i = idx; i < candidates.length; i++) {
-            path.push(candidates[i])
-            dfs(i, path.concat([]))
-            path.pop()
-        }
+  const res: number[][] = [];
+  const dfs = (idx: number, path: number[]) => {
+    const sum = path.reduce((acc, cur) => acc + cur, 0);
+    if (sum > target) {
+      return;
     }
-    dfs(0, [])
-    return res
+    if (sum === target) {
+      res.push(path);
+      return;
+    }
+    for (let i = idx; i < candidates.length; i++) {
+      path.push(candidates[i]);
+      dfs(i, path.concat([]));
+      path.pop();
+    }
+  };
+  dfs(0, []);
+  return res;
 }
