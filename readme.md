@@ -5623,6 +5623,1467 @@ function monotoneIncreasingDigits(n: number): number {
 
 ## 10.前端相关手写
 
+### 1.实现js原生方法
+
+#### 1.filter.js
+```typescript
+// Notice:回调函数没有this
+// Array.prototype.myFilter = (callback) => {
+//     console.log(this)
+//     const result = []
+//     for (let i = 0; i < this.length; i++) {
+//         console.log(callback(this[i]))
+//         if (callback(this[i], i, this)) {
+//             result.push(this[i])
+//         }
+//     }
+//     return result
+// }
+
+// 普通遍历实现
+// Array.prototype.myFilter = function (callback) {
+//     const result = []
+//     for (let i = 0; i < this.length; i++) {
+//         if (callback(this[i], i, this)) {
+//             result.push(this[i])
+//         }
+//     }
+//     return result
+// }
+
+// reduce来实现
+Array.prototype.myFilter = function (callback) {
+    return this.reduce((acc, cur, index) => {
+        if (callback(cur, index)) {
+            acc.push(cur)
+        }
+        return acc
+    }, [])
+}
+let arr = [1, 2, 3, 4, 5]
+arr = arr.myFilter((item) => {
+    return item >= 3
+})
+console.log(arr)
+
+```
+
+#### 2.flat.js
+```typescript
+Array.prototype.myFlat = function(depth){
+    const res = []
+    const dfs = (arr, leval)=>{
+        for (let i = 0; i < arr.length; i++) {
+            if(Array.isArray(arr[i])){
+                if (leval === depth) {
+                    res.push(arr[i])
+                    return
+                }
+                dfs(arr[i], leval + 1)
+            }else{
+                res.push(arr[i])
+            }
+        }
+    }
+    dfs(this, 1)
+    return res
+}
+
+
+// 有点小混乱
+let arr = [1, 2, 3, [3, 2, [1, 2, 3]]]
+console.log(arr.myFlat(2))
+
+```
+
+#### 3.forEach.js
+```typescript
+Array.prototype._forEach = function (callback) {
+    for (let i = 0; i < this.length; i++) {
+        callback(this[i], i, this)
+    }
+}
+
+```
+
+#### 4.map.js
+```typescript
+Array.prototype._map = function (callback) {
+    return this.reduce((acc, cur, index) => {
+        acc.push(callback(cur, index, this))
+        return acc
+    }, [])
+}
+const res = [2, 3, 4]
+console.log(res._map((_v) => _v ** 2))
+
+```
+
+#### 5.reduce.js
+```typescript
+Array.prototype._reduce = function (callback, initValue) {
+    let res = initValue
+    for (let i = 0; i < this.length; i++) {
+        res = callback(res, this[i], i)
+    }
+    return res
+}
+let arr = [1, 2, 3, 4, 5]
+console.log(
+    arr._reduce((acc, cur) => {
+        return acc + cur
+    }, 0)
+)
+
+```
+
+#### 6.fill.js
+```typescript
+Array.prototype._fill = function (value, start, end) {
+    start = start < 0 ? 0 : start
+    end = end > this.length - 1 ? this.length - 1 : end
+    for (let i = start; i <= end; i++) {
+        this[i] = value
+    }
+    return this
+}
+let arr = [1, 2, 3, 4, 5]
+console.log(arr._fill(6, 2, 5))
+
+```
+
+#### 7.includes.js
+```typescript
+Array.prototype._includes = function (value) {
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === value) {
+            return true
+        }
+    }
+    return false
+}
+let arr = [1, 2, 3, 4, 5]
+console.log(arr._includes(3))
+console.log(arr._includes(6))
+
+```
+
+#### 8.push.js
+```typescript
+Array.prototype._push = function (value) {
+    this[this.length] = value
+    return this.length // 注意返回值
+}
+let arr = [1, 2, 3, 4, 5]
+arr._push(6)
+console.log(arr)
+
+```
+
+#### 9.unshift.js
+```typescript
+Array.prototype._unshift = function (value) {
+    for (let i = this.length - 1; i >= 0; i--) {
+        this[i + 1] = this[i]
+    }
+    this[0] = value
+    return this.length
+}
+let arr = [1, 2, 3, 4, 5]
+arr._unshift(0)
+console.log(arr)
+
+```
+
+#### 10.getLeval.js
+```typescript
+Array.prototype.getLeval = function () {
+    let depth = 1
+    const dfs = (arr) => {
+        for (let i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+                depth++
+                dfs(arr[i])
+            }
+        }
+    }
+    dfs(this)   
+    return depth
+}
+
+let arr = [1, 2, 3, [4, [5]]]
+console.log(arr.getLeval())
+
+```
+
+#### 11.interator.js
+```typescript
+// 实现迭代器
+// Array.prototype._interator = function () {
+//     let i = 0
+//     return {
+//         next: () => {
+//             return {
+//                 value: this[i++],
+//                 done: i < this.length ? false : true,
+//             }
+//         },
+//     }
+// }
+// let arr = [1, 2, 3, 4, 5]
+// const b = arr._interator()
+// console.log(b.next())
+// console.log(b.next())
+// console.log(b.next())
+// console.log(b.next())
+// console.log(b.next())
+let obj = {
+    [Symbol.iterator]() {
+        return {
+            i: 0,
+            next() {
+                if (this.i < 5) {
+                    return {
+                        value: this.i++,
+                        done: false
+                    }
+                }
+                return { value: undefined, done: true }
+            }
+        }
+    }
+}
+
+// 测试
+for (let i of obj) {
+    console.log("i", i)  // 依次输出 0,1,2,3,4
+}
+
+```
+
+#### 12.sort.TODO.js
+```typescript
+// TODO:复习完排序算法，再来复习sort函数
+Array.prototype._sort = function (callback) {}
+
+```
+
+#### 13.Set.js
+```typescript
+
+```
+
+#### 14.Map.js
+```typescript
+
+```
+
+#### 15.assign.js
+```typescript
+Object.prototype._assign = function (target, ...source) {
+    source.forEach((_obj) => {
+        for (let key in _obj) {
+            if (target.hasownProperty(key)) {
+                target[key] = _obj[key]
+            } else {
+                target[key] = _obj[key]
+            }
+        }
+    })
+    return target
+}
+let a = { a: 1 }
+let b = { b: 2 }
+let c = { c: 3 }
+console.log(Object.assign(a, b, c))
+console.log(a)
+
+```
+
+#### 16.is.js
+```typescript
+Object.prototype._is = function (x, y) {
+    // 判断是否是同一对象（包括 +0/-0） +0和-0是不等的
+    if (x === y) {
+        return x !== 0 || 1 / x === 1 / y
+    } else {
+        // 判断是否是 NaN,如果是NAN,is就是相等的
+        return x !== x && y !== y
+    }
+}
+
+```
+
+#### 17.json.stringify.TODO.js
+```typescript
+/** https://juejin.cn/post/6844903861971320846?searchId=20240811235902CCC1D8113CE9807307E3 */
+
+```
+
+#### 18.json.parse.TODO.js
+```typescript
+
+```
+
+#### 19.call bind apply.js
+```typescript
+// 在调用 func 时要使用的 this 值。如果函数不在严格模式下，
+// null 和 undefined 将被替换为全局对象，并且原始值将被转换为对象。
+Function.prototype._call = function (context, ...args) {
+    context = !context ? window : context
+    context._fn = this
+    const result = context._fn(...args)
+    delete context._fn
+    return result
+}
+Function.prototype._bind = function (context, ...args1) {
+    context = !context ? window : context
+    context._fn = this
+    return function (...args2) {
+        const result = context._fn(...[...args1, ...args2])
+        delete context._fn
+        return result
+    }
+}
+Function.prototype._apply = function (context, args) {
+    context = !context ? window : context
+    context._fn = this
+    const result = context._fn(...args)
+    delete context._fn
+    return result
+}
+
+```
+
+#### 20.typeof.js
+```typescript
+// typeof null 是object
+// 基础数据类型：number string boolean undefined null symbol
+// 引用数据类型：object array
+
+```
+
+#### 21.instanceof.js
+```typescript
+// 针对于引用数据类型，基本数据类型判断不了
+
+/** 判断左侧是否属于构造函数
+ * left 实例
+ * right 构造函数
+ */
+function myInstanceOf(left, rigth) {
+    let __proto = left.__proto__,
+        prototype = rigth.prototype
+    while (__proto) {
+        if (prototype === __proto) {
+            return true
+        }
+        __proto = __proto.__proto__
+    }
+    return false
+}
+
+console.log(myInstanceOf([], Array))
+
+```
+
+#### 22.new.js
+```typescript
+// （1）首先创建了一个新的空对象
+// （2）设置原型，将对象的原型设置为函数的 prototype 对象。
+// （3）让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）
+// （4）判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象。
+function myNew(fn, ...args) {
+    const obj = Object.create(fn.prototype)
+    const res = fn.call(obj, ...args)
+    return typeof res === "object" ? res : obj
+}
+function Person(name) {
+    this.name = name
+}
+Person.prototype.say = function () {
+    console.log("hello")
+}
+const obj = myNew(Person, "ljq")
+obj.say()
+console.log(obj)
+
+```
+
+#### 23.trim.js
+```typescript
+String.prototype._trim = function () {
+    let left = 0,
+        right = this.length - 1
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === " ") {
+            left++
+        } else {
+            break
+        }
+    }
+    for (let i = right; i >= 0; i--) {
+        if (this[i] === " ") {
+            right--
+        } else {
+            break
+        }
+    }
+    return this.slice(left, right + 1)
+}
+
+let str = "    hello     ww   "
+console.log(str._trim())
+
+```
+
+### 2.实现Promise相关
+
+#### 1.all.js
+```typescript
+Promise._all = function (promises) {
+    let count = 0 // 记录完成的数量
+    const result = []
+    return new Promise((resolve, reject) => {
+        promises.forEach((_promise, _idx) => {
+            _promise().then((res) => {
+                result[_idx] = res
+                count++
+                if (count === promises.length) {
+                    resolve(result)
+                }
+            })
+        })
+    })
+}
+function my(time) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(time)
+        }, time)
+    })
+}
+
+const promise1 = () => my(2000)
+const promise2 = () => my(3000)
+const promise3 = () => my(5000)
+const promise4 = () => my(4000)
+
+Promise._all([promise1, promise2, promise3, promise4]).then((res) => {
+    console.log(res)
+})
+
+```
+
+#### 2.finally.js
+```typescript
+// 1.承接上一次Promise的值
+// 2.return的值不会被任何地方接收
+Promise.prototype._finally = function (callback) {
+    return this.then(
+        (res) => {
+            callback()
+            return res
+        },
+        (err) => {
+            callback()
+            throw err
+        }
+    )
+}
+
+function my(time) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(time)
+        }, time)
+    })
+}
+const promise1 = () => my(300)
+
+// promise1()
+//     .then((res) => {
+//         console.log(res)
+//         return "111"
+//     })
+//     ._finally((res) => {
+//         console.log(res)
+//         return "hellow"
+//     })
+//     .then((res) => {
+//         console.log("finally", res)
+//     })
+
+// promise1()
+//     .then((res) => {
+//         console.log(res)
+//         return "111"
+//     })
+//     .finally((res) => {
+//         console.log(res)
+//         return "hellow"
+//     })
+//     .then((res) => {
+//         console.log("finally", res)
+//     })
+Promise.reject("err")
+    .finally(() => {
+        console.log("finally")
+    })
+    .catch(console.log)
+    .then((res) => console.log(res))
+
+```
+
+#### 3.allSettled.js
+```typescript
+// 获取所有Promise对象的状态
+
+Promise._allSettled = function (promises) {
+    let count = 0,
+        result = []
+    return new Promise((resolve) => {
+        promises.forEach((_promise, _idx) => {
+            _promise
+                .then(
+                    (res) => {
+                        result[_idx] = {
+                            status: "fulfilled",
+                            value: res,
+                        }
+                    },
+                    (err) => {
+                        result[_idx] = {
+                            status: "rejected",
+                            value: err,
+                        }
+                    }
+                )
+                .finally(() => {
+                    count++
+                    if (count >= promises.length) {
+                        resolve(result)
+                    }
+                })
+        })
+    })
+}
+
+const pro = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject(3)
+    }, 1000)
+})
+
+Promise.allSettled([pro, Promise.resolve(1), Promise.reject(2)]).then((data) => {
+    console.log(data)
+})
+
+Promise._allSettled([pro, Promise.resolve(1), Promise.reject(2)]).then((data) => {
+    console.log(data)
+})
+
+```
+
+#### 4.race.js
+```typescript
+// 手写Promise.race
+Promise._race = function (promises) {
+    return new Promise((resolve, reject) => {
+        promises.forEach((_promise) => {
+            _promise
+                .then((res) => {
+                    resolve(res)
+                })
+                .catch(reject)
+        })
+    })
+}
+
+const promise1 = new Promise((resolve) =>
+    setTimeout(() => {
+        resolve(1)
+    }, 300)
+)
+
+const promise2 = new Promise((reject) => {
+    setTimeout(() => {
+        reject(2)
+    }, 400)
+})
+
+Promise._race([promise1, promise2])
+    .then((res) => {
+        console.log(res)
+    })
+    .catch(console.log)
+
+```
+
+#### 5.catch.js
+```typescript
+// 实现catch函数
+Promise.prototype._catch = function (callback) {
+    this.then(undefined, (err) => callback(err))
+}
+
+```
+
+#### 6.resolve.js
+```typescript
+// 实现resolve函数
+// - thenable对象
+// - promise对象
+// - 值
+function myResolve(value) {
+    // 如果 value 已经是 Promise 对象，则直接返回该 Promise 对象
+    if (value instanceof Promise) {
+        return value
+    }
+    // 如果 value 是 thenable 对象，则包装成 Promise 对象并返回
+    if (value && typeof value.then === "function") {
+        return new Promise(function (resolve, reject) {
+            value.then(resolve, reject)
+        })
+    }
+    // 将传入的值作为 Promise 的成功值，并返回 Promise 对象
+    return new Promise(function (resolve) {
+        resolve(value)
+    })
+}
+
+// thenable对象
+const obj = {
+    then(resolve, reject) {
+        resolve("111")
+    },
+}
+
+```
+
+#### 7.reject.js
+```typescript
+// 实现reject函数
+// - 普通值 直接catch捕获
+// - promise 抛出这个promis，不会重复利用promise的值
+Promise._reject = function (value) {
+    return new Promise((_, reject) => {
+        reject(value)
+    })
+}
+
+```
+
+### 3.Promise场景题
+
+#### 1.交通灯.js
+```typescript
+// 红灯3秒亮一次，绿灯2秒亮一次，黄灯1秒亮一次；如何让三个灯不断交替重复亮灯？
+// 要求：用Promise实现
+function red() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("red")
+            resolve()
+        }, 3000)
+    })
+}
+function green() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("green")
+            resolve()
+        }, 2000)
+    })
+}
+function yellow() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("yellow")
+            resolve()
+        }, 1000)
+    })
+}
+
+// 递归
+const step = () => red().then(() => green().then(() => yellow().then(() => step())))
+step()
+
+// async await实现
+const taskRunner = async () => {
+    await red()
+    await green()
+    await yellow()
+    taskRunner()
+}
+
+taskRunner()
+
+```
+
+#### 2.封装一个fetch请求.js
+```typescript
+;(async () => {
+    class HttpRequestUtil {
+        async get(url) {
+            const res = await fetch(url)
+            const data = await res.json()
+            return data
+        }
+        async post(url, data) {
+            const res = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            const result = await res.json()
+            return result
+        }
+        async put(url, data) {
+            const res = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify(data),
+            })
+            const result = await res.json()
+            return result
+        }
+        async delete(url, data) {
+            const res = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify(data),
+            })
+            const result = await res.json()
+            return result
+        }
+    }
+    const httpRequestUtil = new HttpRequestUtil()
+    const res = await httpRequestUtil.get("http://golderbrother.cn/")
+    console.log(res)
+})()
+
+```
+
+#### 3.重复执行函数.js
+```typescript
+// 基于 tapable 思想，构造异步任务串
+// https://juejin.cn/post/6844903700872298510
+const repeat = (cb, delay = 1000, times = 5) => {
+    /* 高阶函数 */
+    return function (text) {
+        const AsyncFn = () =>
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    cb(text)
+                    resolve()
+                }, delay)
+            })
+
+        // 构建异步任务串
+        new Array(times).fill(AsyncFn).reduce((acc, cur) => {
+            return acc.then(() => cur())
+        }, Promise.resolve())
+    }
+}
+
+const mockLog = repeat(console.log)
+
+mockLog("Hello world!!")
+
+```
+
+#### 4.网络请求时间限制.js
+```typescript
+// 网络请求，超过2s就报错，小于2s返回正常结果
+function Limit(promises) {
+    return new Promise((resolve, reject) => {
+        Promise.race([...promises, requestErr()])
+            .then((res) => {
+                console.log("成功")
+                resolve()
+            })
+            .catch((err) => {
+                console.log("失败")
+                reject()
+            })
+    })
+}
+
+const requestPromise = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log("请求成功")
+            resolve()
+        }, 1000)
+    })
+}
+
+const requestErr = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log("请求失败")
+            reject()
+        }, 2000)
+    })
+}
+
+Limit([requestPromise()])
+
+```
+
+#### 5.请求5s未完成就终止.js
+```typescript
+// AbortController 它能够中止 fetch 请求、各种响应主体或者流的消耗。
+// @url https://juejin.cn/post/7112699475327615006
+
+```
+
+#### 6.实现一个sleep函数.js
+```typescript
+function sleep(delay) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, delay)
+    })
+}
+
+```
+
+#### 7.setTime实现setInterval.js
+```typescript
+// TODO:实现取消
+function mySetInterval(callback, delay) {
+    const recurit = () => {
+        setTimeout(() => {
+            callback()
+            recurit()
+        }, delay)
+    }
+    recurit()
+}
+mySetInterval(() => {
+    console.log("111")
+}, 1000)
+
+```
+
+#### 8.奇怪的输出题.js
+```typescript
+// Promise.resolve()
+//     .then(() => {
+//         console.log(0)
+//         return 4
+//     })
+//     .then(console.log)
+// Promise.resolve()
+//     .then(() => {
+//         console.log(1)
+//     })
+//     .then(() => {
+//         console.log(2)
+//     })
+//     .then(() => {
+//         console.log(3)
+//     })
+//     .then(() => {
+//         console.log(5)
+//     })
+//     .then(() => {
+//         console.log(6)
+//     })
+// 0 1 4 2 3 5 6
+Promise.resolve()
+    .then(() => {
+        console.log(0)
+        return Promise.resolve(4)
+    })
+    .then((res) => {
+        console.log(res)
+    })
+
+Promise.resolve()
+    .then(() => {
+        console.log(1)
+    })
+    .then(() => {
+        console.log(2)
+    })
+    .then(() => {
+        console.log(3)
+    })
+    .then(() => {
+        console.log(5)
+    })
+    .then(() => {
+        console.log(6)
+    })
+
+// https://juejin.cn/post/6949699310732869669
+
+```
+
+#### 10.封装ajax请求.js
+```typescript
+function axios(url) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest()
+        xhr.open("Get", url)
+        xhr.onreadystatechange = function () {
+            if (this.readyState !== 4) {
+                return
+            }
+            if (this.status >= 200 && this.status < 400) {
+                resolve(this.response)
+            } else {
+                reject(new Error(this.statusText))
+            }
+        }
+        xhr.onerror = function () {
+            reject(new Error(this.statusText))
+        }
+
+        //设置响应数据类型
+        xhr.setRequestHeader("Accept", "application/json")
+        xhr.send()
+    })
+}
+
+```
+
+#### 11.setInterval模拟setTimeOut.js
+```typescript
+function myTimeOut(cb, delay) {
+    const timer = setInterval(() => {
+        cb()
+        clearInterval(timer)
+    }, delay)
+}
+myTimeOut(() => console.log(111111), 1000)
+
+```
+
+#### 12.promise如何中断后面的then.js
+```typescript
+// Promise.resolve()
+//     .then(() => {
+//         console.log(111)
+//     })
+//     .then(() => {
+//         console.log(222)
+//     })
+// 打印 111 222
+
+Promise.resolve()
+    .then(() => {
+        console.log(1111)
+        return new Promise(() => {})
+    })
+    .then(() => {
+        console.log(2222)
+    })
+
+```
+
+#### 13.实现一个精准的计时器.js
+```typescript
+// https://juejin.cn/post/7128231937457520671    https://juejin.cn/post/7029252274299879454
+
+```
+
+#### 14.一次处理2个任务.js
+```typescript
+function task(time = 1000) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const timestamp = (Date.now() / 1000) | 0
+            console.log(timestamp)
+            resolve(timestamp)
+        }, time)
+    })
+}
+
+async function concurrent(tasks, max = 10) {
+    const results = []
+    const poolList = new Set()
+    for (let i of tasks) {
+        if (poolList.size === max) {
+            await Promise.race(poolList)
+        }
+        let task = i()
+        results.push(task)
+        poolList.add(task)
+        task.then(() => poolList.delete(task))
+    }
+    return Promise.allSettled(results)
+}
+
+concurrent([task, () => task(2000), task, task, task, task, task, task, task], 2).then((res) => {
+    console.log(res)
+})
+
+```
+
+#### 15.设计一个简单的任务队列.js
+```typescript
+// 题目
+//  new Quene()
+// .task(1000, () => {
+//   console.log(1)
+// })
+// .task(2000, () => {
+//   console.log(2)
+// })
+// .task(1000, () => {
+//   console.log(3)
+// })
+// .start()
+
+// function Quene() { ... } //补全代码
+
+function Quene() {
+    this.queue = []
+    this.task = function (time, callback) {
+        let promise = () =>
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    callback()
+                    resolve()
+                }, time)
+            })
+        this.queue.push(promise)
+        return this
+    }
+    this.start = function () {
+        this.queue.reduce((pre, cur) => pre.then(() => cur()), Promise.resolve())
+    }
+}
+new Quene()
+    .task(1000, () => {
+        console.log(1)
+    })
+    .task(2000, () => {
+        console.log(2)
+    })
+    .task(1000, () => {
+        console.log(3)
+    })
+    .start()
+
+```
+
+#### 16.实现调度器.js
+```typescript
+class Schedular {
+    constructor(limit) {
+        this.limit = limit
+        this.queue = []
+        this.run = new Set() // 存放正在执行的任务
+    }
+
+    add(time, value) {
+        const mock = () =>
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(value)
+                    resolve(value)
+                }, time)
+            })
+
+        this.queue.push(mock)
+    }
+    async taskStart() {
+        for (let promise of this.queue) {
+            if (this.run.size >= this.limit) {
+                await Promise.race(this.run)
+            }
+            let task = promise()
+
+            task.then(() => this.run.delete(task))
+            this.run.add(task)
+        }
+    }
+}
+
+const scheduler = new Schedular(2)
+const addTask = (time, order) => {
+    scheduler.add(time, order)
+}
+addTask(1000, "1")
+addTask(500, "2")
+addTask(300, "3")
+addTask(400, "4")
+scheduler.taskStart()
+
+```
+
+#### 17.有并发限制的promiseall.js
+```typescript
+/** https://github.com/Sunny-117/js-challenges/issues/147 */
+// async-pool思想 和 compose思想 基于递归
+Promise._all = function (promises) {
+    const limit = 2
+    const result = []
+    const runnerCount = []
+    for (let i = 0; i < promises.length; i++) {
+        promises.then(() => {})
+    }
+}
+
+```
+
+#### 18.实现错误重新请求，并控制重试次数.js
+```typescript
+
+```
+
+### 4.js常考手写题
+
+#### 1.LRU缓存.ts
+```typescript
+// 最近最少使用
+/**
+ * @url https://leetcode.cn/problems/lru-cache/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+// map迭代的顺序是插入的顺序
+class LRUCache {
+    capacity: number
+    map: Map<number, number>
+    constructor(capacity: number) {
+        this.capacity = capacity
+        this.map = new Map()
+    }
+
+    // 每次获取值的时候，重新赋值给map。
+    get(key: number): number {
+        if (this.map.has(key)) {
+            const value = this.map.get(key)
+            this.map.delete(key)
+            this.map.set(key, value!)
+            return value!
+        }
+        return -1
+    }
+
+    put(key: number, value: number): void {
+        if (this.map.size === this.capacity) {
+            // 删除最近最少使用的了
+            const deleteKey = this.map.keys().next().value
+            this.map.delete(Number(deleteKey))
+        }
+        if (this.map.has(key)) {
+            this.map.delete(key)
+        }
+        this.map.set(key, value)
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * var obj = new LRUCache(capacity)
+ * var param_1 = obj.get(key)
+ * obj.put(key,value)
+ */
+
+let lRUCache = new LRUCache(2)
+lRUCache.put(1, 1) // 缓存是 {1=1}
+lRUCache.put(2, 2) // 缓存是 {1=1, 2=2}
+lRUCache.get(1) // 返回 1
+lRUCache.put(3, 3) // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+lRUCache.get(2) // 返回 -1 (未找到)
+lRUCache.put(4, 4) // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+lRUCache.get(1) // 返回 -1 (未找到)
+lRUCache.get(3) // 返回 3
+lRUCache.get(4) // 返回 4
+
+```
+
+#### 2.数组转树.js
+```typescript
+const items = [
+    { id: 1, name: "Item 1", parentId: null },
+    { id: 2, name: "Item 1.1", parentId: 1 },
+    { id: 3, name: "Item 1.2", parentId: 1 },
+    { id: 4, name: "Item 2", parentId: null },
+    { id: 5, name: "Item 2.1", parentId: 4 },
+]
+const arrToTree = (nums, parentId = null) => {
+    const tree = []
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i].parentId === parentId) {
+            const children = arrToTree(nums, nums[i].id)
+            nums[i].children = children
+            tree.push(nums[i])
+        }
+    }
+    return tree
+}
+
+console.log("arrToTree(items)", arrToTree(items))
+
+```
+
+#### 3.树转数组.js
+```typescript
+const tree = [
+    {
+        id: 1,
+        nick: "111",
+        children: [{ id: 6, nick: "666" }],
+    },
+    {
+        id: 2,
+        nick: "222",
+        children: [
+            {
+                id: 3,
+                nick: "333",
+                children: [
+                    {
+                        id: 4,
+                        nick: "444",
+                        children: [
+                            {
+                                id: 5,
+                                nick: "555",
+                                children: [
+                                    { id: 8, nick: "888" },
+                                    { id: 9, nick: "999" },
+                                    { id: 10, nick: "aaa" },
+                                    { id: 11, nick: "bbb" },
+                                ],
+                            },
+                        ],
+                    },
+                    { id: 7, nick: "777" },
+                ],
+            },
+        ],
+    },
+]
+
+const treeToArray = (tree) => {
+    const arr = []
+    for (let i = 0; i < tree.length; i++) {
+        if (tree[i].children) {
+            arr.push(...treeToArray(tree[i].children))
+            arr.push(tree[i])
+        } else {
+            arr.push(tree[i])
+        }
+    }
+    return arr
+}
+
+console.log("treeToArray(tree)", treeToArray(tree))
+
+```
+
+#### 4.函数科里化.js
+```typescript
+// 实现一个add方法, 使计算结果能够满足以下预期
+// add(1)(2)(3)() = 6
+// add(1,2,3)(4)() = 10
+// add(1)(2)(3)(4)(5)() = 15
+
+function add(...arg1) {
+    let totalSum = arg1.reduce((acc, cur) => acc + cur, 0)
+    return function result(...arg2) {
+        if (arg2.length === 0) {
+            return totalSum
+        } else {
+            totalSum += arg2.reduce((acc, cur) => acc + cur, 0)
+            return result
+        }
+    }
+}
+console.log(add(1)(2)(3)())
+console.log(add(1, 2, 3)(4)())
+console.log(add(1)(2)(3)(4)(5)())
+
+```
+
+#### 5.继承的几种方法.js
+```typescript
+// 原型链继承
+function Parent() {
+    this.color = ["red", "blue"]
+}
+function Child() {}
+Child.prototype = new Parent()
+const child1 = new Child()
+child1.color.push("cc")
+console.log("child1.color", child1.color)
+const child2 = new Child()
+console.log("child2.color", child2.color)
+
+// 缺点：如果继承的对象是一个引用类型，则所有的属性都会被影响
+// ===================================================
+// 构造函数继承
+function Parent1() {
+    this.color = ["red", "blue"]
+}
+function Child1() {
+    Parent1.call(this)
+}
+
+// 缺点：不能够继承原型上的属性
+// ====================================================
+
+// 组合继承
+function Parent2() {
+    this.color = ["red", "blue"]
+}
+function Child2() {
+    Parent1.call(this)
+}
+Child2.prototype = new Parent2()
+
+// 缺点：同1
+
+// 寄生组合式继承
+function Parent3() {
+    this.color = ["red", "blue"]
+}
+function Child3() {
+    Parent1.call(this)
+}
+Child3.prototype = Object.create(Parent3.prototype)
+
+```
+
+#### 6.生成唯一id.js
+```typescript
+function GetUniqueID() {
+    // 当前时间转成 36 进制字符串
+    var time = Date.now().toString(36)
+    console.log("🚀 ~ GetUniqueID ~ time:", time)
+    // 当前随机数转成 36 进制字符串
+    var random = Math.random().toString(36)
+    // 去除随机数的 0. 字符串
+    random = random.substring(2, random.length)
+    // 返回唯一ID
+    return random + time
+}
+// 测试输出
+console.log(GetUniqueID())
+
+```
+
+#### 7.十进制转十六进制.js
+```typescript
+/** // notice:余数法，以十六进制为例,每一次取余数之后，然后进行取反操作 */
+const binaryConversion = (nums) => {
+    let remainder = [] // 余数
+    while (nums !== 0) {
+        const temp = nums % 16
+        remainder.push(temp)
+        nums = Math.floor(nums / 16)
+    }
+    return Number.parseInt(remainder.reverse().join(""))
+}
+
+console.log("binaryConversion(120)", binaryConversion(120))
+
+```
+
+#### 8.最小堆.js
+```typescript
+class MinHeap {
+    constructor() {
+        /** 用数组来存储堆的形式 */
+        this.heap = []
+    }
+
+    /** 交换两个节点的位置 */
+    swap(i1, i2) {
+        const temp = this.heap[i1]
+        this.heap[i1] = this.heap[i2]
+        this.heap[i2] = temp
+    }
+
+    /** 获取指定节点的父节点下标 */
+    getParentIndex(i) {
+        return Math.floor((i - 1) / 2)
+    }
+
+    /** 获取左孩子节点下标 */
+    getLeftIndex(i) {
+        return 2 * i + 1
+    }
+
+    /** 获取右孩子节点下标 */
+    getRightIndex(i) {
+        return 2 * i + 2
+    }
+
+    /** 上移操作 */
+    shiftUp(index) {
+        if (index === 0) {
+            return
+        }
+        /** 父节点下标 */
+        const parentIndex = this.getParentIndex(index)
+        if (this.heap[index] < this.heap[parentIndex]) {
+            this.swap(index, parentIndex)
+            this.shiftUp(parentIndex)
+        }
+    }
+
+    /** 下移操作 */
+    shiftDown(index) {
+        const leftIndex = this.getLeftIndex(index)
+        const rightIndex = this.getRightIndex(index)
+        if (leftIndex >= this.heap.length) {
+            return
+        }
+        if (rightIndex >= this.heap.length) {
+            return
+        }
+
+        if (this.heap[index] > this.heap[leftIndex]) {
+            this.swap(index, leftIndex)
+            this.shiftDown(leftIndex)
+        }
+        if (this.heap[index] > this.heap[rightIndex]) {
+            this.swap(index, rightIndex)
+            this.shiftDown(rightIndex)
+        }
+    }
+
+    /** 插入节点的值 */
+    insertNode(val) {
+        this.heap.push(val)
+        this.shiftUp(this.heap.length - 1)
+    }
+
+    /** 去除栈顶元素  */
+    pop() {
+        this.heap[0] = this.heap.pop()
+        this.shiftDown(0)
+    }
+
+    /** 获取栈顶元素 */
+    peek() {
+        return this.heap[0]
+    }
+}
+const heap = new MinHeap()
+
+const arr = [3, 1, 2, 3, 4, 1, 4, 2, 1, 2, 4, -1]
+arr.forEach((item) => {
+    heap.insertNode(item)
+})
+console.log(heap)
+
+```
+
 ## 11.单调栈
 
 ### 1.每日温度.ts
