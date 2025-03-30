@@ -2850,6 +2850,7 @@ console.log(convertBST(root));
  */
 
 // TODO:后期关于回溯的题目，统一看看是否能够剪枝。
+
 function combine(n: number, k: number): number[][] {
     const result: Array<Array<number>> = []
     const traceBacking = (idx: number, acc: number[]) => {
@@ -6739,7 +6740,28 @@ Promise._all = function (promises) {
 
 #### 18.实现错误重新请求，并控制重试次数.js
 ```typescript
-
+function retryRequest(requestFn, maxRetries = 3, delay = 1000) {
+    return new Promise(async (resolve, reject) => {
+      let retries = 0;
+      
+      const attempt = async () => {
+        try {
+          const result = await requestFn();
+          resolve(result);
+        } catch (error) {
+          retries++;
+          if (retries > maxRetries) {
+            reject(`请求失败，已达最大重试次数（${maxRetries}次）`);
+          } else {
+            console.log(` 请求失败，第 ${retries} 次重试...`);
+            setTimeout(attempt, delay);
+          }
+        }
+      };
+   
+      await attempt();
+    });
+  }
 ```
 
 ### 4.js常考手写题
@@ -7082,6 +7104,198 @@ arr.forEach((item) => {
 })
 console.log(heap)
 
+```
+
+#### 9.抽奖算法.js
+```typescript
+// 实现一个抢红包算法，给你红包总数和总金额，去实现每个红包金额的随机分配，要尽可能做到公平
+
+function prize(totalNum, count) {
+    const res = new Array(count).fill(1) // 以分为单位
+    let remain = totalNum * 100 - count * 1 // 减去已经分配的
+    // 分配前 n - 1个人的红包
+    for (let i = 0; i < count - 1; i++) {
+        const max = Math.floor((remain / (count - i)) * 2)
+        const random = Math.floor(Math.random() * max)
+        console.log(random, remain)
+        res[i] += random
+        remain -= random
+    }
+    res[count - 1] += remain
+    return res.map(item => (item / 100))
+}
+
+console.log('prize',prize(10,2))
+```
+
+#### 10.打乱数组.js
+```typescript
+const arr = [1, 2, 3, 4, 5, 6]
+function sortRandom(arr) {
+    for (let j = arr.length - 1; j > 0; j--) {
+        const randomIndex = Math.floor(Math.random() * (j + 1))
+        const temp = arr[j]
+        arr[j] = arr[randomIndex]
+        arr[randomIndex] = temp
+    }
+    return arr
+}
+console.log('sortRandom(arr)', sortRandom(arr))
+```
+
+#### 11.文件路径转换.js
+```typescript
+const baseData = ['a/b/c/d/e', 'a/b/e/f/g', 'a/b/h', 'a/i/j', 'a/i/k'];
+// 转换成 ==========================>
+
+// {
+//   "key": "a",
+//   "children": [
+//     {
+//       "key": "b",
+//       "children": [
+//         {
+//           "key": "c",
+//           "children": [
+//             {
+//               "key": "d",
+//               "children": [
+//                 { "key": "e" }
+//               ]
+//             }
+//           ]
+//         },
+//         {
+//           "key": "e",
+//           "children": [
+//             {
+//               "key": "f",
+//               "children": [
+//                 { "key": "g" }
+//               ]
+//             }
+//           ]
+//         },
+//         { "key": "h" }
+//       ]
+//     },
+//     {
+//       "key": "i",
+//       "children": [
+//         { "key": "j" },
+//         { "key": "k" }
+//       ]
+//     }
+//   ]
+// }
+function pathToTree(arr) {
+    const res = [] // 存储结果
+    // 每一次循环处理一个节点，如果有的话就跳过，如果没有的话，则push到children
+    arr.forEach(item => {
+        const nodeTokens = item.split('/')
+        let targetPoint = res // 目标节点, 始终是数组
+
+        for (let node of nodeTokens) {
+            const nodeObj = {
+                key: node,
+                children: []
+            }
+            /** 是否存在 */
+            let isExit = false
+            for (let j of targetPoint) {
+                if (j.key === node) {
+                    if (!j.children) {
+                        j.children = []
+                    }
+                    targetPoint = j.children
+                    isExit = true
+                    break
+                }
+            }
+
+            if (!isExit) {
+                targetPoint.push(nodeObj)
+                // ps: targetPoint然后操控当前节点的children
+                if (!targetPoint[targetPoint.length - 1].children) {
+                    targetPoint[targetPoint.length - 1].children = []
+                }
+                targetPoint = targetPoint[targetPoint.length - 1].children
+            }
+        }
+    })
+    return res
+}
+
+pathToTree(baseData)
+
+// 递归的做法
+function pathToTree(paths) {
+    const tree = [];
+    const addNode = (node, parts, index) => {
+        // 终止条件：处理完所有路径片段 
+        if (index === parts.length) return;
+
+        const current = parts[index];
+        // 查找是否已存在同名节点 
+        let child = node.find(item => item.name === current);
+
+        // 创建新节点（区分文件与文件夹）
+        if (!child) {
+            child = {
+                name: current,
+                children: index === parts.length - 1 ? null : [] // 文件节点无children 
+            };
+            node.push(child);
+        }
+
+        // 递归处理下一级路径（仅文件夹需要继续遍历）
+        if (child.children) {
+            addNode(child.children, parts, index + 1);
+        }
+    };
+
+    paths.forEach(path => {
+        const parts = path.split('/').filter(Boolean);  // 过滤空路径段
+        addNode(tree, parts, 0);
+    });
+    return tree;
+}
+```
+
+#### 12.对象路径字符串.js
+```typescript
+// 实现一个class，满足下面的输出
+class Data {
+    constructor(data) {
+        this.watcher = new Map() // 字符串，callback回调函数
+        this.data = data
+    }
+    get(str) {
+        return str.split('.').reduce((acc, cur) => acc[cur], this.data)
+    }
+    set(str, val) {
+        const keys = str.split('.')
+        const lastKey = keys.pop()
+        let current = this.data
+        keys.forEach(key => {
+            current = current[key]
+        })
+        current[lastKey] = val
+        this.watcher.get(str).forEach(cb => cb(val))
+    }
+    watch(str, callback) {
+        if (!this.watcher.has(str)) {
+            this.watcher.set(str, new Set())
+        }
+        this.watcher.set(str, this.watcher.get(str).add(callback))
+    }
+}
+
+const data = new Data({ a: { b: { c: { d: 4 } } } })
+
+console.log(data.get('a.b')) // { a: { b: { c: { d: 4 } } } }
+data.watch('a.b', (data) => console.log(data))
+data.set('a.b', 2) // 2
 ```
 
 ## 11.单调栈
