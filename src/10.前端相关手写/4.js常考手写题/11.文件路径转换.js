@@ -84,6 +84,8 @@ pathToTree(baseData)
 // 递归的做法
 function pathToTree(paths) {
     const tree = [];
+
+    // ps: node是每一层的children  parts是当前的一个路径 index是当前路径的一个索引
     const addNode = (node, parts, index) => {
         // 终止条件：处理完所有路径片段 
         if (index === parts.length) return;

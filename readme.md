@@ -5865,7 +5865,7 @@ for (let i of obj) {
 #### 12.sort.TODO.js
 ```typescript
 // TODO:复习完排序算法，再来复习sort函数
-Array.prototype._sort = function (callback) {}
+Array.prototype._sort = function (callback) { }
 
 ```
 
@@ -5918,12 +5918,225 @@ Object.prototype._is = function (x, y) {
 #### 17.json.stringify.TODO.js
 ```typescript
 /** https://juejin.cn/post/6844903861971320846?searchId=20240811235902CCC1D8113CE9807307E3 */
+/** https://juejin.cn/post/6844903861971320846?searchId=20240811235902CCC1D8113CE9807307E3 */
 
+function jsonStringify(data) {
+    // 处理基础类型
+    if (data === null) return 'null';
+    if (data === undefined) return undefined;
+    if (typeof data === 'boolean') return data.toString();
+    if (typeof data === 'number') {
+        return isFinite(data) ? data.toString() : 'null';
+    }
+    if (typeof data === 'string') return `"${data}"`;
+    if (typeof data === 'symbol') return undefined;
+    if (typeof data === 'function') return undefined;
+
+    // 处理数组
+    if (Array.isArray(data)) {
+        const items = data.map(item => jsonStringify(item) ?? 'null');
+        return `[${items.join(',')}]`;
+    }
+
+    // 处理对象
+    if (typeof data === 'object') {
+        // 处理日期对象
+        if (data instanceof Date) {
+            return `"${data.toISOString()}"`;
+        }
+
+        // 处理正则对象
+        if (data instanceof RegExp) {
+            return '{}';
+        }
+
+        const items = Object.entries(data)
+            .filter(([_, value]) => value !== undefined && typeof value !== 'function')
+            .map(([key, value]) => `"${key}":${jsonStringify(value)}`);
+
+        return `{${items.join(',')}}`;
+    }
+}
+
+// 测试用例
+const testCases = [
+    // 基础类型
+    null,
+    undefined,
+    true,
+    123,
+    "hello",
+    Symbol(),
+    () => { },
+    NaN,
+    Infinity,
+
+    // 数组
+    [1, "2", true, null, undefined],
+
+    // 对象
+    {
+        name: "张三",
+        age: 25,
+        married: false,
+        children: null,
+        symbol: Symbol(),
+        func: function () { },
+        date: new Date(),
+        reg: /test/,
+        undef: undefined
+    }
+];
+
+// 测试并比较结果
+testCases.forEach((test, index) => {
+    console.log(`测试用例 ${index + 1}:`);
+    console.log('自定义实现:', jsonStringify(test));
+    console.log('原生实现:', JSON.stringify(test));
+    console.log('---');
+});
 ```
 
 #### 18.json.parse.TODO.js
 ```typescript
+function jsonParse(str) {
+    // 去除空白字符
+    str = str.trim();
 
+    // 记录当前解析位置
+    let i = 0;
+
+    // 解析主函数
+    function parseValue() {
+        const char = str[i];
+
+        if (char === '{') return parseObject();
+        if (char === '[') return parseArray();
+        if (char === '"') return parseString();
+        if (char === 't') return parseTrue();
+        if (char === 'f') return parseFalse();
+        if (char === 'n') return parseNull();
+        return parseNumber();
+    }
+
+    // 解析对象
+    function parseObject() {
+        i++; // 跳过 '{'
+        const result = {};
+
+        while (i < str.length) {
+            if (str[i] === '}') {
+                i++;
+                return result;
+            }
+
+            if (str[i] === ',') {
+                i++;
+                continue;
+            }
+
+            // 解析键
+            const key = parseString();
+            i++; // 跳过 ':'
+            // 解析值
+            const value = parseValue();
+            result[key] = value;
+        }
+        return result;
+    }
+
+    // 解析数组
+    function parseArray() {
+        i++; // 跳过 '['
+        const result = [];
+
+        while (i < str.length) {
+            if (str[i] === ']') {
+                i++;
+                return result;
+            }
+
+            if (str[i] === ',') {
+                i++;
+                continue;
+            }
+
+            const value = parseValue();
+            result.push(value);
+        }
+        return result;
+    }
+
+    // 解析字符串
+    function parseString() {
+        i++; // 跳过开始的双引号
+        let result = '';
+
+        while (str[i] !== '"') {
+            if (str[i] === '\\') {
+                i++;
+                if (str[i] === 'n') result += '\n';
+                else if (str[i] === 'r') result += '\r';
+                else if (str[i] === 't') result += '\t';
+                else result += str[i];
+            } else {
+                result += str[i];
+            }
+            i++;
+        }
+
+        i++; // 跳过结束的双引号
+        return result;
+    }
+
+    // 解析数字
+    function parseNumber() {
+        let start = i;
+        while (i < str.length && /[\d.+-e]/i.test(str[i])) {
+            i++;
+        }
+        return Number(str.slice(start, i));
+    }
+
+    // 解析 true
+    function parseTrue() {
+        i += 4; // 跳过 'true'
+        return true;
+    }
+
+    // 解析 false
+    function parseFalse() {
+        i += 5; // 跳过 'false'
+        return false;
+    }
+
+    // 解析 null
+    function parseNull() {
+        i += 4; // 跳过 'null'
+        return null;
+    }
+
+    return parseValue();
+}
+
+// 测试用例
+const testCases = [
+    '{"name":"张三","age":25,"married":false,"children":null}',
+    '[1,2,3,"4",true,null]',
+    '{"scores":[90,85,88],"pass":true}',
+    '"Hello\\nWorld"',
+    '123.456',
+    'true',
+    'false',
+    'null'
+];
+
+testCases.forEach((test, index) => {
+    console.log(`测试用例 ${index + 1}:`);
+    console.log('自定义实现:', jsonParse(test));
+    console.log('原生实现:', JSON.parse(test));
+    console.log('---');
+});
 ```
 
 #### 19.call bind apply.js
@@ -6391,6 +6604,8 @@ const repeat = (cb, delay = 1000, times = 5) => {
         new Array(times).fill(AsyncFn).reduce((acc, cur) => {
             return acc.then(() => cur())
         }, Promise.resolve())
+        // ps: polifill如下
+        // return Promise.resolve().then(() => AsyncFn()).then(() => AsyncFn()).then(() => AsyncFn()).then(() => AsyncFn())
     }
 }
 
@@ -6444,6 +6659,48 @@ Limit([requestPromise()])
 // AbortController 它能够中止 fetch 请求、各种响应主体或者流的消耗。
 // @url https://juejin.cn/post/7112699475327615006
 
+/**
+ * 发起请求，如果超过指定时间未完成则终止
+ * @param {string} url 请求地址
+ * @param {number} timeout 超时时间（毫秒）
+ */
+async function fetchWithTimeout(url, timeout = 5000) {
+    const controller = new AbortController(); // ps:可以丢弃请求的API
+    const signal = controller.signal;
+
+    // 创建一个超时Promise
+    const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => {
+            controller.abort();
+            reject(new Error(`请求超时: ${timeout}ms`));
+        }, timeout);
+    });
+
+    try {
+        // 使用 Promise.race 竞争，谁先完成用谁的结果
+        const response = await Promise.race([
+            fetch(url, { signal }),
+            timeoutPromise
+        ]);
+        return await response.json();
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            throw new Error('请求已被终止');
+        }
+        throw error;
+    }
+}
+
+// 使用示例
+async function example() {
+    try {
+        // 模拟一个可能超时的请求
+        const data = await fetchWithTimeout('https://api.example.com/data', 5000);
+        console.log('请求成功:', data);
+    } catch (error) {
+        console.error('请求失败:', error.message);
+    }
+}
 ```
 
 #### 6.实现一个sleep函数.js
@@ -6531,30 +6788,131 @@ Promise.resolve()
 
 #### 10.封装ajax请求.js
 ```typescript
-function axios(url) {
+/**
+ * 封装 ajax 请求
+ * @param {string|object} options 请求配置或URL
+ * @param {string} options.url 请求地址
+ * @param {string} options.method 请求方法
+ * @param {object} options.headers 请求头
+ * @param {object} options.data 请求数据
+ * @param {number} options.timeout 超时时间
+ */
+function axios(options) {
+    if (typeof options === 'string') {
+        options = {
+            url: options
+        }
+    }
+    const {
+        url,
+        method = 'GET',
+        headers = {},
+        data = null,
+        timeout = 5000
+    } = options
+
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
-        xhr.open("Get", url)
+
+        // 设置超时
+        xhr.timeout = timeout
+        xhr.ontimeout = () => reject(new Error('请求超时'))
+
+        // 监听请求状态
         xhr.onreadystatechange = function () {
-            if (this.readyState !== 4) {
-                return
-            }
+            if (this.readyState !== 4) return
+
             if (this.status >= 200 && this.status < 400) {
-                resolve(this.response)
+                let response
+                try {
+                    response = JSON.parse(this.response)
+                } catch (e) {
+                    response = this.response
+                }
+                resolve(response)
             } else {
-                reject(new Error(this.statusText))
+                reject(new Error(this.statusText || '请求失败'))
             }
-        }
-        xhr.onerror = function () {
-            reject(new Error(this.statusText))
         }
 
-        //设置响应数据类型
-        xhr.setRequestHeader("Accept", "application/json")
-        xhr.send()
+        // 错误处理
+        xhr.onerror = function () {
+            reject(new Error(this.statusText || '网络错误'))
+        }
+
+        // 处理请求方法
+        xhr.open(method.toUpperCase(), url, true)
+
+        // 设置默认请求头
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('Accept', 'application/json')
+
+        // 设置自定义请求头
+        Object.keys(headers).forEach(key => {
+            xhr.setRequestHeader(key, headers[key])
+        })
+
+        // 发送请求
+        let body = null
+        if (data) {
+            body = typeof data === 'object' ? JSON.stringify(data) : data
+        }
+        xhr.send(body)
     })
 }
 
+// 添加便捷方法
+axios.get = function (url, options = {}) {
+    return axios({
+        ...options,
+        url,
+        method: 'GET'
+    })
+}
+
+axios.post = function (url, data, options = {}) {
+    return axios({
+        ...options,
+        url,
+        method: 'POST',
+        data
+    })
+}
+
+// 使用示例
+async function example() {
+    try {
+        // GET 请求
+        const getData = await axios.get('https://api.example.com/data', {
+            headers: {
+                'Authorization': 'Bearer token'
+            },
+            timeout: 3000
+        })
+
+        // POST 请求
+        const postData = await axios.post('https://api.example.com/create', {
+            name: 'test',
+            age: 18
+        }, {
+            headers: {
+                'X-Custom-Header': 'value'
+            }
+        })
+
+        // 直接使用
+        const response = await axios({
+            url: 'https://api.example.com/update',
+            method: 'PUT',
+            data: { id: 1 },
+            headers: {
+                'Authorization': 'Bearer token'
+            }
+        })
+    } catch (error) {
+        console.error('请求失败:', error.message)
+    }
+}
 ```
 
 #### 11.setInterval模拟setTimeOut.js
@@ -6583,7 +6941,7 @@ myTimeOut(() => console.log(111111), 1000)
 Promise.resolve()
     .then(() => {
         console.log(1111)
-        return new Promise(() => {})
+        return new Promise(() => { })
     })
     .then(() => {
         console.log(2222)
@@ -6593,8 +6951,9 @@ Promise.resolve()
 
 #### 13.实现一个精准的计时器.js
 ```typescript
-// https://juejin.cn/post/7128231937457520671    https://juejin.cn/post/7029252274299879454
-
+// 参考：https://juejin.cn/post/7128231937457520671    
+// 参考：https://juejin.cn/post/7029252274299879454
+// ps: 核心通过requestAnimationFram来手动进行校验
 ```
 
 #### 14.一次处理2个任务.js
@@ -6727,41 +7086,106 @@ scheduler.taskStart()
 ```typescript
 /** https://github.com/Sunny-117/js-challenges/issues/147 */
 // async-pool思想 和 compose思想 基于递归
-Promise._all = function (promises) {
-    const limit = 2
-    const result = []
-    const runnerCount = []
-    for (let i = 0; i < promises.length; i++) {
-        promises.then(() => {})
+
+function limitPromiseAll(promises, limit, retryCount = 3) {
+    return new Promise(async (resolve, reject) => {
+        let count = 0
+        const result = []
+        const currentTask = new Set()
+
+        // 添加重试包装函数
+        const retry = async (fn, index) => {
+            for (let i = 0; i < retryCount; i++) {
+                try {
+                    return await fn()
+                } catch (err) {
+                    if (i === retryCount - 1) throw err
+                    console.log(`任务${index}第${i + 1}次重试`)
+                }
+            }
+        }
+
+        for (let i = 0; i < promises.length; i++) {
+            if (currentTask.size >= limit) {
+                await Promise.race(currentTask)
+            }
+            const promise = promises[i]
+            const task = retry(promise, i).then(res => {
+                result[i] = res
+                currentTask.delete(task)
+            }).catch(err => {
+                reject(err)
+            }).finally(() => {
+                count++
+                if (count === promises.length) {
+                    resolve(result)
+                }
+            })
+            currentTask.add(task)
+        }
+    })
+}
+
+// 测试用例
+async function test() {
+    // 模拟异步任务，返回一个 Promise 函数
+    const createTask = (time, value) => () => {
+        console.log(`开始任务 ${value}`);
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log(`完成任务 ${value}`);
+                resolve(value);
+            }, time);
+        });
+    };
+
+    // 创建测试任务
+    const tasks = [
+        createTask(1000, 1),  // 1秒后完成
+        createTask(2000, 2),  // 2秒后完成
+        createTask(1000, 3),  // 1秒后完成
+        createTask(1500, 4),  // 1.5秒后完成
+        createTask(500, 5),   // 0.5秒后完成
+    ];
+
+    try {
+        console.time('总执行时间');
+        const results = await limitPromiseAll(tasks, 2);  // 限制并发数为2
+        console.timeEnd('总执行时间');
+        console.log('所有任务执行结果:', results);
+    } catch (err) {
+        console.error('执行出错:', err);
     }
 }
+
+test();
 
 ```
 
 #### 18.实现错误重新请求，并控制重试次数.js
 ```typescript
 function retryRequest(requestFn, maxRetries = 3, delay = 1000) {
-    return new Promise(async (resolve, reject) => {
-      let retries = 0;
-      
-      const attempt = async () => {
-        try {
-          const result = await requestFn();
-          resolve(result);
-        } catch (error) {
-          retries++;
-          if (retries > maxRetries) {
-            reject(`请求失败，已达最大重试次数（${maxRetries}次）`);
-          } else {
-            console.log(` 请求失败，第 ${retries} 次重试...`);
-            setTimeout(attempt, delay);
-          }
+  return new Promise(async (resolve, reject) => {
+    let retries = 0;
+
+    const attempt = async () => {
+      try {
+        const result = await requestFn();
+        resolve(result);
+      } catch (error) {
+        retries++;
+        if (retries > maxRetries) {
+          reject(`请求失败，已达最大重试次数（${maxRetries}次）`);
+        } else {
+          console.log(` 请求失败，第 ${retries} 次重试...`);
+          setTimeout(attempt, delay);
         }
-      };
-   
-      await attempt();
-    });
-  }
+      }
+    };
+
+    await attempt();
+  });
+}
 ```
 
 ### 4.js常考手写题
@@ -7017,6 +7441,7 @@ console.log("binaryConversion(120)", binaryConversion(120))
 
 #### 8.最小堆.js
 ```typescript
+// ps:堆的结构
 class MinHeap {
     constructor() {
         /** 用数组来存储堆的形式 */
@@ -7062,21 +7487,18 @@ class MinHeap {
     shiftDown(index) {
         const leftIndex = this.getLeftIndex(index)
         const rightIndex = this.getRightIndex(index)
-        if (leftIndex >= this.heap.length) {
-            return
-        }
-        if (rightIndex >= this.heap.length) {
-            return
+        let midIndex;
+        if (this.heap[leftIndex] < this.heap[rightIndex]) {
+            midIndex = leftIndex
+        } else {
+            midIndex = rightIndex
         }
 
-        if (this.heap[index] > this.heap[leftIndex]) {
-            this.swap(index, leftIndex)
-            this.shiftDown(leftIndex)
+        if (this.heap[index] > this.heap[midIndex]) {
+            this.swap(index, midIndex)
+            this.shiftDown(midIndex)
         }
-        if (this.heap[index] > this.heap[rightIndex]) {
-            this.swap(index, rightIndex)
-            this.shiftDown(rightIndex)
-        }
+
     }
 
     /** 插入节点的值 */
@@ -7087,6 +7509,12 @@ class MinHeap {
 
     /** 去除栈顶元素  */
     pop() {
+        if (this.heap.length === 0) {
+            return null
+        }
+        if (this.heap.length === 1) {
+            return this.heap.pop()
+        }
         this.heap[0] = this.heap.pop()
         this.shiftDown(0)
     }
@@ -7104,6 +7532,45 @@ arr.forEach((item) => {
 })
 console.log(heap)
 
+// ps: 堆排序
+// note:借助数组空间来实现
+function heapSort(arr) {
+    const minHeap = new MinHeap();
+    const result = [];
+
+    // 构建最小堆
+    arr.forEach(item => {
+        minHeap.insertNode(item);
+    });
+
+    // 依次取出堆顶元素，得到升序数组
+    while (minHeap.heap.length > 0) {
+        result.push(minHeap.peek());
+        minHeap.pop();
+    }
+
+    return result;
+}
+
+console.log('heapSort(arr)', heapSort(arr))
+
+// note: 原地堆排序
+function heapSortThroughSelf(arr) {
+    const heap = new MinHeap();
+
+    // 构建最小堆
+    arr.forEach(item => {
+        heap.insertNode(item);
+    });
+
+    // 原地排序
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = heap.peek();
+        heap.pop();
+    }
+
+    return arr;
+}
 ```
 
 #### 9.抽奖算法.js
@@ -7231,6 +7698,8 @@ pathToTree(baseData)
 // 递归的做法
 function pathToTree(paths) {
     const tree = [];
+
+    // ps: node是每一层的children  parts是当前的一个路径 index是当前路径的一个索引
     const addNode = (node, parts, index) => {
         // 终止条件：处理完所有路径片段 
         if (index === parts.length) return;
@@ -7296,6 +7765,38 @@ const data = new Data({ a: { b: { c: { d: 4 } } } })
 console.log(data.get('a.b')) // { a: { b: { c: { d: 4 } } } }
 data.watch('a.b', (data) => console.log(data))
 data.set('a.b', 2) // 2
+```
+
+#### 13.快速选择算法.js
+```typescript
+function quickSelect(arr, k) {
+    // 检查 k 是否越界
+    if (k < 0 || k >= arr.length) return -1;
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    const pivot = arr[randomIndex];
+    const left = [];
+    const right = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (i === randomIndex) continue;
+        if (arr[i] <= pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+    // 如果 k 等于 left 数组的长度，说明基准元素就是第 k 小的元素
+    if (k === left.length) {
+        return pivot;
+    }
+    // 如果 k 小于 left 数组的长度，在 left 数组中继续查找
+    if (k < left.length) {
+        return quickSelect(left, k);
+    } else {
+        // 如果 k 大于 left 数组的长度，在 right 数组中继续查找
+        return quickSelect(right, k - left.length - 1);
+    }
+}
+console.log(quickSelect([1, 2, 3, 4, 5, 6], 3), '>>>>');
 ```
 
 ## 11.单调栈

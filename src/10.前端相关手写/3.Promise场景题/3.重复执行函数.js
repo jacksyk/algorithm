@@ -15,6 +15,8 @@ const repeat = (cb, delay = 1000, times = 5) => {
         new Array(times).fill(AsyncFn).reduce((acc, cur) => {
             return acc.then(() => cur())
         }, Promise.resolve())
+        // ps: polifill如下
+        // return Promise.resolve().then(() => AsyncFn()).then(() => AsyncFn()).then(() => AsyncFn()).then(() => AsyncFn())
     }
 }
 

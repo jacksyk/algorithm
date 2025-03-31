@@ -10,7 +10,7 @@
 Promise.resolve()
     .then(() => {
         console.log(1111)
-        return new Promise(() => {})
+        return new Promise(() => { })
     })
     .then(() => {
         console.log(2222)

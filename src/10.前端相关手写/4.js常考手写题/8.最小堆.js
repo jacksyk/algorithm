@@ -1,3 +1,4 @@
+// ps:堆的结构
 class MinHeap {
     constructor() {
         /** 用数组来存储堆的形式 */
@@ -43,21 +44,18 @@ class MinHeap {
     shiftDown(index) {
         const leftIndex = this.getLeftIndex(index)
         const rightIndex = this.getRightIndex(index)
-        if (leftIndex >= this.heap.length) {
-            return
-        }
-        if (rightIndex >= this.heap.length) {
-            return
+        let midIndex;
+        if (this.heap[leftIndex] < this.heap[rightIndex]) {
+            midIndex = leftIndex
+        } else {
+            midIndex = rightIndex
         }
 
-        if (this.heap[index] > this.heap[leftIndex]) {
-            this.swap(index, leftIndex)
-            this.shiftDown(leftIndex)
+        if (this.heap[index] > this.heap[midIndex]) {
+            this.swap(index, midIndex)
+            this.shiftDown(midIndex)
         }
-        if (this.heap[index] > this.heap[rightIndex]) {
-            this.swap(index, rightIndex)
-            this.shiftDown(rightIndex)
-        }
+
     }
 
     /** 插入节点的值 */
@@ -68,6 +66,12 @@ class MinHeap {
 
     /** 去除栈顶元素  */
     pop() {
+        if (this.heap.length === 0) {
+            return null
+        }
+        if (this.heap.length === 1) {
+            return this.heap.pop()
+        }
         this.heap[0] = this.heap.pop()
         this.shiftDown(0)
     }
@@ -84,3 +88,43 @@ arr.forEach((item) => {
     heap.insertNode(item)
 })
 console.log(heap)
+
+// ps: 堆排序
+// note:借助数组空间来实现
+function heapSort(arr) {
+    const minHeap = new MinHeap();
+    const result = [];
+
+    // 构建最小堆
+    arr.forEach(item => {
+        minHeap.insertNode(item);
+    });
+
+    // 依次取出堆顶元素，得到升序数组
+    while (minHeap.heap.length > 0) {
+        result.push(minHeap.peek());
+        minHeap.pop();
+    }
+
+    return result;
+}
+
+console.log('heapSort(arr)', heapSort(arr))
+
+// note: 原地堆排序
+function heapSortThroughSelf(arr) {
+    const heap = new MinHeap();
+
+    // 构建最小堆
+    arr.forEach(item => {
+        heap.insertNode(item);
+    });
+
+    // 原地排序
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = heap.peek();
+        heap.pop();
+    }
+
+    return arr;
+}
