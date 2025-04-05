@@ -138,6 +138,66 @@ console.table(generateMatrix(100))
 
 ```
 
+### 6.和为k的子数组.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+// ps: 因为没有正负数，所以遍历所有的子数组
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function (nums, k) {
+    let count = 0
+    for (let i = 0; i < nums.length; i++) {
+        let fast = i, sum = 0
+        while (fast < nums.length) {
+            sum += nums[fast]
+            fast++
+            if (sum === k) {
+                count++
+            }
+        }
+    }
+    return count
+};
+```
+
+### 7.除数组以外的数组乘积.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+
+// ps: 前缀积
+var productExceptSelf = function (nums) {
+    const prefixArr = new Array(nums.length).fill(1)
+    const postfixArr = new Array(nums.length).fill(1)
+    let prefix = 1
+    for (let i = 0; i < nums.length; i++) {
+        prefixArr[i] = prefix
+        prefix *= nums[i]
+    }
+    let postfix = 1
+    for (let i = nums.length - 1; i >= 0; i--) {
+        postfixArr[i] = postfix
+        postfix *= nums[i]
+    }
+    for (let i = 0; i < nums.length; i++) {
+        nums[i] = prefixArr[i] * postfixArr[i]
+    }
+    return nums
+};
+```
+
 ## 2.链表
 
 ### 1.移除链表元素.ts
@@ -681,6 +741,13 @@ var reverseKGroup = function (head, k) {
 
 ```
 
+### 12.排序链表.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/sort-list/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+```
+
 ## 3.哈希表
 
 ### 1.有效的字母异位词.ts
@@ -981,6 +1048,78 @@ function fourSum(nums: number[], target: number): number[][] {
 
 ```
 
+### 9.字符异位词分组.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/group-anagrams/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+// ps:map的key用charcode拼接为字符串的值来区分
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function (strs) {
+    const map = new Map()
+    for (let i = 0; i < strs.length; i++) {
+        const charArray = new Array(26).fill(0)
+        // 遍历每个字符串
+        for (let j = 0; j < strs[i].length; j++) {
+            const diff = strs[i][j].charCodeAt(0) - 'a'.charCodeAt(0)
+            charArray[diff]++
+        }
+        const charStr = charArray.join('-') // 这里的key注意有区分度
+        if (map.has(charStr)) {
+            const val = map.get(charStr)
+            val.unshift(strs[i])
+            map.set(charStr, val)
+        } else {
+            const res = []
+            res.push(strs[i])
+            map.set(charStr, res)
+        }
+    }
+    return Array.from(map.values())
+};
+
+let strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+console.log('groupAnagrams(strs)', groupAnagrams(strs))
+
+const set = new Set()
+set.add('hello word')
+set.add('hello word1')
+set.add('hello word2')
+set.add('hello word3')
+```
+
+### 10.最长连续序列.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function (nums) {
+    const set: Set<number> = new Set(nums)
+    let res = 0
+    for (let num of set.values()) {
+        // ps：这里进行了剪枝操作
+        if (!set.has(num - 1)) {
+            let count = 0
+            while (set.has(num)) {
+                count++
+                num++
+            }
+            res = Math.max(res, count)
+        }
+
+    }
+    return res
+};
+```
+
 ## 4.字符串
 
 ### 1.反转字符串.ts
@@ -1102,6 +1241,152 @@ function repeatedSubstringPattern(s: string): boolean {
     return false
 }
 
+```
+
+### 6.字符串压缩.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/string-compression/description/
+ */
+/**
+ * @param {character[]} chars
+ * @return {number}
+ */
+var compress = function (chars: string[]) {
+    const res: Array<string> = []
+    for (let i = 0; i < chars.length; i++) {
+        let start = i
+        let count = 1
+        while (chars[start] === chars[start + 1]) {
+            start++
+            count++
+        }
+        res.push(chars[i])
+        if (count !== 1) {
+            for (let item of count.toString().split('')) {
+                res.push(item)
+            }
+        }
+        i = start
+    }
+    chars.splice(0, res.length)
+    chars.unshift(...res)
+    return res.length
+};
+```
+
+### 7.无重复字符的最长子串.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+    let res = 0 // 结果
+    let slow = 0
+
+    for (let fast = 0; fast < s.length; fast++) {
+        const cur = s[fast]
+        const str = s.slice(slow, fast)
+        const idx = str.indexOf(cur)
+        if (idx !== -1) {
+            slow += idx + 1
+        }
+        res = Math.max(res, fast - slow + 1)
+    }
+    return res
+};
+```
+
+### 8.找到字符串所有字母异味词.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {number[]}
+ */
+// @ts-nocheck
+// 字符串 -> 下标26位索引
+const generateKey = (str) => {
+    const positionArray = new Array(26).fill(0)
+    for (let i = 0; i < str.length; i++) {
+        const diff = str[i].charCodeAt(0) - 'a'.charCodeAt(0)
+        positionArray[diff]++
+    }
+    return positionArray.join('-')
+}
+
+var findAnagrams = function (s, p) {
+    const key = generateKey(p)
+    const res = []
+    for (let i = 0; i < s.length - p.length + 1; i++) {
+        const str = s.slice(i, i + p.length)
+        const strKey = generateKey(str)
+        if (strKey === key) {
+            res.push(i)
+        }
+    }
+    return res
+};
+```
+
+### 9.最小覆盖子串.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+var minWindow = function (s, t) {
+    const map1 = new Map()
+    for (let char of t) {
+        map1.set(char, (map1.get(char) ?? 0) + 1)
+    }
+    let slow = 0, fast = 0, count = Number.MAX_SAFE_INTEGER, res = '', formed = 0
+    const map2 = new Map()
+    while (fast < s.length) {
+        const char = s[fast]
+        map2.set(char, (map2.get(char) ?? 0) + 1)
+        // 判断当前字符满不满足要求
+        if (map1.get(char) === map2.get(char)) {
+            formed++
+        }
+        // 滑动窗口进行缩小
+        while (formed === map1.size && slow <= fast) {
+            const len = fast - slow + 1
+            if (len < count) {
+                res = s.slice(slow, fast + 1)
+                count = len
+            }
+            const slowChar = s[slow]
+            map2.set(slowChar, (map2.get(slowChar) ?? 0) - 1)
+            // ps: 注意这块的一个判断条件，只有小于，才会是不满足！！！
+            if (map1.get(slowChar) > map2.get(slowChar)) {
+                formed--
+            }
+            slow++
+        }
+        fast++
+    }
+    return res
+};
 ```
 
 ## 5.栈与队列
@@ -1301,6 +1586,103 @@ function evalRPN(tokens: string[]): number {
 /**
  * @url https://leetcode.cn/problems/top-k-frequent-elements/description/
  */
+
+```
+
+### 8.移除无效的括号.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/minimum-remove-to-make-valid-parentheses/description/
+ */
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var minRemoveToMakeValid = function (s) {
+    const indexArray = new Array(s.length).fill(false)
+    const strArray: Array<number> = []
+    for (let i = 0; i < s.length; i++) {
+        const str = s[i]
+        if (str === '(') {
+            strArray.push(i)
+            indexArray[i] = true
+        }
+        if (str === ')') {
+            if (strArray.length === 0) {
+                indexArray[i] = true
+            } else {
+                const idx = strArray.pop()
+                indexArray[idx!] = false
+            }
+        }
+    }
+    const res: Array<string> = []
+    for (let i = 0; i < s.length; i++) {
+        if (!indexArray[i]) {
+            res.push(s[i])
+        }
+    }
+    return res.join('')
+};
+```
+
+### 9.删除无效的括号.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/remove-invalid-parentheses/description/
+ */
+
+// ps =================================
+
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+var removeInvalidParentheses = function (s) {
+    let l = 0, r = 0 // 左括号需要删除的数量，右括号需要删除的数量
+    const set = new Set()
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '(') {
+            l++
+        } else if (s[i] === ')') {
+            if (l > 0) {
+                l--
+            } else {
+                r++
+            }
+        }
+    }
+
+    const dfs = (l, r, idx, score, path) => {
+        if (score < 0) return // 小于0代表已经不合法了
+        if (idx === s.length) {
+            if (score === 0) {
+                set.add(path.join(''))
+            }
+            return
+        }
+        const word = s[idx]
+        if (word === '(') {
+            if (l > 0) {
+                dfs(l - 1, r, idx + 1, score, [...path])
+            }
+            path.push(word)
+            dfs(l, r, idx + 1, score + 1, [...path])
+        } else if (word === ')') {
+            if (r > 0) {
+                dfs(l, r - 1, idx + 1, score, [...path])
+            }
+            path.push(word)
+            dfs(l, r, idx + 1, score - 1, [...path])
+        } else {
+            path.push(word)
+            dfs(l, r, idx + 1, score, [...path])
+        }
+    }
+    dfs(l, r, 0, 0, [])
+    return Array.from(set)
+};
 
 ```
 
@@ -3351,14 +3733,6 @@ console.log(solveNQueens(4))
 
 ```
 
-### 14.删除无效的括号.ts
-```typescript
-/**
- * @url https://leetcode.cn/problems/remove-invalid-parentheses/solutions/1068652/gong-shui-san-xie-jiang-gua-hao-de-shi-f-asu8/
- */
-
-```
-
 ## 8.动态规划
 
 ### 1.斐波那契数.ts
@@ -4691,9 +5065,11 @@ function isSubsequence(s: string, t: string): boolean {
 // 每一次状态 + 上一次未比较的状态 可以举一个t的长度为1的例子
 function numDistinct(s: string, t: string): number {
     const dp = new Array(s.length + 1).fill(0).map((_v) => new Array(t.length + 1).fill(0))
+
     for (let i = 0; i <= s.length; i++) {
         dp[i][0] = 1
     }
+
     for (let i = 1; i < s.length + 1; i++) {
         for (let j = 1; j < t.length + 1; j++) {
             if (s[i - 1] === t[j - 1]) {
@@ -4751,7 +5127,7 @@ function minDistance(word1: string, word2: string): number {
  * @url https://leetcode.cn/problems/edit-distance/description/
  */
 
-export {}
+export { }
 // function minDistance(word1: string, word2: string): number {
 //     const dp = new Array(word1.length + 1).fill(0).map((_v) => new Array(word2.length + 1).fill(0))
 
@@ -4781,7 +5157,6 @@ export {}
 // TODO:最长重复子数组试试，不行还是是相对顺序的原因
 
 // TODO:需要的最少操作
-// dp[0][0]= 0
 function minDistance(word1: string, word2: string): number {
     const dp = new Array(word1.length + 1).fill(0).map((_v) => new Array(word2.length + 1).fill(0))
     for (let i = 0; i <= word1.length; i++) {
@@ -4795,6 +5170,8 @@ function minDistance(word1: string, word2: string): number {
             if (word1[i - 1] === word2[j - 1]) {
                 dp[i][j] = dp[i - 1][j - 1]
             } else {
+                // ps:（修改: dp[i - 1][j - 1], 删除: dp[i - 1][j], 增加: dp[i][j - 1]），
+                // ps：删除和增加是一起的
                 dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1)
             }
         }
@@ -7877,6 +8254,148 @@ console.log(JSON.stringify(formatStr(foo1)))
 // }
 ```
 
+#### 15.后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径.js
+```typescript
+const data = [
+    { id: '01', name: 'Root', pid: '' },
+    { id: '02', name: 'DirA', pid: '01' },
+    { id: '03', name: 'DirB', pid: '01' },
+    { id: '04', name: 'File1.txt', pid: '02' },
+    { id: '05', name: 'File2.txt', pid: '03' }
+];
+
+const getPathByLeafName = (data, leafName) => {
+    // 找到叶子节点，获取对应的pid，往上递归寻找就行
+    const map = new Map()
+
+    data.forEach(item => {
+        map.set(item.id, item)
+    })
+
+    const path = []
+
+    const findPath = (leafName) => {
+        const node = data.find(item => item.name === leafName)
+        if (node) {
+            path.unshift(node.name)
+            if (node.pid) {
+                findPath(map.get(node.pid).name)
+            }
+        }
+    }
+    findPath(leafName)
+    return path.join('/')
+}
+
+
+
+
+console.log(getPathByLeafName(data, 'File1.txt'));
+// 输出: ['Root/DirA/File1.txt']
+console.log(getPathByLeafName(data, 'File2.txt'));
+// 输出: ['Root/DirB/File2.txt']
+```
+
+#### 16.hardman.js
+```typescript
+/**
+ * @description 腾讯爱考题目-来自牛客
+ * @url https://juejin.cn/post/7406150677225898023
+ */
+
+// ps: 关键设计思路（针对于restFirst函数）
+// 1.任务队列机制
+// 2.同步任务和异步任务的方式。异步执行控制
+
+// 写一个hardMan函数，满足控制台打印效果如下：
+// ===============================================
+// hardMan('潘潘')
+//> Hi! I am 潘潘.
+// =============================================== 
+// hardMan('潘潘').study('Project')
+//> Hi! I am 潘潘.
+//> I am studying 敲码.
+// ===============================================
+// hardMan('潘潘').rest(3).study('敲码')
+//> Hi! I am 潘潘.
+// 此时等待三秒钟
+//> Wait 3 seconds.
+//> I am studying 敲码.
+// ===============================================
+// hardMan('潘潘').restFirst(3).study('敲码')
+// 此时等待三秒钟
+//> Wait 3 seconds.
+//> Hi! I am 潘潘.
+//> I am studying 敲码.
+// ===============================================
+
+async function sleep(seconds) {
+    await new Promise(resolve => {
+        setTimeout(() => {
+            console.log(`Wait ${seconds} seconds.`);
+            resolve()
+        }, seconds * 1000);
+    })
+}
+
+
+// 函数式类的写法
+function hardManClass(name) {
+    this.task = []
+
+    setTimeout(async () => {
+        for (let tak of this.task) {
+            await tak()
+        }
+    }, 0);
+
+
+    this.task.push(() => {
+        return new Promise(resolve => {
+            console.log(`Hi! I am ${name}.`);
+            resolve()
+        })
+    })
+
+    this.study = function (studyName) {
+        this.task.push(() => {
+            return new Promise(resolve => {
+                console.log(`I am studying ${studyName}.`);
+                resolve()
+            })
+        })
+        return this;
+    }
+
+    this.rest = function (time) {
+        this.task.push(async () => {
+            await sleep(time)
+        })
+        return this
+    }
+
+    this.restFirst = function (time) {
+        this.task.unshift(async () => {
+            await sleep(time)
+        })
+        return this
+    }
+
+    return this
+}
+
+function hardMan(name) {
+    return new hardManClass(name)
+}
+
+
+// hardMan('潘潘')
+// hardMan('潘潘').study('Project')
+hardMan('潘潘').rest(3).study('敲码')
+// hardMan('潘潘').restFirst(3).study('敲码')
+
+```
+
 ## 11.单调栈
 
 ### 1.每日温度.ts
@@ -8050,5 +8569,166 @@ var trap = function (height) {
  * @url https://leetcode.cn/problems/largest-rectangle-in-histogram/description/
  */
 
+```
+
+## 12.二分搜索
+
+### 1.搜索旋转数组.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/search-in-rotated-sorted-array/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+
+// ps: 每一次二分都能找到一半有序，一半无序的情况。
+
+var search = function (nums, target) {
+    let left = 0, right = nums.length - 1
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2)
+        if (nums[mid] === target) return mid
+        // 落在左侧有序区间
+        if (nums[left] <= nums[mid]) {
+            // target 落在[left, mid]空间上
+            if (nums[left] <= target && nums[mid] > target) {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        } else {
+            // 这里右侧空间是有序的，去判断右侧区间是否有序
+            if (nums[mid] < target && target <= nums[right]) {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+    }
+    return -1
+};
+```
+
+### 2.旋转数组的最小值.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/?envType=study-plan-v2&envId=top-100-liked
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+
+var findMin = function (nums) {
+    let l = 0, r = nums.length - 1
+
+    while (l <= r) {
+        const mid = Math.floor((l + r) / 2)
+        if (nums[mid] < nums[r]) {
+            r = mid
+        } else {
+            l = mid + 1
+        }
+    }
+    return nums[r]
+};
+```
+
+## 13.双指针
+
+### 1.移动零.js
+```typescript
+/**
+ * @url https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+// 0 1 0 3 12
+// 1 0 0 3 12
+// 1 3 0 0 12
+// 1 3 12 0 0
+
+var moveZeroes = function (nums) {
+    let slow = 0, fast = 0
+    while (fast < nums.length) {
+        if (!nums[fast]) {
+            fast++
+            continue
+        }
+        [nums[slow], nums[fast]] = [nums[fast], nums[slow]]
+        slow++
+        fast++
+    }
+    return nums
+};
+```
+
+### 2.盛最多水的容器.js
+```typescript
+/**
+ * @url https://leetcode.cn/problems/container-with-most-water/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function (height) {
+    let l = 0, r = height.length - 1, res = 0
+    while (l < r) {
+        const h = Math.min(height[l], height[r])
+        const area = h * (r - l)
+        res = Math.max(res, area)
+        if (height[l] < height[r]) {
+            l++
+        } else {
+            r--
+        }
+    }
+    return res
+};
+```
+
+### 3.三数之和.js
+```typescript
+/**
+ * @url https://leetcode.cn/problems/3sum/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function (nums) {
+    nums.sort((a, b) => a - b)
+    const res = []
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) continue
+        let left = i + 1, right = nums.length - 1
+        while (left < right) {
+            const sum = nums[left] + nums[right] + nums[i]
+            if (sum === 0) {
+                while (nums[left] === nums[left + 1]) left++ // ps: 这里避免相同的元素
+                while (nums[right] === nums[right - 1]) right-- // ps: 这里避免相同的元素
+                res.push([nums[left], nums[right], nums[i]])
+                left++
+                right--
+            }
+            if (sum < 0) {
+                left++
+            }
+            if (sum > 0) {
+                right--
+            }
+        }
+    }
+    return res
+};
 ```
 

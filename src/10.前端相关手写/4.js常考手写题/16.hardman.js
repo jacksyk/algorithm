@@ -39,6 +39,7 @@ async function sleep(seconds) {
 }
 
 
+// 函数式类的写法
 function hardManClass(name) {
     this.task = []
 

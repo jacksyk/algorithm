@@ -1,0 +1,33 @@
+/**
+ * @url https://leetcode.cn/problems/3sum/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function (nums) {
+    nums.sort((a, b) => a - b)
+    const res = []
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) continue
+        let left = i + 1, right = nums.length - 1
+        while (left < right) {
+            const sum = nums[left] + nums[right] + nums[i]
+            if (sum === 0) {
+                while (nums[left] === nums[left + 1]) left++ // ps: 这里避免相同的元素
+                while (nums[right] === nums[right - 1]) right-- // ps: 这里避免相同的元素
+                res.push([nums[left], nums[right], nums[i]])
+                left++
+                right--
+            }
+            if (sum < 0) {
+                left++
+            }
+            if (sum > 0) {
+                right--
+            }
+        }
+    }
+    return res
+};
