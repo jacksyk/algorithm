@@ -1,3 +1,7 @@
+/**
+ * @description 后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径
+ */
+
 const data = [
     { id: '01', name: 'Root', pid: '' },
     { id: '02', name: 'DirA', pid: '01' },

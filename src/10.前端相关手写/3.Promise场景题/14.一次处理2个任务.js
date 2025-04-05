@@ -2,9 +2,10 @@ function task(time = 1000) {
     return new Promise((resolve) => {
         setTimeout(() => {
             const timestamp = (Date.now() / 1000) | 0
-            console.log(timestamp)
             resolve(timestamp)
         }, time)
+    }).then((res) => {
+        console.log('res', res)
     })
 }
 
