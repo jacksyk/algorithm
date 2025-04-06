@@ -1,7 +1,7 @@
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/
  */
-export {};
+export { };
 // [7,1,5,3,6,4]  5
 // 暴力解法--超时
 // function maxProfit(prices: number[]): number {
@@ -49,3 +49,14 @@ function maxProfitOne(prices: number[]): number {
   }
   return dp[1];
 }
+
+// ps: 贪心策略==========================
+var maxProfitGreed = function (prices) {
+  let minPrice = Number.MAX_SAFE_INTEGER
+  let maxProfit = 0
+  for (let i = 0; i < prices.length; i++) {
+    minPrice = Math.min(minPrice, prices[i])
+    maxProfit = Math.max(maxProfit, prices[i] - minPrice)
+  }
+  return maxProfit
+};

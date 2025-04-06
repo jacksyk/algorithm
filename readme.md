@@ -746,6 +746,7 @@ var reverseKGroup = function (head, k) {
 /**
  * @url https://leetcode.cn/problems/sort-list/description/?envType=study-plan-v2&envId=top-100-liked
  */
+
 ```
 
 ## 3.哈希表
@@ -1386,6 +1387,47 @@ var minWindow = function (s, t) {
         fast++
     }
     return res
+};
+```
+
+### 10.字符串解码.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+// @ts-nocheck
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+
+// "3[a]2[bc]"
+var decodeString = function (s: string) {
+    const stack: Array<string> = []
+    if (s.length === 0) return ''
+    for (let i = 0; i < s.length; i++) {
+        const curWord = s[i]
+        if (curWord === ']') {
+            const tmpStrArray: string[] = []
+            while (stack.length && stack[stack.length - 1] !== '[') {
+                tmpStrArray.push(stack.pop())
+            }
+            stack.pop() // 去掉左括号
+            const numArr: number[] = []
+            while (stack[stack.length - 1] >= '0' && stack[stack.length - 1] <= '9') {
+                numArr.unshift(stack.pop())
+            }
+            let num = Number(numArr.join(''))
+            while (num--) {
+                stack.push(...tmpStrArray.toReversed())
+            }
+        } else {
+            stack.push(curWord)
+        }
+    }
+    return stack.join('')
 };
 ```
 
@@ -3223,6 +3265,66 @@ console.log(convertBST(root));
 
 ```
 
+### 28.二叉树的直径.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/diameter-of-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked 
+ */
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var diameterOfBinaryTree = function(root) {
+    let res = 0
+    const dfs = (root) => {
+        if (!root) return 0
+        if (!root.left && !root.right) return 1
+        const lDepth = dfs(root.left)
+        const rDepth = dfs(root.right)
+        res = Math.max(res, lDepth + rDepth)
+        return Math.max(lDepth, rDepth) + 1
+    }
+    dfs(root)
+    return res
+};
+```
+
+### 29.路径总和3.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/path-sum-iii/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {number}
+ */
+
+const rootSum = (root, targetSum) => {
+    let res = 0
+    if (!root) return res
+    const val = root.val
+    if (val === targetSum) {
+        res++
+    }
+    res += rootSum(root.left, targetSum - val)
+    res += rootSum(root.right, targetSum - val)
+    return res
+}
+
+
+
+var pathSum = function(root, targetSum) {
+    if (!root) return 0
+    let res = rootSum(root, targetSum)
+    res += pathSum(root.left, targetSum)
+    res += pathSum(root.right, targetSum)
+    return res
+};
+```
+
 ## 7.回溯算法
 
 ### 1.组合.ts
@@ -3731,6 +3833,48 @@ function solveNQueens(n: number): string[][] {
 
 console.log(solveNQueens(4))
 
+```
+
+### 14.单词搜索.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/word-search/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+// ps: ================================
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+var exist = function (board, word) {
+    const dfs = (r, c, wordIdx) => {
+        // 越界或者字符不匹配，直接return false
+        if (r >= board.length || c >= board[0].length || r < 0 || c < 0 || board[r][c] !== word[wordIdx]) {
+            return false
+        }
+        if (wordIdx === word.length - 1) return true
+        // 四个方向
+        const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        const tmp = board[r][c]
+        board[r][c] = '#'
+
+        for (let direction of directions) {
+            if (dfs(r + direction[0], c + direction[1], wordIdx + 1)) return true
+        }
+        board[r][c] = tmp
+        return false
+    }
+
+    for (let r = 0; r < board.length; r++) {
+        for (let c = 0; c < board[0].length; c++) {
+            if (dfs(r, c, 0)) {
+                return true
+            }
+        }
+    }
+    return false
+};
 ```
 
 ## 8.动态规划
@@ -4552,7 +4696,7 @@ function rob(root: TreeNode | null): number {
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/
  */
-export {};
+export { };
 // [7,1,5,3,6,4]  5
 // 暴力解法--超时
 // function maxProfit(prices: number[]): number {
@@ -4600,6 +4744,17 @@ function maxProfitOne(prices: number[]): number {
   }
   return dp[1];
 }
+
+// ps: 贪心策略==========================
+var maxProfitGreed = function (prices) {
+  let minPrice = Number.MAX_SAFE_INTEGER
+  let maxProfit = 0
+  for (let i = 0; i < prices.length; i++) {
+    minPrice = Math.min(minPrice, prices[i])
+    maxProfit = Math.max(maxProfit, prices[i] - minPrice)
+  }
+  return maxProfit
+};
 
 ```
 
@@ -4992,6 +5147,32 @@ function longestCommonSubsequence(text1: string, text2: string): number {
 }
 longestCommonSubsequence("abc", "def");
 
+```
+
+### 32.数组最大乘积.ts
+```typescript
+/**
+ * @url https://leetcode.cn/problems/maximum-product-subarray/description/?envType=study-plan-v2&envId=top-100-liked
+ */
+
+
+// ps: 负数的情况容易被忽略掉
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function (nums) {
+    const dpMax = new Array(nums.length).fill(0) // 最大乘积
+    const dpMin = new Array(nums.length).fill(0) // 最小乘积
+    dpMax[0] = nums[0]
+    dpMin[0] = nums[0]
+
+    for (let i = 1; i < nums.length; i++) {
+        dpMax[i] = Math.max(dpMax[i - 1] * nums[i], dpMin[i - 1] * nums[i], nums[i])
+        dpMin[i] = Math.min(dpMax[i - 1] * nums[i], dpMin[i - 1] * nums[i], nums[i])
+    }
+    return Math.max(...dpMax, ...dpMin)
+};
 ```
 
 ### 32.最大子数组和.ts
@@ -7339,9 +7520,10 @@ function task(time = 1000) {
     return new Promise((resolve) => {
         setTimeout(() => {
             const timestamp = (Date.now() / 1000) | 0
-            console.log(timestamp)
             resolve(timestamp)
         }, time)
+    }).then((res) => {
+        console.log('res', res)
     })
 }
 
@@ -8256,6 +8438,10 @@ console.log(JSON.stringify(formatStr(foo1)))
 
 #### 15.后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径.js
 ```typescript
+/**
+ * @description 后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径
+ */
+
 const data = [
     { id: '01', name: 'Root', pid: '' },
     { id: '02', name: 'DirA', pid: '01' },
