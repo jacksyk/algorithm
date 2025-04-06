@@ -3901,6 +3901,8 @@ function fib(n: number): number {
 /**
  * @url https://leetcode.cn/problems/climbing-stairs/description/
  */
+
+// ps: 注意题意
 function climbStairs(n: number): number {
     const dp = new Array(n + 1).fill(false)
     dp[0] = 0

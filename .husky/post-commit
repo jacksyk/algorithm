@@ -8,7 +8,7 @@ fi
 
 # 生成更新后的 README.md
 npm run generate-readme
-git add README.md
+git add readme.md
 
 # 设置环境变量并执行 amend，跳过下一次 post-commit
 SKIP_POST_COMMIT=true git commit --amend --no-edit
