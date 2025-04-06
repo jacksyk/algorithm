@@ -60,13 +60,21 @@ const generateWellNo = (depth, num) => {
 };
 
 
+// 添加 emoji 列表
+const emojis = ['🚀', '⭐', '🎯', '💡', '🔥', '✨', '📚', '🎨', '🛠️', '🎮', '🧩', '🎲', '🔰', '💫', '🌟'];
+
+// 获取随机 emoji 的函数
+function getRandomEmoji() {
+    const randomIndex = Math.floor(Math.random() * emojis.length);
+    return emojis[randomIndex];
+}
+
 /** 针对每一项的处理 */
 function generateTree(item, depth = 0) {
     if (item.type === 'directory') {
-        
-        content += `${generateWellNo(depth, 2)} ${item.name}\n\n`
+        // 为目录标题添加随机 emoji
+        content += `${generateWellNo(depth, 2)} ${getRandomEmoji()} ${item.name}\n\n`
 
-        
         if (item.children && item.children.length > 0) {
             // 对子文件排序
             item.children.sort((a, b) => {
@@ -79,7 +87,8 @@ function generateTree(item, depth = 0) {
 
             item.children.forEach(file => {
                 if (file.type === 'file') {
-                    content += `${generateWellNo(depth, 3)} ${file.name}\n`;
+                    // 为文件标题添加随机 emoji
+                    content += `${generateWellNo(depth, 3)} ${getRandomEmoji()} ${file.name}\n`;
                     if (file.url) {
                         content += `[题目链接](${file.url})\n\n`;
                     }
@@ -97,7 +106,7 @@ function generateTree(item, depth = 0) {
 
 
 function generateReadme(tree) {
-    
+
     // 对顶层目录排序
     tree.sort((a, b) => {
         const getNumber = (name) => {
@@ -110,14 +119,14 @@ function generateReadme(tree) {
     tree.forEach(item => {
         generateTree(item, 0)
     });
-    
+
     return content;
 }
 
 function main() {
     try {
         const srcDir = path.join(__dirname, '../src');
-        
+
         // 确保 src 目录存在
         if (!fs.existsSync(srcDir)) {
             console.error('src 目录不存在！');
@@ -125,13 +134,13 @@ function main() {
         }
 
         const tree = walkDir(srcDir);
-        
+
         // 生成 README.md
         const readmeContent = generateReadme(tree);
         const readmePath = path.join(__dirname, '../README.md');
         fs.writeFileSync(readmePath, readmeContent, 'utf-8');
         console.log(chalk.bgBlue('README.md 生成完成！'));
-        
+
     } catch (err) {
         console.error('生成文件时发生错误:', err);
     }
