@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 检查是否已经由本脚本触发过，避免死循环
+if [ "$SKIP_POST_COMMIT" = "true" ]; then
+  exit 0
+fi
+
+# 生成更新后的 README.md
+npm run generate-readme
+git add README.md
+
+# 设置环境变量并执行 amend，跳过下一次 post-commit
+SKIP_POST_COMMIT=true git commit --amend --no-edit
