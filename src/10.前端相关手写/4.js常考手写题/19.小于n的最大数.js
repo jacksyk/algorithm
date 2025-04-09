@@ -108,9 +108,12 @@ function findMaxNumber(num, arr) {
         }
     }
 
-    return arrayToNumber(result);
+    // 最终验证结果 < num
+    const finalResult = arrayToNumber(result);
+    return finalResult < num ? finalResult : parseInt(maxDigit.toString().repeat(digits - 1)) || 0;
 }
 
 console.log(findMax([9], 1000)) // 999
 console.log(findMax([2, 3, 4, 9], 23149)) // 22999
 console.log(findMax([2, 3, 4, 9], 23412)) // 23399
+// console.log(findMax([9], 999)) // 这里后面再加上一层判断
