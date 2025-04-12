@@ -26,6 +26,7 @@
 //     return count
 // }
 
+// notice:用数组来比较，最后会展示超时，优化的点就是利用Map减少最后遍历的次数
 function fourSumCount(
   nums1: number[],
   nums2: number[],
@@ -68,4 +69,3 @@ function fourSumCount(
 
   return count;
 }
-// notice:用数组来比较，最后会展示超时，优化的点就是利用Map减少最后遍历的次数

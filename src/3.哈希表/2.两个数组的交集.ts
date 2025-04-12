@@ -1,6 +1,8 @@
 /**
  * @url https://leetcode.cn/problems/intersection-of-two-arrays/description/
  */
+
+// notice：在add的时候就已经去重了
 function intersection(nums1: number[], nums2: number[]): number[] {
     const set = new Set()
     const set1 = new Set()
@@ -13,4 +15,3 @@ function intersection(nums1: number[], nums2: number[]): number[] {
     return Array.from(set1) as number[]
 }
 
-// notice：在add的时候就已经去重了
