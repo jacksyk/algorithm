@@ -1,0 +1,31 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master # 或者你的默认分支名
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      
+      - run: npm ci
+      
+      - name: Build
+        run: npm run docs:build
+      
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vitepress/dist
+          # 如果你想要部署到自定义域名，取消下面这行的注释并修改域名
+          # cname: example.com
