@@ -4,9 +4,10 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
     title: "算法库",
     description: "面试必冲算法库",
-    base: '/',
+    base: '/algorithm/',
     appearance: true,
     lastUpdated: true,
+    ignoreDeadLinks: true,
     
     themeConfig: {
         nav: [
@@ -34,7 +35,7 @@ export default defineConfig({
         returnToTopLabel: '返回顶部',
         
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/your-repo' }
+            { icon: 'github', link: 'https://github.com/jacksyk/algorithm' }
         ],
         
         footer: {

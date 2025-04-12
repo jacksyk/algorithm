@@ -5,7 +5,7 @@ on:
       - master
 
 permissions:
-  contents: write  # 添加写入权限
+  contents: write
 
 jobs:
   deploy:
@@ -23,16 +23,18 @@ jobs:
           cache: 'pnpm'
       
       - name: Install dependencies
+        working-directory: .
         run: pnpm install
       
       - name: Build
-        run: pnpm run docs:build
+        working-directory: .
+        run: pnpm build
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          publish_dir: ./docs/.vitepress/dist
           force_orphan: true
           enable_jekyll: false
           keep_files: false
