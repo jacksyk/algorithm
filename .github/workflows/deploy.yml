@@ -50,6 +50,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
+          force_orphan: true
+          enable_jekyll: false
+          keep_files: false
+          commit_message: "deploy: update documentation"
           # 确保只发布 VitePress 构建的内容
           force_orphan: true
           # 如果你想要部署到自定义域名，取消下面这行的注释并修改域名
