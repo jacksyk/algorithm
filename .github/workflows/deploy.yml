@@ -9,6 +9,10 @@ on:
       - '.github/workflows/deploy.yml'
       - 'package.json'
       - 'pnpm-lock.yaml'
+    paths-ignore:
+      - 'README.md'
+      - '*.md'
+      - '!docs/**/*.md'  # 不忽略 docs 目录下的 md 文件
 
 permissions:
   contents: write

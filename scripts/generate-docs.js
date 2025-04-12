@@ -227,6 +227,7 @@ export default defineConfig({
     base: '/algorithm/',
     appearance: true,
     lastUpdated: true,
+    ignoreDeadLinks: true,
     
     themeConfig: {
         nav: [
