@@ -2,7 +2,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master # 或者你的默认分支名
+      - master
 
 jobs:
   deploy:
@@ -12,20 +12,27 @@ jobs:
         with:
           fetch-depth: 0
       
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: npm
+          node-version: 18
+          cache: 'pnpm'
       
-      - run: npm ci
+      - name: Install dependencies
+        run: pnpm install
       
       - name: Build
-        run: npm run docs:build
+        run: pnpm run docs:build
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
+          # 确保只发布 VitePress 构建的内容
+          force_orphan: true
           # 如果你想要部署到自定义域名，取消下面这行的注释并修改域名
           # cname: example.com

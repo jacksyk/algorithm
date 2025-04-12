@@ -1,8 +1,8 @@
 # 算法题目整理
 
-## 💫 1.数组
+## 🧩 1.数组
 
-### 🔰 1.二分查找.ts
+### 🚀 1.二分查找.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/binary-search/description/
@@ -28,7 +28,7 @@ console.log(search([1, 2, 3, 4, 5], 2))
 
 ```
 
-### 🎯 2.移除元素.ts
+### 🔰 2.移除元素.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/remove-element/description/
@@ -51,7 +51,7 @@ console.log(removeElement([3, 2, 2, 3], 3));
 
 ```
 
-### 🎮 3.有序数组的平方.ts
+### 🧩 3.有序数组的平方.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/squares-of-a-sorted-array/description/
@@ -77,7 +77,7 @@ console.log(sortedSquares([-4, -1, 0, 3, 10]));
 
 ```
 
-### 🎯 4.长度最小的子数组.ts
+### 🎲 4.长度最小的子数组.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/minimum-size-subarray-sum/
@@ -99,7 +99,7 @@ function minSubArrayLen(target: number, nums: number[]): number {
 
 ```
 
-### 🌟 5.螺旋矩阵2.ts
+### 🛠️ 5.螺旋矩阵2.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/spiral-matrix-ii/description/
@@ -138,7 +138,7 @@ console.table(generateMatrix(100))
 
 ```
 
-### 🧩 6.和为k的子数组.ts
+### ✨ 6.和为k的子数组.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked
@@ -166,7 +166,7 @@ var subarraySum = function (nums, k) {
 };
 ```
 
-### 🎲 7.除数组以外的数组乘积.ts
+### 💫 7.除数组以外的数组乘积.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked
@@ -198,9 +198,9 @@ var productExceptSelf = function (nums) {
 };
 ```
 
-## 🚀 2.链表
+## ✨ 2.链表
 
-### 🛠️ 1.移除链表元素.ts
+### 💡 1.移除链表元素.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/remove-linked-list-elements/description/
@@ -235,7 +235,7 @@ function removeElements(head: ListNode | null, val: number): ListNode | null {
 
 ```
 
-### 🎮 2.设计链表.ts
+### 🚀 2.设计链表.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/design-linked-list/
@@ -323,7 +323,7 @@ class MyLinkedList {
 
 ```
 
-### 🧩 3.反转链表.ts
+### 💫 3.反转链表.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problesms/reverse-linked-list/description/
@@ -355,7 +355,7 @@ function reverseList(head: ListNode | null): ListNode | null {
 
 ```
 
-### 🧩 4.两两交换链表中的节点.ts
+### ⭐ 4.两两交换链表中的节点.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/swap-nodes-in-pairs/description/
@@ -392,7 +392,7 @@ function swapPairs(head: ListNode | null): ListNode | null {
 
 ```
 
-### 🔥 5.删除链表的倒数第n个节点.ts
+### ⭐ 5.删除链表的倒数第n个节点.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -439,7 +439,7 @@ var removeNthFromEnd = function (head, n) {
 
 ```
 
-### 🎮 6.链表相交.js
+### 🔥 6.链表相交.js
 ```typescript
 /**
  * @url https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/
@@ -494,7 +494,7 @@ var getIntersectionNode = function (headA, headB) {
 
 ```
 
-### 🎨 7.环形链表.ts
+### 🚀 7.环形链表.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/linked-list-cycle-ii/
@@ -529,7 +529,7 @@ function detectCycle(head: ListNode | null): ListNode | null {
 
 ```
 
-### 🌟 8.判断链表是否有环.ts
+### 🎨 8.判断链表是否有环.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/linked-list-cycle/description/
@@ -560,7 +560,7 @@ function hasCycle(head: ListNode | null): boolean {
 
 ```
 
-### 🎯 9.合并两个有序链表.ts
+### ✨ 9.合并两个有序链表.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/merge-two-sorted-lists/description/
@@ -608,7 +608,7 @@ function mergeTwoLists(
 
 ```
 
-### 🛠️ 10.合并k个有序链表.ts
+### 🧩 10.合并k个有序链表.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/merge-k-sorted-lists/description/
@@ -677,7 +677,7 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
 
 ```
 
-### 🌟 11.反转k个一组链表.ts
+### 🔰 11.反转k个一组链表.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -741,7 +741,7 @@ var reverseKGroup = function (head, k) {
 
 ```
 
-### 💡 12.排序链表.ts
+### 🛠️ 12.排序链表.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/sort-list/description/?envType=study-plan-v2&envId=top-100-liked
@@ -789,9 +789,9 @@ var sortList = function(head) {
 
 ```
 
-## 🎮 3.哈希表
+## 🎨 3.哈希表
 
-### 🧩 1.有效的字母异位词.ts
+### 🎲 1.有效的字母异位词.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/valid-anagram/description/
@@ -823,7 +823,7 @@ function isAnagram(s: string, t: string): boolean {
 
 ```
 
-### 🎨 2.两个数组的交集.ts
+### 💫 2.两个数组的交集.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/intersection-of-two-arrays/description/
@@ -844,7 +844,7 @@ function intersection(nums1: number[], nums2: number[]): number[] {
 
 ```
 
-### 🎯 3.快乐数.ts
+### ⭐ 3.快乐数.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/happy-number/description/
@@ -882,7 +882,7 @@ function isHappy(n: number): boolean {
 
 ```
 
-### 🎯 4.两数之和.ts
+### ⭐ 4.两数之和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/two-sum/description/
@@ -900,7 +900,7 @@ function twoSum(nums: number[], target: number): number[] {
 
 ```
 
-### ✨ 5.四数之和.ts
+### 🎲 5.四数之和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/4sum-ii/description/
@@ -976,7 +976,7 @@ function fourSumCount(
 
 ```
 
-### ⭐ 6.赎金信.ts
+### 🎮 6.赎金信.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/ransom-note/description/
@@ -1044,7 +1044,7 @@ function threeSum(nums: number[]): number[][] {
 
 ```
 
-### 🔰 8.四数之和.ts
+### 💡 8.四数之和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/4sum/
@@ -1089,7 +1089,7 @@ function fourSum(nums: number[], target: number): number[][] {
 
 ```
 
-### 💫 9.字符异位词分组.ts
+### 🧩 9.字符异位词分组.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/group-anagrams/description/?envType=study-plan-v2&envId=top-100-liked
@@ -1133,7 +1133,7 @@ set.add('hello word2')
 set.add('hello word3')
 ```
 
-### 📚 10.最长连续序列.ts
+### 🚀 10.最长连续序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked
@@ -1163,7 +1163,7 @@ var longestConsecutive = function (nums) {
 
 ## 🎲 4.字符串
 
-### 🔰 1.反转字符串.ts
+### 🧩 1.反转字符串.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/reverse-string/
@@ -1181,7 +1181,7 @@ function reverseString(s: string[]): void {
 
 ```
 
-### 🎮 2.反转字符串二.ts
+### 🎨 2.反转字符串二.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/reverse-string-ii/
@@ -1217,7 +1217,7 @@ function reverseStr(s: string, k: number): string {
 
 ```
 
-### 💡 3.反转字符串中的单词.ts
+### 🔰 3.反转字符串中的单词.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/reverse-words-in-a-string/description/
@@ -1257,7 +1257,7 @@ function reverseWords(s: string): string {
 
 ```
 
-### 🎮 4.实现strStr().ts
+### 💡 4.实现strStr().ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
@@ -1269,7 +1269,7 @@ function strStr(haystack: string, needle: string): number {
 
 ```
 
-### 🧩 5.重复的子字符串.ts
+### 🛠️ 5.重复的子字符串.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/repeated-substring-pattern/description/
@@ -1284,7 +1284,7 @@ function repeatedSubstringPattern(s: string): boolean {
 
 ```
 
-### ✨ 6.字符串压缩.ts
+### 🛠️ 6.字符串压缩.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/string-compression/description/
@@ -1316,7 +1316,7 @@ var compress = function (chars: string[]) {
 };
 ```
 
-### 🎨 7.无重复字符的最长子串.ts
+### 💡 7.无重复字符的最长子串.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-100-liked
@@ -1343,7 +1343,7 @@ var lengthOfLongestSubstring = function (s) {
 };
 ```
 
-### ⭐ 8.找到字符串所有字母异味词.ts
+### 🧩 8.找到字符串所有字母异味词.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/?envType=study-plan-v2&envId=top-100-liked
@@ -1379,7 +1379,7 @@ var findAnagrams = function (s, p) {
 };
 ```
 
-### 🎮 9.最小覆盖子串.ts
+### 🔰 9.最小覆盖子串.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked
@@ -1430,7 +1430,7 @@ var minWindow = function (s, t) {
 };
 ```
 
-### 🌟 10.字符串解码.ts
+### 🎲 10.字符串解码.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked
@@ -1471,9 +1471,9 @@ var decodeString = function (s: string) {
 };
 ```
 
-## 🎮 5.栈与队列
+## 🛠️ 5.栈与队列
 
-### ✨ 1.用栈实现队列.ts
+### 🔥 1.用栈实现队列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/implement-queue-using-stacks/description/
@@ -1512,7 +1512,7 @@ class MyQueue {
 
 ```
 
-### 🎮 2.用队列实现栈.ts
+### 🌟 2.用队列实现栈.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/implement-stack-using-queues/description/
@@ -1582,7 +1582,7 @@ function isValid(s: string): boolean {
 
 ```
 
-### 💡 4.删除字符串中的所有相邻重复项.ts
+### 🔥 4.删除字符串中的所有相邻重复项.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/description/
@@ -1609,7 +1609,7 @@ function removeDuplicates(s: string): string {
 
 ```
 
-### 🛠️ 5.逆波兰表达式求值.ts
+### 🔰 5.逆波兰表达式求值.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/
@@ -1655,7 +1655,7 @@ function evalRPN(tokens: string[]): number {
 
 ```
 
-### 🌟 6.滑动窗口求最大值.todo.ts
+### 🛠️ 6.滑动窗口求最大值.todo.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/sliding-window-maximum/description/
@@ -1663,7 +1663,7 @@ function evalRPN(tokens: string[]): number {
 
 ```
 
-### 🔥 7.前k个高频元素.todo.ts
+### 📚 7.前k个高频元素.todo.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/top-k-frequent-elements/description/
@@ -1671,7 +1671,7 @@ function evalRPN(tokens: string[]): number {
 
 ```
 
-### 🎯 8.移除无效的括号.ts
+### 💡 8.移除无效的括号.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/minimum-remove-to-make-valid-parentheses/description/
@@ -1709,7 +1709,7 @@ var minRemoveToMakeValid = function (s) {
 };
 ```
 
-### 🛠️ 9.删除无效的括号.ts
+### 🚀 9.删除无效的括号.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/remove-invalid-parentheses/description/
@@ -1768,7 +1768,7 @@ var removeInvalidParentheses = function (s) {
 
 ```
 
-## 🎲 6.二叉树
+## 🎮 6.二叉树
 
 ### 💡 1.二叉树的递归遍历.ts
 ```typescript
@@ -1826,7 +1826,7 @@ function postorderTraversal(root: TreeNode | null): number[] {
 
 ```
 
-### 🚀 2.二叉树的迭代遍历.ts
+### 🔰 2.二叉树的迭代遍历.ts
 ```typescript
 /**
  * @description 迭代遍历
@@ -1909,7 +1909,7 @@ function postorderTraversal(root: TreeNode | null): number[] {
 
 ```
 
-### 🔥 3.二叉树的层序遍历.ts
+### ✨ 3.二叉树的层序遍历.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/binary-tree-level-order-traversal/description/
@@ -2190,7 +2190,7 @@ function minDepth(root: TreeNode | null): number {
 
 ```
 
-### 🧩 4.翻转二叉树.ts
+### 🎯 4.翻转二叉树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/invert-binary-tree/description/
@@ -2223,7 +2223,7 @@ function invertTree(root: TreeNode | null): TreeNode | null {
 
 ```
 
-### ⭐ 5.对称二叉树.ts
+### 📚 5.对称二叉树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/symmetric-tree/description/
@@ -2309,7 +2309,7 @@ function isSubtree(root: TreeNode | null, subRoot: TreeNode | null): boolean {
 
 ```
 
-### 🎲 6.二叉树的最大深度.ts
+### 🌟 6.二叉树的最大深度.ts
 ```typescript
 /**
  * @description 递归法
@@ -2346,7 +2346,7 @@ function maxDepthDeep(root: TreeNode | null): number {
 
 ```
 
-### ✨ 7.二叉树的最小深度.ts
+### ⭐ 7.二叉树的最小深度.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/
@@ -2396,7 +2396,7 @@ function minDepthTwo(root: TreeNode | null): number {
 
 ```
 
-### 🛠️ 8.完全二叉树的节点个数.ts
+### 🌟 8.完全二叉树的节点个数.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/count-complete-tree-nodes/description/
@@ -2449,7 +2449,7 @@ function countNodes(root: TreeNode | null): number {
 
 ```
 
-### 💫 9.平衡二叉树.ts
+### 🎨 9.平衡二叉树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/balanced-binary-tree/description/
@@ -2478,7 +2478,7 @@ function isBalanced(root: TreeNode | null): boolean {
 
 ```
 
-### 🎲 10.二叉树的所有路径.ts
+### 💡 10.二叉树的所有路径.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/binary-tree-paths/description/
@@ -2513,7 +2513,7 @@ function binaryTreePaths(root: TreeNode | null): string[] {
 
 ```
 
-### 💡 11.左叶子之和.ts
+### 💫 11.左叶子之和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/sum-of-left-leaves/description/
@@ -2557,7 +2557,7 @@ console.log(sumOfLeftLeaves(root));
 
 ```
 
-### 🎯 12.找树左下角的值.ts
+### 🎮 12.找树左下角的值.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/find-bottom-left-tree-value/description/
@@ -2620,7 +2620,7 @@ function findBottomLeftValue(root: TreeNode | null): number {
 
 ```
 
-### 🎲 13.路径总和.ts
+### 💡 13.路径总和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/path-sum/description/
@@ -2658,7 +2658,7 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
 
 ```
 
-### 💡 14.从中序与后序遍历序列构造二叉树.ts
+### ✨ 14.从中序与后序遍历序列构造二叉树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
@@ -2701,7 +2701,7 @@ function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
 
 ```
 
-### 🚀 15.最大二叉树.ts
+### ⭐ 15.最大二叉树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/maximum-binary-tree/description/
@@ -2730,7 +2730,7 @@ function constructMaximumBinaryTree(nums: number[]): TreeNode | null {
 
 ```
 
-### 🎮 16.合并二叉树.ts
+### 🎨 16.合并二叉树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/merge-two-binary-trees/description/
@@ -2761,7 +2761,7 @@ function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | 
 
 ```
 
-### 🎲 17.二叉搜索树的搜索.ts
+### 🔰 17.二叉搜索树的搜索.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/search-in-a-binary-search-tree/
@@ -2865,7 +2865,7 @@ function isValidBST(root: TreeNode | null): boolean {
 
 ```
 
-### 🔥 19.二叉搜索树的最小绝对值差.ts
+### ⭐ 19.二叉搜索树的最小绝对值差.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/
@@ -2900,7 +2900,7 @@ function getMinimumDifference(root: TreeNode | null): number {
 
 ```
 
-### 🎮 20.二叉搜索树的众数.ts
+### ✨ 20.二叉搜索树的众数.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/find-mode-in-binary-search-tree/description/
@@ -2966,7 +2966,7 @@ console.log(root)
 
 ```
 
-### 🎲 21.二叉树的最近公共祖先.ts
+### 🛠️ 21.二叉树的最近公共祖先.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/
@@ -3003,7 +3003,7 @@ function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: Tree
 
 ```
 
-### ⭐ 22.二叉搜索树的最近公共祖先.ts
+### 🔰 22.二叉搜索树的最近公共祖先.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/
@@ -3045,7 +3045,7 @@ function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: Tree
 
 ```
 
-### 🔥 23.二叉搜索树的插入操作.ts
+### 💡 23.二叉搜索树的插入操作.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/insert-into-a-binary-search-tree/description/
@@ -3118,7 +3118,7 @@ var insertIntoBST = function (root, val) {
 
 ```
 
-### 🎯 24.删除二叉搜索树的节点.ts
+### 🎮 24.删除二叉搜索树的节点.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/delete-node-in-a-bst/description/
@@ -3174,7 +3174,7 @@ function deleteNode(root: TreeNode | null, key: number): TreeNode | null {
 
 ```
 
-### 🌟 25.修剪二叉搜素树.ts
+### 🛠️ 25.修剪二叉搜素树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/trim-a-binary-search-tree/description/
@@ -3231,7 +3231,7 @@ function trimBST(
 
 ```
 
-### 🧩 26.将有序数组转换为二叉搜索树.ts
+### 🔰 26.将有序数组转换为二叉搜索树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/description/
@@ -3259,7 +3259,7 @@ function sortedArrayToBST(nums: number[]): TreeNode | null {
 
 ```
 
-### 🛠️ 27.把二叉搜索树转换为累加树.ts
+### 🎮 27.把二叉搜索树转换为累加树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/convert-bst-to-greater-tree/description/
@@ -3305,7 +3305,7 @@ console.log(convertBST(root));
 
 ```
 
-### 💫 28.二叉树的直径.ts
+### 🧩 28.二叉树的直径.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/diameter-of-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked 
@@ -3330,7 +3330,7 @@ var diameterOfBinaryTree = function(root) {
 };
 ```
 
-### 🎮 29.路径总和3.ts
+### ⭐ 29.路径总和3.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/path-sum-iii/description/?envType=study-plan-v2&envId=top-100-liked
@@ -3365,9 +3365,9 @@ var pathSum = function(root, targetSum) {
 };
 ```
 
-## 📚 7.回溯算法
+## 🚀 7.回溯算法
 
-### 🔥 1.组合.ts
+### ⭐ 1.组合.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/combinations/description/
@@ -3395,7 +3395,7 @@ function combine(n: number, k: number): number[][] {
 
 ```
 
-### ✨ 2.组合总和三.ts
+### 🛠️ 2.组合总和三.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/combination-sum-iii/description/
@@ -3422,7 +3422,7 @@ function combinationSum3(k: number, n: number): number[][] {
 
 ```
 
-### 🎮 3.电话号码的字母组合.ts
+### 🎯 3.电话号码的字母组合.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
@@ -3462,7 +3462,7 @@ function letterCombinations(digits: string): string[] {
 
 ```
 
-### 🎨 4.组合总和.ts
+### 🛠️ 4.组合总和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/combination-sum/description/
@@ -3518,7 +3518,7 @@ function combinationSum(candidates: number[], target: number): number[][] {
 
 ```
 
-### 🎯 5.组合总和2.ts
+### 🌟 5.组合总和2.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/combination-sum-ii/description/
@@ -3554,7 +3554,7 @@ function combinationSum2(candidates: number[], target: number): number[][] {
 
 ```
 
-### 🎮 6.分割回文串.ts
+### 🔥 6.分割回文串.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/palindrome-partitioning/description/
@@ -3588,7 +3588,7 @@ function partition(s: string): string[][] {
 
 ```
 
-### 🎲 7.复原ip地址.ts
+### ✨ 7.复原ip地址.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/restore-ip-addresses/description/
@@ -3631,7 +3631,7 @@ function restoreIpAddresses(s: string): string[] {
 
 ```
 
-### 🛠️ 8.子集.ts
+### ✨ 8.子集.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/subsets/description/
@@ -3655,7 +3655,7 @@ function subsets(nums: number[]): number[][] {
 
 ```
 
-### 🛠️ 9.子集二.ts
+### 🔰 9.子集二.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/subsets-ii/description/
@@ -3688,7 +3688,7 @@ function subsetsWithDup(nums: number[]): number[][] {
 
 ```
 
-### ✨ 10.非递减子序列.ts
+### 💫 10.非递减子序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/non-decreasing-subsequences/description/
@@ -3757,7 +3757,7 @@ console.log(findSubsequences1([1, 1, 1, 1, 1, 1]))
 
 ```
 
-### 🎲 11.全排列.ts
+### 🎮 11.全排列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/permutations/description/
@@ -3787,7 +3787,7 @@ function permute(nums: number[]): number[][] {
 
 ```
 
-### 🌟 12.全排列二.ts
+### 🎯 12.全排列二.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/permutations-ii/description/
@@ -3822,7 +3822,7 @@ function permuteUnique(nums: number[]): number[][] {
 
 ```
 
-### 🎯 13.N皇后.ts
+### 💡 13.N皇后.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/n-queens/description/
@@ -3875,7 +3875,7 @@ console.log(solveNQueens(4))
 
 ```
 
-### 💡 14.单词搜索.ts
+### 🌟 14.单词搜索.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/word-search/?envType=study-plan-v2&envId=top-100-liked
@@ -3917,9 +3917,9 @@ var exist = function (board, word) {
 };
 ```
 
-## 💫 8.动态规划
+## 🚀 8.动态规划
 
-### ✨ 1.斐波那契数.ts
+### 🧩 1.斐波那契数.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/fibonacci-number/description/
@@ -3936,7 +3936,7 @@ function fib(n: number): number {
 
 ```
 
-### 🎨 2.爬楼梯.ts
+### 🎯 2.爬楼梯.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/climbing-stairs/description/
@@ -3956,7 +3956,7 @@ function climbStairs(n: number): number {
 
 ```
 
-### 💡 3.使用最小花费爬楼梯.ts
+### ✨ 3.使用最小花费爬楼梯.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/min-cost-climbing-stairs/description/
@@ -3978,7 +3978,7 @@ function minCostClimbingStairs(cost: number[]): number {
 
 ```
 
-### 🎲 4.不同路径.ts
+### ✨ 4.不同路径.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/unique-paths/description/
@@ -4021,7 +4021,7 @@ console.log(uniquePaths(3, 2))
 
 ```
 
-### 🔥 5.不同路径2.ts
+### 🛠️ 5.不同路径2.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/unique-paths-ii/description/
@@ -4134,7 +4134,7 @@ console.log(
 
 ```
 
-### ⭐ 6.整数拆分.ts
+### 🔥 6.整数拆分.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/integer-break/description/
@@ -4157,7 +4157,7 @@ function integerBreak(n: number): number {
 
 ```
 
-### ✨ 7.不同的二叉搜索树.ts
+### 🎲 7.不同的二叉搜索树.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/unique-binary-search-trees/description/
@@ -4185,7 +4185,7 @@ function numTrees(n: number): number {
 
 ```
 
-### ✨ 9.分割等和子集.ts
+### 🔰 9.分割等和子集.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/partition-equal-subset-sum/description/
@@ -4241,7 +4241,7 @@ function canPartition(nums: number[]): boolean {
 
 ```
 
-### 🎮 10.最后一块石头的重量 II.ts
+### ⭐ 10.最后一块石头的重量 II.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/last-stone-weight-ii/description/
@@ -4302,7 +4302,7 @@ lastStoneWeightII([2, 7, 4, 1, 8, 1]);
 
 ```
 
-### 🚀 11.目标和.ts
+### 🎯 11.目标和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/target-sum/description/
@@ -4372,7 +4372,7 @@ findTargetSumWays([1, 2, 1, 2], 4)
 
 ```
 
-### 🎲 12.一和零.ts
+### 🧩 12.一和零.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/ones-and-zeroes/description/
@@ -4417,7 +4417,7 @@ findMaxForm(["10", "0001", "111001", "1", "0"], 5, 3);
 
 ```
 
-### 🛠️ 14.零钱兑换二.ts
+### ⭐ 14.零钱兑换二.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/coin-change-ii/description/
@@ -4444,7 +4444,7 @@ change(5, [1, 2, 5]);
 
 ```
 
-### 🧩 15.组合总和四.ts
+### 🎨 15.组合总和四.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/combination-sum-iv/description/
@@ -4472,7 +4472,7 @@ console.log(combinationSum4([1, 2, 3], 4))
 // TODO: 暴力算出所有的组合
 ```
 
-### 🧩 16.零钱兑换.ts
+### 🎮 16.零钱兑换.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/coin-change/description/
@@ -4493,7 +4493,7 @@ function coinChange(coins: number[], amount: number): number {
 
 ```
 
-### 🔥 17.完全平方数.ts
+### 🎮 17.完全平方数.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/perfect-squares/description/
@@ -4513,7 +4513,7 @@ function numSquares(n: number): number {
 
 ```
 
-### 🎲 18.单词拆分.ts
+### 🛠️ 18.单词拆分.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/word-break/description/
@@ -4573,7 +4573,7 @@ function wordBreak1(s, wordDict) {}
 
 ```
 
-### 🌟 19.打家劫舍.ts
+### 💫 19.打家劫舍.ts
 ```typescript
 export {};
 /**
@@ -4628,7 +4628,7 @@ function rob1(nums: number[]): number {
 
 ```
 
-### 🎲 20.打家劫舍二.ts
+### 🚀 20.打家劫舍二.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/house-robber-ii/description/
@@ -4664,7 +4664,7 @@ console.log(rob([1, 3, 2]))
 
 ```
 
-### 💡 21.打家劫舍三.ts
+### 🔥 21.打家劫舍三.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/house-robber-iii/description/
@@ -4733,7 +4733,7 @@ function rob(root: TreeNode | null): number {
 
 ```
 
-### 🎯 22.买卖股票的最佳时机.ts
+### 🎮 22.买卖股票的最佳时机.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/
@@ -4800,7 +4800,7 @@ var maxProfitGreed = function (prices) {
 
 ```
 
-### 🎮 23.买股票的最佳时机二.ts
+### 🔰 23.买股票的最佳时机二.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/
@@ -4822,7 +4822,7 @@ function maxProfit(prices: number[]): number {
 
 ```
 
-### 🌟 24.买股票的最佳时机三.ts
+### 🎯 24.买股票的最佳时机三.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/
@@ -4870,7 +4870,7 @@ function maxProfit1(prices: number[]): number {
 
 ```
 
-### 🎮 25.买股票的最佳时机四.ts
+### 💫 25.买股票的最佳时机四.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/description/
@@ -4910,7 +4910,7 @@ function maxProfit(k: number, prices: number[]): number {
 
 ```
 
-### 🚀 26.买卖股票的最佳时机含冷冻期.ts
+### 🧩 26.买卖股票的最佳时机含冷冻期.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/
@@ -4966,7 +4966,7 @@ function maxProfit(prices: number[]): number {
 
 ```
 
-### 🎯 27.买卖股票的最佳时机含手续费.ts
+### 🎮 27.买卖股票的最佳时机含手续费.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/
@@ -4993,7 +4993,7 @@ maxProfit([1, 3, 2, 8, 4, 9], 2);
 
 ```
 
-### 🌟 28.最长递增子序列.ts
+### 🎨 28.最长递增子序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/longest-increasing-subsequence/description/
@@ -5060,7 +5060,7 @@ function lengthOfLIS(nums: number[]): number {
 
 ```
 
-### 🎯 29.最长连续递增子序列.ts
+### 🔰 29.最长连续递增子序列.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -5110,7 +5110,7 @@ function lengthOfLIS(nums) {
 
 ```
 
-### 🛠️ 30.最长重复子数组.ts
+### 🎯 30.最长重复子数组.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/maximum-length-of-repeated-subarray/description/
@@ -5157,7 +5157,7 @@ findLength([1, 2, 3, 2, 1], [3, 2, 1, 2, 7]);
 
 ```
 
-### 📚 31.最长公共子序列.ts
+### 🔥 31.最长公共子序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/longest-common-subsequence/description/
@@ -5191,7 +5191,7 @@ longestCommonSubsequence("abc", "def");
 
 ```
 
-### 🎯 32.数组最大乘积.ts
+### 🧩 32.数组最大乘积.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/maximum-product-subarray/description/?envType=study-plan-v2&envId=top-100-liked
@@ -5217,7 +5217,7 @@ var maxProduct = function (nums) {
 };
 ```
 
-### 🌟 32.最大子数组和.ts
+### 🎨 32.最大子数组和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/maximum-subarray/description/
@@ -5238,7 +5238,7 @@ function maxSubArray(nums: number[]): number {
 
 ```
 
-### 🧩 33.判断子序列.ts
+### ✨ 33.判断子序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/is-subsequence/description/
@@ -5276,7 +5276,7 @@ function isSubsequence(s: string, t: string): boolean {
 
 ```
 
-### 🔰 34.不同的子序列.ts
+### 🧩 34.不同的子序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/distinct-subsequences/
@@ -5312,7 +5312,7 @@ numDistinct("babgbag", "bag")
 
 ```
 
-### 🎯 35.两个字符串的删除操作.ts
+### ⭐ 35.两个字符串的删除操作.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/delete-operation-for-two-strings/description/
@@ -5344,7 +5344,7 @@ function minDistance(word1: string, word2: string): number {
 
 ```
 
-### 💡 36.编辑距离.ts
+### 🧩 36.编辑距离.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/edit-distance/description/
@@ -5404,7 +5404,7 @@ function minDistance(word1: string, word2: string): number {
 
 ```
 
-### 🔥 37.回文子串.ts
+### 💡 37.回文子串.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/palindromic-substrings/description/
@@ -5446,7 +5446,7 @@ function countSubstrings(s: string): number {
 
 ```
 
-### 💡 38.最长回文子序列.ts
+### 🎯 38.最长回文子序列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/longest-palindromic-subsequence/description/
@@ -5476,9 +5476,9 @@ longestPalindromeSubseq("bbbab")
 
 ```
 
-## 🎮 9.贪心算法
+## 🧩 9.贪心算法
 
-### 🚀 1.分发饼干.ts
+### 💡 1.分发饼干.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/assign-cookies/description/
@@ -5577,7 +5577,7 @@ function wiggleMaxLength(nums: number[]): number {
 
 ```
 
-### 🎲 3.最大子数组和.ts
+### 💡 3.最大子数组和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/maximum-subarray/
@@ -5616,7 +5616,7 @@ function maxSubArray(nums: number[]): number {
 
 ```
 
-### 🔰 4.买卖股票的最佳时机 II.ts
+### 📚 4.买卖股票的最佳时机 II.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/
@@ -5657,7 +5657,7 @@ function maxProfit(prices: number[]): number {
 
 ```
 
-### 🔰 5.跳跃游戏.ts
+### 🎮 5.跳跃游戏.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/jump-game/description/
@@ -5710,7 +5710,7 @@ function canJump(nums: number[]): boolean {
 
 ```
 
-### 🧩 6.跳跃游戏2.ts
+### ⭐ 6.跳跃游戏2.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/jump-game-ii/description/
@@ -5756,7 +5756,7 @@ function jump(nums: number[]): number {
 
 ```
 
-### 💫 7.k次取反化后最大化的数组和.ts
+### 🎯 7.k次取反化后最大化的数组和.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/description/
@@ -5808,7 +5808,7 @@ function largestSumAfterKNegations(nums: number[], k: number): number {
 
 ```
 
-### 🔥 8.加油站.ts
+### 💡 8.加油站.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/gas-station/description/
@@ -5891,7 +5891,7 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
 
 ```
 
-### 💡 9.分发糖果.ts
+### 🎯 9.分发糖果.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/candy/description/
@@ -5922,7 +5922,7 @@ candy([1, 0, 2]);
 
 ```
 
-### 💡 10.柠檬水找零.ts
+### 🚀 10.柠檬水找零.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/lemonade-change/description/
@@ -5988,7 +5988,7 @@ function lemonadeChange(bills: number[]): boolean {
 
 ```
 
-### 💫 11.根据身高重建队列.ts
+### 🔰 11.根据身高重建队列.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/queue-reconstruction-by-height/description/
@@ -6041,7 +6041,7 @@ console.log(
 
 ```
 
-### ⭐ 12.用最小数量的箭引爆气球.ts
+### 🎨 12.用最小数量的箭引爆气球.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/
@@ -6075,7 +6075,7 @@ function findMinArrowShots(points: number[][]): number {
 
 ```
 
-### 🚀 13.无重叠区间.ts
+### ⭐ 13.无重叠区间.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/non-overlapping-intervals/description/
@@ -6114,7 +6114,7 @@ console.log(
 
 ```
 
-### 📚 14.划分字母区间.ts
+### 🎮 14.划分字母区间.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/partition-labels/description/
@@ -6145,7 +6145,7 @@ function partitionLabels(s: string): number[] {
 
 ```
 
-### 🎨 15.合并区间.ts
+### 💫 15.合并区间.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/merge-intervals/description/
@@ -6178,7 +6178,7 @@ function merge(intervals: number[][]): number[][] {
 
 ```
 
-### 🎨 16.单调递增的数字.ts
+### 🎯 16.单调递增的数字.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/monotone-increasing-digits/description/
@@ -6222,11 +6222,11 @@ function monotoneIncreasingDigits(n: number): number {
 
 ```
 
-## 🔰 10.前端相关手写
+## 💫 10.前端相关手写
 
 ### ⭐ 1.实现js原生方法
 
-#### 🎮 1.filter.js
+#### 💡 1.filter.js
 ```typescript
 // Notice:回调函数没有this
 // Array.prototype.myFilter = (callback) => {
@@ -6269,7 +6269,7 @@ console.log(arr)
 
 ```
 
-#### 🎯 2.flat.js
+#### 🚀 2.flat.js
 ```typescript
 Array.prototype.myFlat = function(depth){
     const res = []
@@ -6297,7 +6297,7 @@ console.log(arr.myFlat(2))
 
 ```
 
-#### 🧩 3.forEach.js
+#### 🎯 3.forEach.js
 ```typescript
 Array.prototype._forEach = function (callback) {
     for (let i = 0; i < this.length; i++) {
@@ -6307,7 +6307,7 @@ Array.prototype._forEach = function (callback) {
 
 ```
 
-#### ⭐ 4.map.js
+#### 🧩 4.map.js
 ```typescript
 Array.prototype._map = function (callback) {
     return this.reduce((acc, cur, index) => {
@@ -6320,7 +6320,7 @@ console.log(res._map((_v) => _v ** 2))
 
 ```
 
-#### ✨ 5.reduce.js
+#### 💡 5.reduce.js
 ```typescript
 Array.prototype._reduce = function (callback, initValue) {
     let res = initValue
@@ -6338,7 +6338,7 @@ console.log(
 
 ```
 
-#### 🧩 6.fill.js
+#### 🛠️ 6.fill.js
 ```typescript
 Array.prototype._fill = function (value, start, end) {
     start = start < 0 ? 0 : start
@@ -6353,7 +6353,7 @@ console.log(arr._fill(6, 2, 5))
 
 ```
 
-#### 🎯 7.includes.js
+#### 🔥 7.includes.js
 ```typescript
 Array.prototype._includes = function (value) {
     for (let i = 0; i < this.length; i++) {
@@ -6369,7 +6369,7 @@ console.log(arr._includes(6))
 
 ```
 
-#### 🧩 8.push.js
+#### 🎮 8.push.js
 ```typescript
 Array.prototype._push = function (value) {
     this[this.length] = value
@@ -6381,7 +6381,7 @@ console.log(arr)
 
 ```
 
-#### 💡 9.unshift.js
+#### 🔰 9.unshift.js
 ```typescript
 Array.prototype._unshift = function (value) {
     for (let i = this.length - 1; i >= 0; i--) {
@@ -6396,7 +6396,7 @@ console.log(arr)
 
 ```
 
-#### 🎯 10.getLeval.js
+#### 🎲 10.getLeval.js
 ```typescript
 Array.prototype.getLeval = function () {
     let depth = 1
@@ -6462,24 +6462,24 @@ for (let i of obj) {
 
 ```
 
-#### 📚 12.sort.TODO.js
+#### ✨ 12.sort.TODO.js
 ```typescript
 // TODO:复习完排序算法，再来复习sort函数
 Array.prototype._sort = function (callback) { }
 
 ```
 
-#### ⭐ 13.Set.js
+#### 🎯 13.Set.js
 ```typescript
 
 ```
 
-#### 🔰 14.Map.js
+#### 🌟 14.Map.js
 ```typescript
 
 ```
 
-#### 🎨 15.assign.js
+#### 🌟 15.assign.js
 ```typescript
 Object.prototype._assign = function (target, ...source) {
     source.forEach((_obj) => {
@@ -6515,7 +6515,7 @@ Object.prototype._is = function (x, y) {
 
 ```
 
-#### 🚀 17.json.stringify.TODO.js
+#### 🔥 17.json.stringify.TODO.js
 ```typescript
 /** https://juejin.cn/post/6844903861971320846?searchId=20240811235902CCC1D8113CE9807307E3 */
 /** https://juejin.cn/post/6844903861971320846?searchId=20240811235902CCC1D8113CE9807307E3 */
@@ -6597,7 +6597,7 @@ testCases.forEach((test, index) => {
 });
 ```
 
-#### 📚 18.json.parse.TODO.js
+#### 🎮 18.json.parse.TODO.js
 ```typescript
 function jsonParse(str) {
     // 去除空白字符
@@ -6739,7 +6739,7 @@ testCases.forEach((test, index) => {
 });
 ```
 
-#### 🔥 19.call bind apply.js
+#### 🌟 19.call bind apply.js
 ```typescript
 // 在调用 func 时要使用的 this 值。如果函数不在严格模式下，
 // null 和 undefined 将被替换为全局对象，并且原始值将被转换为对象。
@@ -6769,7 +6769,7 @@ Function.prototype._apply = function (context, args) {
 
 ```
 
-#### 💡 20.typeof.js
+#### ⭐ 20.typeof.js
 ```typescript
 // typeof null 是object
 // 基础数据类型：number string boolean undefined null symbol
@@ -6777,7 +6777,7 @@ Function.prototype._apply = function (context, args) {
 
 ```
 
-#### 💡 21.instanceof.js
+#### 🧩 21.instanceof.js
 ```typescript
 // 针对于引用数据类型，基本数据类型判断不了
 
@@ -6801,7 +6801,7 @@ console.log(myInstanceOf([], Array))
 
 ```
 
-#### 🔰 22.new.js
+#### 💫 22.new.js
 ```typescript
 // （1）首先创建了一个新的空对象
 // （2）设置原型，将对象的原型设置为函数的 prototype 对象。
@@ -6824,7 +6824,7 @@ console.log(obj)
 
 ```
 
-#### 🧩 23.trim.js
+#### 🛠️ 23.trim.js
 ```typescript
 String.prototype._trim = function () {
     let left = 0,
@@ -6851,9 +6851,9 @@ console.log(str._trim())
 
 ```
 
-### 🔰 2.实现Promise相关
+### 🎨 2.实现Promise相关
 
-#### 💡 1.all.js
+#### 📚 1.all.js
 ```typescript
 Promise._all = function (promises) {
     let count = 0 // 记录完成的数量
@@ -6889,7 +6889,7 @@ Promise._all([promise1, promise2, promise3, promise4]).then((res) => {
 
 ```
 
-#### 🎯 2.finally.js
+#### 🔥 2.finally.js
 ```typescript
 // 1.承接上一次Promise的值
 // 2.return的值不会被任何地方接收
@@ -6949,7 +6949,7 @@ Promise.reject("err")
 
 ```
 
-#### 🚀 3.allSettled.js
+#### 🎲 3.allSettled.js
 ```typescript
 // 获取所有Promise对象的状态
 
@@ -6999,7 +6999,7 @@ Promise._allSettled([pro, Promise.resolve(1), Promise.reject(2)]).then((data) =>
 
 ```
 
-#### 🎲 4.race.js
+#### 🚀 4.race.js
 ```typescript
 // 手写Promise.race
 Promise._race = function (promises) {
@@ -7034,7 +7034,7 @@ Promise._race([promise1, promise2])
 
 ```
 
-#### 📚 5.catch.js
+#### ⭐ 5.catch.js
 ```typescript
 // 实现catch函数
 Promise.prototype._catch = function (callback) {
@@ -7043,7 +7043,7 @@ Promise.prototype._catch = function (callback) {
 
 ```
 
-#### 🎯 6.resolve.js
+#### ✨ 6.resolve.js
 ```typescript
 // 实现resolve函数
 // - thenable对象
@@ -7075,7 +7075,7 @@ const obj = {
 
 ```
 
-#### 💫 7.reject.js
+#### 🔥 7.reject.js
 ```typescript
 // 实现reject函数
 // - 普通值 直接catch捕获
@@ -7088,9 +7088,9 @@ Promise._reject = function (value) {
 
 ```
 
-### 🎮 3.Promise场景题
+### 🌟 3.Promise场景题
 
-#### 🎮 1.交通灯.js
+#### 🎨 1.交通灯.js
 ```typescript
 // 红灯3秒亮一次，绿灯2秒亮一次，黄灯1秒亮一次；如何让三个灯不断交替重复亮灯？
 // 要求：用Promise实现
@@ -7135,7 +7135,7 @@ taskRunner()
 
 ```
 
-#### 🎨 2.封装一个fetch请求.js
+#### 🌟 2.封装一个fetch请求.js
 ```typescript
 ;(async () => {
     class HttpRequestUtil {
@@ -7185,7 +7185,7 @@ taskRunner()
 
 ```
 
-#### 💫 3.重复执行函数.js
+#### 📚 3.重复执行函数.js
 ```typescript
 // 基于 tapable 思想，构造异步任务串
 // https://juejin.cn/post/6844903700872298510
@@ -7215,7 +7215,7 @@ mockLog("Hello world!!")
 
 ```
 
-#### 🌟 4.网络请求时间限制.js
+#### 🔥 4.网络请求时间限制.js
 ```typescript
 // 网络请求，超过2s就报错，小于2s返回正常结果
 function Limit(promises) {
@@ -7254,7 +7254,7 @@ Limit([requestPromise()])
 
 ```
 
-#### 🌟 5.请求5s未完成就终止.js
+#### 🧩 5.请求5s未完成就终止.js
 ```typescript
 // AbortController 它能够中止 fetch 请求、各种响应主体或者流的消耗。
 // @url https://juejin.cn/post/7112699475327615006
@@ -7303,7 +7303,7 @@ async function example() {
 }
 ```
 
-#### 🛠️ 6.实现一个sleep函数.js
+#### 🎲 6.实现一个sleep函数.js
 ```typescript
 function sleep(delay) {
     return new Promise((resolve) => {
@@ -7313,7 +7313,7 @@ function sleep(delay) {
 
 ```
 
-#### 🧩 7.setTime实现setInterval.js
+#### 💡 7.setTime实现setInterval.js
 ```typescript
 // TODO:实现取消
 function mySetInterval(callback, delay) {
@@ -7331,7 +7331,7 @@ mySetInterval(() => {
 
 ```
 
-#### 🎨 8.奇怪的输出题.js
+#### ⭐ 8.奇怪的输出题.js
 ```typescript
 // Promise.resolve()
 //     .then(() => {
@@ -7386,7 +7386,7 @@ Promise.resolve()
 
 ```
 
-#### 💡 10.封装ajax请求.js
+#### 🛠️ 10.封装ajax请求.js
 ```typescript
 /**
  * 封装 ajax 请求
@@ -7515,7 +7515,7 @@ async function example() {
 }
 ```
 
-#### 🚀 11.setInterval模拟setTimeOut.js
+#### ⭐ 11.setInterval模拟setTimeOut.js
 ```typescript
 function myTimeOut(cb, delay) {
     const timer = setInterval(() => {
@@ -7549,14 +7549,14 @@ Promise.resolve()
 
 ```
 
-#### 🎲 13.实现一个精准的计时器.js
+#### 🌟 13.实现一个精准的计时器.js
 ```typescript
 // 参考：https://juejin.cn/post/7128231937457520671    
 // 参考：https://juejin.cn/post/7029252274299879454
 // ps: 核心通过requestAnimationFram来手动进行校验
 ```
 
-#### 🎮 14.一次处理2个任务.js
+#### 🔰 14.一次处理2个任务.js
 ```typescript
 function task(time = 1000) {
     return new Promise((resolve) => {
@@ -7590,7 +7590,7 @@ concurrent([task, () => task(2000), task, task, task, task, task, task, task], 2
 
 ```
 
-#### 🚀 15.设计一个简单的任务队列.js
+#### 📚 15.设计一个简单的任务队列.js
 ```typescript
 // 题目
 //  new Quene()
@@ -7638,7 +7638,7 @@ new Quene()
 
 ```
 
-#### 🎮 16.实现调度器.js
+#### 🔰 16.实现调度器.js
 ```typescript
 class Schedular {
     constructor(limit) {
@@ -7683,7 +7683,7 @@ scheduler.taskStart()
 
 ```
 
-#### 🔰 17.有并发限制的promiseall.js
+#### ✨ 17.有并发限制的promiseall.js
 ```typescript
 /** https://github.com/Sunny-117/js-challenges/issues/147 */
 // async-pool思想 和 compose思想 基于递归
@@ -7763,7 +7763,7 @@ test();
 
 ```
 
-#### 🛠️ 18.实现错误重新请求，并控制重试次数.js
+#### 🚀 18.实现错误重新请求，并控制重试次数.js
 ```typescript
 function retryRequest(requestFn, maxRetries = 3, delay = 1000) {
   return new Promise(async (resolve, reject) => {
@@ -7789,9 +7789,9 @@ function retryRequest(requestFn, maxRetries = 3, delay = 1000) {
 }
 ```
 
-### 📚 4.js常考手写题
+### 🎮 4.js常考手写题
 
-#### 🎯 1.LRU缓存.ts
+#### 🔥 1.LRU缓存.ts
 ```typescript
 // 最近最少使用
 /**
@@ -7851,7 +7851,7 @@ lRUCache.get(4) // 返回 4
 
 ```
 
-#### 💡 2.数组转树.js
+#### 🔰 2.数组转树.js
 ```typescript
 const items = [
     { id: 1, name: "Item 1", parentId: null },
@@ -7876,7 +7876,7 @@ console.log("arrToTree(items)", arrToTree(items))
 
 ```
 
-#### 🚀 3.树转数组.js
+#### 🧩 3.树转数组.js
 ```typescript
 const tree = [
     {
@@ -7932,7 +7932,7 @@ console.log("treeToArray(tree)", treeToArray(tree))
 
 ```
 
-#### 🚀 4.函数科里化.js
+#### 🛠️ 4.函数科里化.js
 ```typescript
 // 实现一个add方法, 使计算结果能够满足以下预期
 // add(1)(2)(3)() = 6
@@ -7956,7 +7956,7 @@ console.log(add(1)(2)(3)(4)(5)())
 
 ```
 
-#### ⭐ 5.继承的几种方法.js
+#### 📚 5.继承的几种方法.js
 ```typescript
 // 原型链继承
 function Parent() {
@@ -8005,7 +8005,7 @@ Child3.prototype = Object.create(Parent3.prototype)
 
 ```
 
-#### 🎨 6.生成唯一id.js
+#### 🎲 6.生成唯一id.js
 ```typescript
 function GetUniqueID() {
     // 当前时间转成 36 进制字符串
@@ -8023,7 +8023,7 @@ console.log(GetUniqueID())
 
 ```
 
-#### 💡 7.十进制转十六进制.js
+#### 🎮 7.十进制转十六进制.js
 ```typescript
 /** // notice:余数法，以十六进制为例,每一次取余数之后，然后进行取反操作 */
 const binaryConversion = (nums) => {
@@ -8040,7 +8040,7 @@ console.log("binaryConversion(120)", binaryConversion(120))
 
 ```
 
-#### 🧩 8.最小堆.js
+#### 💫 8.最小堆.js
 ```typescript
 // ps:堆的结构
 class MinHeap {
@@ -8174,7 +8174,7 @@ function heapSortThroughSelf(arr) {
 }
 ```
 
-#### 📚 9.抽奖算法.js
+#### 🔥 9.抽奖算法.js
 ```typescript
 // 实现一个抢红包算法，给你红包总数和总金额，去实现每个红包金额的随机分配，要尽可能做到公平
 
@@ -8196,7 +8196,7 @@ function prize(totalNum, count) {
 console.log('prize',prize(10,2))
 ```
 
-#### 🔰 10.打乱数组.js
+#### 🎲 10.打乱数组.js
 ```typescript
 const arr = [1, 2, 3, 4, 5, 6]
 function sortRandom(arr) {
@@ -8211,7 +8211,7 @@ function sortRandom(arr) {
 console.log('sortRandom(arr)', sortRandom(arr))
 ```
 
-#### 📚 11.文件路径转换.js
+#### 🛠️ 11.文件路径转换.js
 ```typescript
 const baseData = ['a/b/c/d/e', 'a/b/e/f/g', 'a/b/h', 'a/i/j', 'a/i/k'];
 // 转换成 ==========================>
@@ -8332,7 +8332,7 @@ function pathToTree(paths) {
 }
 ```
 
-#### 🔥 12.对象路径字符串.js
+#### 🎮 12.对象路径字符串.js
 ```typescript
 // 实现一个class，满足下面的输出
 class Data {
@@ -8368,7 +8368,7 @@ data.watch('a.b', (data) => console.log(data))
 data.set('a.b', 2) // 2
 ```
 
-#### 🎮 13.快速选择算法.js
+#### 🎨 13.快速选择算法.js
 ```typescript
 function quickSelect(arr, k) {
     // 检查 k 是否越界
@@ -8400,7 +8400,7 @@ function quickSelect(arr, k) {
 console.log(quickSelect([1, 2, 3, 4, 5, 6], 3), '>>>>');
 ```
 
-#### 🎮 14.对象字符串.js
+#### 🧩 14.对象字符串.js
 ```typescript
 // import * as readline from 'readline';
 // let rl = readline.createInterface({
@@ -8478,7 +8478,7 @@ console.log(JSON.stringify(formatStr(foo1)))
 // }
 ```
 
-#### 🎲 15.后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径.js
+#### ✨ 15.后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径.js
 ```typescript
 /**
  * @description 后端返回一个数组节点之间可以组成树-给定一个叶子节点的name，返回根节点到叶子节点的路径
@@ -8524,7 +8524,7 @@ console.log(getPathByLeafName(data, 'File2.txt'));
 // 输出: ['Root/DirB/File2.txt']
 ```
 
-#### 🔰 16.hardman.js
+#### 🎮 16.hardman.js
 ```typescript
 /**
  * @description 腾讯爱考题目-来自牛客
@@ -8624,7 +8624,7 @@ hardMan('潘潘').rest(3).study('敲码')
 
 ```
 
-#### 📚 17.实现版本号排序.js
+#### 🧩 17.实现版本号排序.js
 ```typescript
 function versionSort(versions) {
     return versions.sort((a, b) => {
@@ -8652,7 +8652,7 @@ console.log(sortedVersions);
 
 ```
 
-#### 💫 18.将一个对象变成响应式.js
+#### 🎯 18.将一个对象变成响应式.js
 ```typescript
 const obj = {
     a: {
@@ -8678,7 +8678,7 @@ console.log(proxyObj.a.b.c)
 
 ```
 
-#### 💫 19.小于n的最大数.js
+#### 📚 19.小于n的最大数.js
 ```typescript
 /**
  * @url https://edu.51cto.com/video/27365.html
@@ -8801,9 +8801,9 @@ console.log(findMax([2, 3, 4, 9], 23412)) // 23399
 // console.log(findMax([9], 999)) // 这里后面再加上一层判断
 ```
 
-## 🎮 11.单调栈
+## ✨ 11.单调栈
 
-### 🌟 1.每日温度.ts
+### ✨ 1.每日温度.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -8860,7 +8860,7 @@ var dailyTemperatures = function(temperatures) {
 };
 ```
 
-### 🧩 2.下一个更大的元素.ts
+### 🎨 2.下一个更大的元素.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -8901,7 +8901,7 @@ var nextGreaterElement = function (nums1, nums2) {
 
 ```
 
-### 🔥 3.下一个更大的元素2.ts
+### 🌟 3.下一个更大的元素2.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -8933,7 +8933,7 @@ var nextGreaterElements = function (nums) {
 
 ```
 
-### 🎨 4.接雨水.ts
+### 🚀 4.接雨水.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -8967,7 +8967,7 @@ var trap = function (height) {
 
 ```
 
-### 📚 5.柱状图中最大的矩形.ts
+### 🔥 5.柱状图中最大的矩形.ts
 ```typescript
 // @ts-nocheck
 /**
@@ -8976,9 +8976,9 @@ var trap = function (height) {
 
 ```
 
-## 🎲 12.二分搜索
+## 🎨 12.二分搜索
 
-### 🛠️ 1.搜索旋转数组.ts
+### 🌟 1.搜索旋转数组.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/search-in-rotated-sorted-array/description/?envType=study-plan-v2&envId=top-100-liked
@@ -9018,7 +9018,7 @@ var search = function (nums, target) {
 };
 ```
 
-### 🎯 2.旋转数组的最小值.ts
+### 💡 2.旋转数组的最小值.ts
 ```typescript
 /**
  * @url https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/?envType=study-plan-v2&envId=top-100-liked
@@ -9043,9 +9043,9 @@ var findMin = function (nums) {
 };
 ```
 
-## 🛠️ 13.双指针
+## ✨ 13.双指针
 
-### 🎲 1.移动零.js
+### 🔥 1.移动零.js
 ```typescript
 /**
  * @url https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan-v2&envId=top-100-liked
@@ -9075,7 +9075,7 @@ var moveZeroes = function (nums) {
 };
 ```
 
-### 🎨 2.盛最多水的容器.js
+### 🧩 2.盛最多水的容器.js
 ```typescript
 /**
  * @url https://leetcode.cn/problems/container-with-most-water/description/?envType=study-plan-v2&envId=top-100-liked
@@ -9100,7 +9100,7 @@ var maxArea = function (height) {
 };
 ```
 
-### 🧩 3.三数之和.js
+### 🔰 3.三数之和.js
 ```typescript
 /**
  * @url https://leetcode.cn/problems/3sum/description/?envType=study-plan-v2&envId=top-100-liked
