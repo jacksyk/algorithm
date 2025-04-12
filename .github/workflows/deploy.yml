@@ -34,7 +34,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
-          name: github-pages  # 添加这行，确保与 deploy 步骤期望的名称一致
 
   deploy:
     environment:
