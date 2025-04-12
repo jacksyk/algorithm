@@ -30,6 +30,11 @@ jobs:
       - name: Build
         run: pnpm run docs:build
       
+      - name: Check build output
+        run: |
+          ls -la docs/.vitepress/dist
+          echo "Checking build output..."
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
