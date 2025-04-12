@@ -40,7 +40,7 @@ export default defineConfig({
         
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2023-present'
+            copyright: 'Copyright © 2025-present'
         },
 
         // 更新主配置文件中的 sidebar 配置

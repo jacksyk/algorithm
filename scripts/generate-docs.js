@@ -86,29 +86,12 @@ function generateSidebar(srcDir, docsDir) {
 }
 
 function generateMarkdown(fileName, content) {
-    // emoji 数组
-    const titleEmojis = ['🎯', '⭐', '🎨', '🎮', '🎪', '🎭', '🎪', '🎯', '🎲', '🎳'];
-    const subTitleEmojis = ['📝', '📌', '📎', '📋', '📊', '📈', '📉', '📄', '📑', '📃'];
+    const titleEmoji = '📚';
+    const codeEmoji = '💻';
 
-    // 随机获取 emoji
-    const randomEmoji = (emojis) => emojis[Math.floor(Math.random() * emojis.length)];
+    return `# ${titleEmoji} ${fileName.replace(/\.(ts|js|jsx|tsx|vue|html)$/, '')}
 
-    // 提取题目链接
-    const urlMatch = content.match(/@url\s+(.*)/);
-    const url = urlMatch ? urlMatch[1] : '';
-
-    // 提取题目描述
-    const descMatch = content.match(/\/\*\*([\s\S]*?)\*\//);
-    const description = descMatch ? descMatch[1].trim() : '';
-
-    return `# ${randomEmoji(titleEmojis)} ${fileName.replace(/\.(ts|js|jsx|tsx|vue|html)$/, '')}
-
-${url ? `[题目链接](${url})` : ''}
-
-## ${randomEmoji(subTitleEmojis)} 题目描述
-${description || '暂无题目描述'}
-
-## ${randomEmoji(subTitleEmojis)} 代码实现
+## ${codeEmoji} 代码实现
 \`\`\`typescript
 ${content}
 \`\`\`
@@ -142,29 +125,29 @@ function main() {
     // 生成自定义样式
     const customCss = `
 :root {
-  --vp-c-brand: #966220;
-  --vp-c-brand-light: #b17a2d;
-  --vp-c-brand-dark: #7a4e15;
+  --vp-c-brand: #d4a373;
+  --vp-c-brand-light: #e6bc91;
+  --vp-c-brand-dark: #c49162;
   
-  --vp-c-bg: #faf6f1;
-  --vp-c-bg-alt: #f7f3ed;
-  --vp-c-text: #2c3e50;
-  --vp-c-text-light: #476582;
+  --vp-c-bg: #fdfaf6;
+  --vp-c-bg-alt: #f9f5f0;
+  --vp-c-text: #4a4a4a;
+  --vp-c-text-light: #6b6b6b;
   
-  --vp-code-block-bg: #f8f7f6;
-  --vp-code-line-highlight-color: rgba(150, 98, 32, 0.05);
-  --vp-code-copy-code-hover-bg: rgba(150, 98, 32, 0.1);
+  --vp-code-block-bg: #faf8f5;
+  --vp-code-line-highlight-color: rgba(212, 163, 115, 0.05);
+  --vp-code-copy-code-hover-bg: rgba(212, 163, 115, 0.1);
   
-  --vp-c-border: #e2d6c3;
-  --vp-c-divider: #e2d6c3;
+  --vp-c-border: #e9e1d5;
+  --vp-c-divider: #e9e1d5;
 }
 
 .dark {
-  --vp-c-bg: #1a1a1a;
-  --vp-c-bg-alt: #242424;
-  --vp-code-block-bg: #1c1c1c;
-  --vp-c-text: #f1e7d9;
-  --vp-c-text-light: #d3c4b0;
+  --vp-c-bg: #242424;
+  --vp-c-bg-alt: #2a2a2a;
+  --vp-code-block-bg: #292929;
+  --vp-c-text: #f4ede4;
+  --vp-c-text-light: #e0d6ca;
 }
 
 .vp-doc {
@@ -175,30 +158,155 @@ function main() {
 .vp-doc h2,
 .vp-doc h3 {
   font-family: "Palatino", "Times New Roman", serif;
-  border-bottom: 2px solid var(--vp-c-border);
-  padding-bottom: 0.3em;
+  border-top: none;  /* 添加这行 */
+  border-bottom: 1px solid var(--vp-c-border);
+  padding-bottom: 0.2em;
+  margin-top: 0;     /* 添加这行 */
+}
+
+.vp-doc h1 {
+  border: none;      /* 添加这个选择器 */
+  padding-bottom: 0;
 }
 
 .vp-doc div[class*='language-'] {
   border: 1px solid var(--vp-c-border);
-  border-radius: 4px;
+  border-radius: 6px;
   margin: 16px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
 .VPSidebar {
   background-color: var(--vp-c-bg-alt);
   border-right: 1px solid var(--vp-c-border);
+  transition: all 0.3s ease;
 }
 
-.vp-doc a {
+.VPSidebarItem.level-0 {
+  margin-bottom: 8px;  /* 从 12px 改为 8px */
+}
+
+.VPSidebarItem .item {
+  padding: 4px 12px;  /* 从 6px 改为 4px */
+  margin: 2px 0;     /* 从 4px 改为 2px */
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.VPSidebarItem.level-1 .item {
+  margin-left: 8px;  /* 从 12px 改为 8px */
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: var(--vp-c-text);
+  transition: color 0.3s;
+  user-select: none;  /* 添加这行 */
+}
+
+.VPSidebarItem .caret {
+  transition: transform 0.3s;
+  user-select: none;  /* 添加这行 */
+}
+
+.VPSidebarItem.level-1 > .item > .text {
+  font-size: 0.9em;   /* 从 0.95em 改为 0.9em */
+  transition: all 0.3s;
+}
+
+.VPSidebarItem .item:hover > .text {
   color: var(--vp-c-brand);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
+  transform: translateX(4px);
 }
 
-.vp-doc a:hover {
-  border-bottom-color: var(--vp-c-brand);
+.VPSidebarItem.has-active > .item > .text {
+  color: var(--vp-c-brand) !important;
+}
+
+.VPSidebarItem .caret {
+  transition: transform 0.3s;
+}
+
+.VPSidebarItem.collapsed .caret {
+  transform: rotate(-90deg);
+}
+
+.VPSidebarItem .item {
+  padding: 6px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.VPSidebarItem .item:hover {
+  background-color: rgba(212, 163, 115, 0.1);
+}
+
+.VPSidebarItem.level-1 .item {
+  margin-left: 12px;
+}
+
+/* 自定义滚动条 */
+.VPSidebar::-webkit-scrollbar {
+  width: 4px;        /* 从 6px 改为 4px */
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: rgba(233, 225, 213, 0.3);  /* 使用透明度降低显示度 */
+  border-radius: 2px;                     /* 从 3px 改为 2px */
+}
+
+.VPSidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 163, 115, 0.3);   /* 使用透明度降低显示度 */
+}
+
+.VPSidebarItem.has-active > .item > .text {
+  color: var(--vp-c-brand) !important;
+}
+
+.VPSidebarItem .caret {
+  transition: transform 0.3s;
+}
+
+.VPSidebarItem.collapsed .caret {
+  transform: rotate(-90deg);
+}
+
+.VPSidebarItem .item {
+  padding: 6px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.VPSidebarItem .item:hover {
+  background-color: rgba(212, 163, 115, 0.1);
+}
+
+.VPSidebarItem.level-1 .item {
+  margin-left: 12px;
+}
+
+.VPSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: var(--vp-c-border);
+  border-radius: 3px;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-light);
 }`;
 
     fs.writeFileSync(path.join(themeDir, 'custom.css'), customCss);
@@ -260,7 +368,7 @@ export default defineConfig({
         
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2023-present'
+            copyright: 'Copyright © 2025-present'
         },
 
         // 更新主配置文件中的 sidebar 配置
@@ -302,22 +410,140 @@ export default defineConfig({
 layout: home
 
 hero:
-  name: "算法库"
-  text: "面试必冲算法库"
-  tagline: 系统化的算法学习资料
+  name: "算法库突击"
+  text: "系统化算法学习指南"
+  tagline: 从零开始，构建扎实的算法能力
+  image:
+    src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23d4a373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>'
+    alt: 算法库突击
   actions:
     - theme: brand
       text: 开始学习
       link: /1.数组/1.二分查找
+    - theme: alt
+      text: GitHub
+      link: https://github.com/jacksyk/algorithm
 
 features:
-  - title: 系统化整理
-    details: 按照不同类型系统整理算法题目
-  - title: 详细解析
-    details: 每道题目都有详细的解题思路和代码实现
-  - title: 持续更新
-    details: 持续收集和更新高质量算法题目
----`;
+  - icon: 🎯
+    title: 系统化学习
+    details: 按照难度递进，从易到难系统化整理算法题目，让你的学习更有计划性
+    
+  - icon: 🔍
+    title: 深入解析
+    details: 每道题目都配备详细的解题思路、复杂度分析和多种解法对比，帮助你真正理解算法本质
+    
+  - icon: 🚀
+    title: 面试导向
+    details: 精选高频面试算法题目，让你在面试中游刃有余
+    
+  - icon: 📝
+    title: 代码示例
+    details: 提供清晰的代码实现和注释，帮助你快速掌握核心要点
+    
+  - icon: 🌟
+    title: 持续更新
+    details: 定期更新最新的算法题目和解法，助你保持竞争力
+    
+  - icon: 👥
+    title: 社区互动
+    details: 欢迎在 GitHub 上提出问题和建议，一起讨论更优解法
+
+footer: false
+---
+
+<div class="custom-footer">
+  <div class="footer-content">
+    <div class="author">
+      Created by <a href="https://github.com/jacksyk" target="_blank">JACKSYK</a> with 💖
+    </div>
+    <div class="license">
+      Released under the MIT License
+    </div>
+    <div class="copyright">
+      Copyright © 2023-present
+    </div>
+  </div>
+</div>
+
+<style>
+.custom-footer {
+  padding: 24px;
+  text-align: center;
+  background-color: var(--vp-c-bg);
+  margin-top: 50px;
+}
+
+.footer-content {
+  max-width: 1152px;
+  margin: 0 auto;
+  color: var(--vp-c-text-2);
+}
+
+.author {
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.author a {
+  color: var(--vp-c-brand);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.author a:hover {
+  color: var(--vp-c-brand-light);
+}
+
+.license, .copyright {
+  font-size: 0.8em;
+  margin-top: 4px;
+}
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--vp-c-brand) 30%, var(--vp-c-brand-light));
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--vp-c-brand) 30%, var(--vp-c-brand-light));
+  --vp-home-hero-image-filter: blur(72px);
+}
+
+.VPHero .image-bg {
+  opacity: 0.8;
+  transition: opacity 1s ease;
+}
+
+.VPHero .image-container:hover .image-bg {
+  opacity: 1;
+}
+
+.VPFeatures .box {
+  background-color: var(--vp-c-bg-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--vp-c-border);
+}
+
+.VPFeatures .box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.VPFeatures .icon {
+  font-size: 1.5em;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .VPFeatures .container {
+    gap: 24px;
+  }
+}
+
+.dark .VPFeatures .box {
+  background-color: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-border);
+}
+</style>`;
 
     fs.writeFileSync(path.join(docsDir, 'index.md'), indexContent);
 }

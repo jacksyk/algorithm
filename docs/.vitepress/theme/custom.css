@@ -1,28 +1,28 @@
 
 :root {
-  --vp-c-brand: #966220;
-  --vp-c-brand-light: #b17a2d;
-  --vp-c-brand-dark: #7a4e15;
+  --vp-c-brand: #d4a373;
+  --vp-c-brand-light: #e6bc91;
+  --vp-c-brand-dark: #c49162;
   
-  --vp-c-bg: #faf6f1;
-  --vp-c-bg-alt: #f7f3ed;
-  --vp-c-text: #2c3e50;
-  --vp-c-text-light: #476582;
+  --vp-c-bg: #fdfaf6;
+  --vp-c-bg-alt: #f9f5f0;
+  --vp-c-text: #4a4a4a;
+  --vp-c-text-light: #6b6b6b;
   
-  --vp-code-block-bg: #f8f7f6;
-  --vp-code-line-highlight-color: rgba(150, 98, 32, 0.05);
-  --vp-code-copy-code-hover-bg: rgba(150, 98, 32, 0.1);
+  --vp-code-block-bg: #faf8f5;
+  --vp-code-line-highlight-color: rgba(212, 163, 115, 0.05);
+  --vp-code-copy-code-hover-bg: rgba(212, 163, 115, 0.1);
   
-  --vp-c-border: #e2d6c3;
-  --vp-c-divider: #e2d6c3;
+  --vp-c-border: #e9e1d5;
+  --vp-c-divider: #e9e1d5;
 }
 
 .dark {
-  --vp-c-bg: #1a1a1a;
-  --vp-c-bg-alt: #242424;
-  --vp-code-block-bg: #1c1c1c;
-  --vp-c-text: #f1e7d9;
-  --vp-c-text-light: #d3c4b0;
+  --vp-c-bg: #242424;
+  --vp-c-bg-alt: #2a2a2a;
+  --vp-code-block-bg: #292929;
+  --vp-c-text: #f4ede4;
+  --vp-c-text-light: #e0d6ca;
 }
 
 .vp-doc {
@@ -33,28 +33,153 @@
 .vp-doc h2,
 .vp-doc h3 {
   font-family: "Palatino", "Times New Roman", serif;
-  border-bottom: 2px solid var(--vp-c-border);
-  padding-bottom: 0.3em;
+  border-top: none;  /* 添加这行 */
+  border-bottom: 1px solid var(--vp-c-border);
+  padding-bottom: 0.2em;
+  margin-top: 0;     /* 添加这行 */
+}
+
+.vp-doc h1 {
+  border: none;      /* 添加这个选择器 */
+  padding-bottom: 0;
 }
 
 .vp-doc div[class*='language-'] {
   border: 1px solid var(--vp-c-border);
-  border-radius: 4px;
+  border-radius: 6px;
   margin: 16px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
 .VPSidebar {
   background-color: var(--vp-c-bg-alt);
   border-right: 1px solid var(--vp-c-border);
+  transition: all 0.3s ease;
 }
 
-.vp-doc a {
+.VPSidebarItem.level-0 {
+  margin-bottom: 8px;  /* 从 12px 改为 8px */
+}
+
+.VPSidebarItem .item {
+  padding: 4px 12px;  /* 从 6px 改为 4px */
+  margin: 2px 0;     /* 从 4px 改为 2px */
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.VPSidebarItem.level-1 .item {
+  margin-left: 8px;  /* 从 12px 改为 8px */
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: var(--vp-c-text);
+  transition: color 0.3s;
+  user-select: none;  /* 添加这行 */
+}
+
+.VPSidebarItem .caret {
+  transition: transform 0.3s;
+  user-select: none;  /* 添加这行 */
+}
+
+.VPSidebarItem.level-1 > .item > .text {
+  font-size: 0.9em;   /* 从 0.95em 改为 0.9em */
+  transition: all 0.3s;
+}
+
+.VPSidebarItem .item:hover > .text {
   color: var(--vp-c-brand);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
+  transform: translateX(4px);
 }
 
-.vp-doc a:hover {
-  border-bottom-color: var(--vp-c-brand);
+.VPSidebarItem.has-active > .item > .text {
+  color: var(--vp-c-brand) !important;
+}
+
+.VPSidebarItem .caret {
+  transition: transform 0.3s;
+}
+
+.VPSidebarItem.collapsed .caret {
+  transform: rotate(-90deg);
+}
+
+.VPSidebarItem .item {
+  padding: 6px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.VPSidebarItem .item:hover {
+  background-color: rgba(212, 163, 115, 0.1);
+}
+
+.VPSidebarItem.level-1 .item {
+  margin-left: 12px;
+}
+
+/* 自定义滚动条 */
+.VPSidebar::-webkit-scrollbar {
+  width: 4px;        /* 从 6px 改为 4px */
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: rgba(233, 225, 213, 0.3);  /* 使用透明度降低显示度 */
+  border-radius: 2px;                     /* 从 3px 改为 2px */
+}
+
+.VPSidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 163, 115, 0.3);   /* 使用透明度降低显示度 */
+}
+
+.VPSidebarItem.has-active > .item > .text {
+  color: var(--vp-c-brand) !important;
+}
+
+.VPSidebarItem .caret {
+  transition: transform 0.3s;
+}
+
+.VPSidebarItem.collapsed .caret {
+  transform: rotate(-90deg);
+}
+
+.VPSidebarItem .item {
+  padding: 6px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.VPSidebarItem .item:hover {
+  background-color: rgba(212, 163, 115, 0.1);
+}
+
+.VPSidebarItem.level-1 .item {
+  margin-left: 12px;
+}
+
+.VPSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: var(--vp-c-border);
+  border-radius: 3px;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-light);
 }
