@@ -5,10 +5,12 @@ on:
       - master
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,20 +25,23 @@ jobs:
           cache: 'pnpm'
       
       - name: Install dependencies
-        working-directory: .
         run: pnpm install
       
       - name: Build
-        working-directory: .
         run: pnpm docs:build
       
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/.vitepress/dist
-          force_orphan: true
-          enable_jekyll: false
-          keep_files: false
-          commit_message: "deploy: update documentation site"
-          exclude_assets: ''  # 不包含任何额外资产
+          path: docs/.vitepress/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
