@@ -4,6 +4,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write  # 添加写入权限
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
