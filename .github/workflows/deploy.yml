@@ -34,3 +34,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
           force_orphan: true
+          enable_jekyll: false
+          keep_files: false
+          commit_message: "deploy: update documentation site"
+          exclude_assets: ''  # 不包含任何额外资产
