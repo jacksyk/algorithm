@@ -56,8 +56,8 @@
     "vscode_custom_css.imports": [
       "file:///c:/Users/18590/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.4/dist/updateHandler.js"
     ],
-    "editor.fontFamily": "Fira Code",
-    "editor.fontLigatures": true,
+    // "editor.fontFamily": "Fira Code",
+    // "editor.fontLigatures": true,
     "varTranslation.baiduSecret": "20240725002108019,ONVYTI12LNXIMQ92n9rW",
     "Lingma.cloudModelAutoTriggerGenerateLength": "long",
     "Lingma.cloudModelManualTriggerGenerateLength": "long",

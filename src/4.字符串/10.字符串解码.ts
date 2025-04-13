@@ -22,7 +22,9 @@ var decodeString = function (s: string) {
                 tmpStrArray.push(stack.pop())
             }
             stack.pop() // 去掉左括号
-            const numArr: number[] = []
+            const numArr: number[] = [] // ps： 注意多个数字的情况 100[leetcode]
+            // ps: 易错
+            // let num = Number(stack.pop()) // 得到数字
             while (stack[stack.length - 1] >= '0' && stack[stack.length - 1] <= '9') {
                 numArr.unshift(stack.pop())
             }
