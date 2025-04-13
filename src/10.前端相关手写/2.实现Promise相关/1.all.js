@@ -26,6 +26,6 @@ const promise2 = () => my(3000)
 const promise3 = () => my(5000)
 const promise4 = () => my(4000)
 
-Promise._all([promise1, promise2, promise3, promise4]).then((res) => {
+Promise._all([promise1(), promise2(), promise3(), promise4()]).then((res) => {
     console.log(res)
 })

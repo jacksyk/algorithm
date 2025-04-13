@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Ayu Next",
+    "workbench.colorTheme": "Dracula Theme Soft",
     "tabnine.experimentalAutoImports": true,
     "explorer.confirmDelete": false,
     "liveServer.settings.CustomBrowser": "chrome",
@@ -67,46 +67,53 @@
     "files.saveConflictResolution": "overwriteFileOnDisk",
     "editor.stickyScroll.enabled": false,
     "better-comments.tags": [
-      // 核心功能注释
       {
-          "tag": "!",  // 重要提示
-          "color": "#E06C75",  // 浅珊瑚红
-          "strikethrough": false,
-          "backgroundColor": "transparent",
-          "underline": true
+        "tag": "!", // 警告/重要
+        "color": "#FF5555", // 鲜艳红色，前景色
+        "backgroundColor": "#4A2C2C", // 深红背景，柔和但有对比
+        "bold": true,
+        "italic": false
       },
       {
-          "tag": "todo",  // 待办事项
-          "color": "#D19A66",  // 陶土橙
-          "strikethrough": false,
-          "italic": true
+        "tag": "?", // 疑问
+        "color": "#55AAFF", // 浅蓝色，前景色
+        "backgroundColor": "#2C3E50", // 深蓝灰背景
+        "bold": false,
+        "italic": true
       },
-      // 辅助型注释  
       {
-          "tag": "?",  // 疑问点
-          "color": "#61AFEF",  // 雾霾蓝
-          "strikethrough": false,
-          "underline": false
+        "tag": "todo", // 待办事项
+        "color": "#FFAA00", // 橙色，前景色
+        "backgroundColor": "#4B3A1E", // 深橙背景
+        "bold": true,
+        "italic": false
       },
-      // 辅助型注释  
       {
-        "tag": "ps",  // 疑问点
-        "color": "#61AFEF",  // 雾霾蓝
-        "strikethrough": false,
-        "underline": false
-    },
-      {
-          "tag": "*",  // 文档说明
-          "color": "#98C379",  // 薄荷绿
-          "strikethrough": false,
-          "bold": false  
+        "tag": "//", // 禁用/注释掉的代码
+        "color": "#6272A4", // 灰蓝色，前景色
+        "backgroundColor": "transparent", // 无背景色，保持简洁
+        "strikethrough": true
       },
-      // 特殊标记
       {
-          "tag": "//",  // 失效代码
-          "color": "#5C6370",  // 中灰色
-          "strikethrough": true,
-          "backgroundColor": "transparent"
+        "tag": "*", // 普通高亮
+        "color": "#50FA7B", // 鲜绿色，前景色
+        "backgroundColor": "#2F4A3A", // 深绿背景
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "note", // 笔记
+        "color": "#FFB86C", // 浅橙色，前景色
+        "backgroundColor": "#4A3A2C", // 深棕背景
+        "bold": false,
+        "italic": true
+      },
+      {
+        "tag": "ps", // 普通高亮
+        "color": "#50FA7B", // 鲜绿色，前景色
+        "backgroundColor": "#2F4A3A", // 深绿背景
+        "bold": false,
+        "italic": false
       },
   ]
   }
