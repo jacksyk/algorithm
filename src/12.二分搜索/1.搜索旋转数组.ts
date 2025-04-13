@@ -1,12 +1,14 @@
+// @ts-nocheck
+
 /**
  * @url https://leetcode.cn/problems/search-in-rotated-sorted-array/description/?envType=study-plan-v2&envId=top-100-liked
- */
+*/
 
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number}
- */
+*/
 
 // ps: 每一次二分都能找到一半有序，一半无序的情况。根据有序去缩写最小值
 
