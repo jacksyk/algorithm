@@ -21,7 +21,7 @@
     // "editor.cursorSmoothCaretAnimation":"on", // 光标的动画效果
     "[javascript]": {
       // 根据语言设置其对应的默认格式化工具
-      "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 javascript 的默认格式化工具为 prettier
+      "editor.defaultFormatter": "vscode.typescript-language-features", // 设置 javascript 的默认格式化工具为 prettier
       "editor.formatOnSave": true // 保存的时候自动格式化
     },
     "[typescript]": {

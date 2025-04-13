@@ -2,12 +2,12 @@
  * @url https://leetcode.cn/problems/word-search/?envType=study-plan-v2&envId=top-100-liked
  */
 
-// ps: ================================
 /**
  * @param {character[][]} board
  * @param {string} word
  * @return {boolean}
  */
+
 var exist = function (board, word) {
     const dfs = (r, c, wordIdx) => {
         // 越界或者字符不匹配，直接return false
