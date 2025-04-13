@@ -9,6 +9,7 @@
  * @return {string}
  */
 
+// ps: 模拟栈操作
 // "3[a]2[bc]"
 var decodeString = function (s: string) {
     const stack: Array<string> = []

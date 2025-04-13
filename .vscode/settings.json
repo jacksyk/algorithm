@@ -1,9 +1,113 @@
 {
-    "liveServer.settings.port": 5502,
+    "workbench.colorTheme": "Ayu Next",
+    "tabnine.experimentalAutoImports": true,
+    "explorer.confirmDelete": false,
+    "liveServer.settings.CustomBrowser": "chrome",
+    "workbench.iconTheme": "vscode-icons",
+    "git.path": "D:\\userdownload\\Git\\bin\\git.exe", // git插件路径
+    "cssrem.rootFontSize": 80,
+    "github.copilot.enable": {
+      "*": true,
+      "plaintext": false,
+      "markdown": true,
+      "scminput": false
+    },
+    "smoothtype.autoReload": true,
+    "inlineChat.showDiff": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置编辑器的默认格式化工具为 prettier
+    "editor.cursorBlinking": "expand", // 光标闪烁方式
+    "editor.cursorStyle": "line", // 光标样式
+    // 关闭自
+    // "editor.cursorSmoothCaretAnimation":"on", // 光标的动画效果
     "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+      // 根据语言设置其对应的默认格式化工具
+      "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 javascript 的默认格式化工具为 prettier
+      "editor.formatOnSave": true // 保存的时候自动格式化
     },
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
-}
+      // 根据语言设置其对应的默认格式化工具
+      // "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 javascript 的默认格式化工具为 prettier
+      // "editor.formatOnSave": true // 保存的时候自动格式化
+    },
+    "[vue]": {
+      // 根据语言设置其对应的默认格式化工具
+      // "editor.formatOnSave": false // 保存的时候自动格式化
+    },
+    "[jsx-tags]": {
+      // 根据语言设置其对应的默认格式化工具
+      "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 javascript 的默认格式化工具为 prettier
+      "editor.formatOnSave": true // 保存的时候自动格式化
+    },
+    "[tsx-tags]": {
+      // 根据语言设置其对应的默认格式化工具
+      "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 javascript 的默认格式化工具为 prettier
+      "editor.formatOnSave": true // 保存的时候自动格式化
+    },
+    "[html]": {
+      // 根据语言设置其对应的默认格式化工具
+      "editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 javascript 的默认格式化工具为 prettier
+      "editor.formatOnSave": true // 保存的时候自动格式化
+    },
+    // prettier插件
+    // "prettier.tabWidth": 4,
+    // "liveServer.settings.donotShowInfoMsg": true,
+    "editor.formatOnSave": false, // 使用eslint的话，这里改成false，使用prettier改成true
+    "varTranslation.translationEngine": "baidu",
+    "vscode_custom_css.imports": [
+      "file:///c:/Users/18590/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.4/dist/updateHandler.js"
+    ],
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "varTranslation.baiduSecret": "20240725002108019,ONVYTI12LNXIMQ92n9rW",
+    "Lingma.cloudModelAutoTriggerGenerateLength": "long",
+    "Lingma.cloudModelManualTriggerGenerateLength": "long",
+    "[snippets]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "files.saveConflictResolution": "overwriteFileOnDisk",
+    "editor.stickyScroll.enabled": false,
+    "better-comments.tags": [
+      // 核心功能注释
+      {
+          "tag": "!",  // 重要提示
+          "color": "#E06C75",  // 浅珊瑚红
+          "strikethrough": false,
+          "backgroundColor": "transparent",
+          "underline": true
+      },
+      {
+          "tag": "todo",  // 待办事项
+          "color": "#D19A66",  // 陶土橙
+          "strikethrough": false,
+          "italic": true
+      },
+      // 辅助型注释  
+      {
+          "tag": "?",  // 疑问点
+          "color": "#61AFEF",  // 雾霾蓝
+          "strikethrough": false,
+          "underline": false
+      },
+      // 辅助型注释  
+      {
+        "tag": "ps",  // 疑问点
+        "color": "#61AFEF",  // 雾霾蓝
+        "strikethrough": false,
+        "underline": false
+    },
+      {
+          "tag": "*",  // 文档说明
+          "color": "#98C379",  // 薄荷绿
+          "strikethrough": false,
+          "bold": false  
+      },
+      // 特殊标记
+      {
+          "tag": "//",  // 失效代码
+          "color": "#5C6370",  // 中灰色
+          "strikethrough": true,
+          "backgroundColor": "transparent"
+      },
+  ]
+  }
+  
