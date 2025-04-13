@@ -6,6 +6,8 @@
  * @return {number}
  */
 
+// 4 5 1 2 3
+
 var findMin = function (nums) {
     let l = 0, r = nums.length - 1
 

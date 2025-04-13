@@ -8,14 +8,14 @@
  * @return {number}
  */
 
-// ps: 每一次二分都能找到一半有序，一半无序的情况。
+// ps: 每一次二分都能找到一半有序，一半无序的情况。根据有序去缩写最小值
 
 var search = function (nums, target) {
     let left = 0, right = nums.length - 1
     while (left <= right) {
         const mid = Math.floor((left + right) / 2)
         if (nums[mid] === target) return mid
-        // 落在左侧有序区间
+        // ps: 落在左侧有序区间（左边是连续递增的）
         if (nums[left] <= nums[mid]) {
             // target 落在[left, mid]空间上
             if (nums[left] <= target && nums[mid] > target) {
