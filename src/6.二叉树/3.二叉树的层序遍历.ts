@@ -274,3 +274,39 @@ function minDepth(root: TreeNode | null): number {
     }
     return depth
 }
+
+
+/**
+ * @description 二叉树锯齿形层序遍历
+ * @url https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/description/
+ */
+
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var zigzagLevelOrder = function(root) {
+    const res = []
+    const stack = []
+    let count = 0
+    if (!root) return res
+    stack.push(root)
+    while (stack.length) {
+        let len = stack.length
+        const tmp  = []
+        count++
+        while (len--) {
+            const node = stack.shift()
+            if (count % 2 === 0) {
+                tmp.unshift(node.val)
+            }else {
+                tmp.push(node.val)
+            }
+            node.left && stack.push(node.left)
+            node.right && stack.push(node.right)
+        }
+        res.push(tmp)
+    }
+    return res
+};
+

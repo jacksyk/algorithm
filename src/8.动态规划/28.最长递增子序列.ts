@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @url https://leetcode.cn/problems/longest-increasing-subsequence/description/
  */
@@ -60,3 +61,49 @@ function lengthOfLIS(nums: number[]): number {
   return Math.max(...dp);
 }
 // console.log(lengthOfLIS([1, 3, 6, 7, 9, 4, 10, 5, 6]))
+
+
+// ps: 如果要知道子序列是什么的做法
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findLIS = function(nums) {
+  if (!nums.length) return [];
+  
+  // dp[i] 表示以 nums[i] 结尾的最长递增子序列长度
+  const dp = new Array(nums.length).fill(1);
+  // prev[i] 记录 dp[i] 从哪个位置 j 转移过来
+  const prev = new Array(nums.length).fill(-1);
+  
+  // 动态规划计算 LIS 长度和前驱
+  for (let i = 1; i < nums.length; i++) {
+      for (let j = 0; j < i; j++) {
+          if (nums[i] > nums[j] && dp[j] + 1 > dp[i]) {
+              dp[i] = dp[j] + 1;
+              prev[i] = j;
+          }
+      }
+  }
+  
+  // 找到 dp 中的最大值及其索引
+  let maxLen = 1;
+  let endIndex = 0;
+  for (let i = 0; i < dp.length; i++) {
+      if (dp[i] > maxLen) {
+          maxLen = dp[i];
+          endIndex = i;
+      }
+  }
+  
+  // 回溯构造子序列
+  const result = [];
+  while (endIndex !== -1) {
+      result.push(nums[endIndex]);
+      endIndex = prev[endIndex];
+  }
+  
+  // 反转结果，因为回溯是从后向前
+  return result.reverse();
+};
+
