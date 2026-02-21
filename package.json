@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "husky install",
     "generate-readme": "node ./scripts/generate-readme.js",
+    "generate-html-catalog": "node ./scripts/generate-html-catalog.js",
     "docs:gen": "node scripts/generate-docs.js",
     "docs:dev": "npm run docs:gen && vitepress dev docs",
     "docs:build": "npm run docs:gen && vitepress build docs",
